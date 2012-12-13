@@ -2,6 +2,7 @@
 
 from conns.models import AuthInfo
 from users.models import Profile, Relationship
+from conns.auth_settings import *
 
 from django.shortcuts import redirect
 
@@ -11,7 +12,7 @@ import requests
 
 
 def weibo_connect():
-    return
+    return redirect()
 
 
 def weibo_callback():
@@ -19,11 +20,19 @@ def weibo_callback():
 
 
 def renren_connect():
-    return
+    args = {'client_id': RENREN_API_KEY, 'redirect_uri': '127.0.0.1/conns/','scope': 'read_user_status send_message'}
+    return redirect(requests.get(RENREN_AUTH_URL, params=args).url)
 
 
 def renren_callback():
     return
 
 
-# douban, twitter, facebook, weixin, G+
+def github_connect():
+    return
+
+
+def github_callback():
+    return
+
+# douban, twitter, facebook, weixin, G+, github

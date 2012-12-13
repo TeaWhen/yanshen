@@ -1,0 +1,21 @@
+# coding=utf8
+
+# Auth Settings For yanshen「延伸」
+
+###
+# Github
+GITHUB_CLIENT_ID = "a9a833dd147f64744611"
+GITHUB_CLIENT_SECRET = "04d816aac299633b402df3d8b1a182c3b61d28eb"
+
+###
+# 人人
+RENREN_CLIENT_ID = "8813263c61944cc1b015649de1a71bcc"  # API_KEY
+RENREN_CLIENT_SECRET = "31e42cccb19549478256c1145a71393f"  # SECRET_KEY
+RENREN_AUTH_URL = "https://graph.renren.com/oauth/authorize"
+
+###
+# Twitter
+TWITTER_CONSUMER_KEY = "44lQ0l5WX3dMOTmQuX1rJA"
+TWITTER_CONSUMER_SECRET = "UArA4pxiGVt2NVdP5jxteMAjH3IR45RBwoB83JJCRM"
+
+
