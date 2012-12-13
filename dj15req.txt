@@ -1,4 +1,4 @@
 Django==1.5b2
 requests==0.14.2
 wsgiref==0.1.2
-South==0.7.6
+South==0.7.6django-annoying==0.7.6
