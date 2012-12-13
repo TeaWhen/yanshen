@@ -20,7 +20,7 @@ def weibo_callback():
 
 
 def renren_connect():
-    args = {'client_id': RENREN_API_KEY, 'redirect_uri': '127.0.0.1/conns/','scope': 'read_user_status send_message'}
+    args = {'client_id': RENREN_CLIENT_ID, 'redirect_uri': '127.0.0.1/conns/','scope': 'read_user_status send_message'}
     return redirect(requests.get(RENREN_AUTH_URL, params=args).url)
 
 
