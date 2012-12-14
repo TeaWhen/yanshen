@@ -7,4 +7,3 @@ class AuthInfo(models.Model):
     uid = models.CharField(max_length=50)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="conns")
     tokens = models.TextField()
-    latest = models.CharField(max_length=200)
