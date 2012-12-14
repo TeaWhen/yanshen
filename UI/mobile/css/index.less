@@ -1,0 +1,20 @@
+@import "global.less";
+
+ul {
+	height: @screen-height - 20px - 44px;
+	li {
+		position: relative;
+		padding: 4px 0 2px 4px;
+		.avatar {
+			width: 54px;
+			border-radius: 4px;
+			display: inline-block;
+		}
+		.name {
+			position: absolute;
+			top: 12px;
+			left: 66px;
+			font-size: @font-l;
+		}
+	}
+}

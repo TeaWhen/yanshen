@@ -1,0 +1,119 @@
+@import "global.less";
+
+::selection {
+	background: @color-sel;
+	color: white;
+	text-shadow: none;
+}
+
+body {
+	margin: 0;
+	-webkit-font-smoothing: antialiased;
+	font-size: @font-m;
+	line-height: 1;
+	font-family: Helvetica, "Hiragino Sans GB", "Heiti SC", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-size: @font-m;
+}
+
+h1, h2, h3, h4, h5, h6, p, ol, ul, li, dl, dt, dd {
+	margin: 0;
+	padding: 0;
+}
+
+ul, ol {
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+// Layout
+
+body {
+	background-color: lighten(black, 10);
+	padding: 26px 36px;
+	
+	@media only screen and (max-device-width: 480px) {
+		padding: 0;
+	}
+}
+
+.screen {
+	overflow: hidden;
+	position: relative;
+	width: @screen-width;
+	height: @screen-height;
+	background-color: black;
+	
+	@media only screen and (max-device-width: 480px) {
+		margin: 0;
+		height: @screen-height - 20px;
+	}
+}
+
+.status_bar {
+	position: relative;
+	height: 20px;
+	font-size: 14px;
+	line-height: 20px;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	background-color: black;
+	
+	@media only screen and (max-device-width: 480px) {
+		display: none;
+	}
+}
+
+.top {
+	position: relative;
+	height: 44px;
+	background-color: white;
+	border-radius: 7px 7px 0 0;
+	
+	.button {
+		position: absolute;
+		top: 7px;
+		min-width: 28px;
+		height: 30px;
+		line-height: 30px;
+		padding: 0 9px;
+		font-size: font-m;
+		font-weight: bold;
+		text-align: center;
+		
+		&.left {
+			left: 5px;
+		}
+		
+		&.right {
+			right: 5px;
+		}
+	}
+}
+
+.button {
+	text-shadow: 0 1px 1px fade(white, 75);
+	background: -webkit-linear-gradient(lighten(@color-btn, 4), @color-btn 50%, darken(@color-btn, 2) 51%, darken(@color-btn, 4));
+	box-shadow: inset 0 0 0 1px fade(black, 15), inset 0 1px 3px fade(black, 15), 0 0 0 1px fade(white, 50);
+	border-radius: 5px;
+}
+
+.table {
+	background-color: white;
+	position: relative;
+	z-index: 11;
+	overflow-y: scroll;
+	border-bottom: 1px solid fade(black, 8);
+	box-shadow: 0 1px 1px fade(white, 50);
+
+	> li {
+		border-top: 1px solid fade(black, 8);
+		box-shadow: inset 0 1px 1px fade(white, 50);
+	} 
+}
