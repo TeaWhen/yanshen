@@ -20,11 +20,16 @@ def weibo_callback():
 
 
 def renren_connect():
-    args = {'client_id': RENREN_CLIENT_ID, 'redirect_uri': '127.0.0.1/conns/','scope': 'read_user_status send_message'}
+    args = {'client_id': RENREN_CLIENT_ID, 'redirect_uri': '127.0.0.1/conns/renren_callback','scope': 'read_user_status send_message'}
     return redirect(requests.get(RENREN_AUTH_URL, params=args).url)
 
 
 def renren_callback():
+    if "error" in request.args:
+        error = request.args["error"]
+        error_descrip = request.args["error_description"]
+    else:
+        code = request.args["code"]
     return
 
 

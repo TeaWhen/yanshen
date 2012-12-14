@@ -1,5 +1,5 @@
 from django.db import models
-from yansheng import settings
+from yanshen import settings
 
 
 class AuthInfo(models.Model):
