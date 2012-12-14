@@ -1,0 +1,48 @@
+@import "global.less";
+
+.screen > .table {
+	height: @screen-height - 20px - 44px;
+	.meta {
+		position: relative;
+		padding: 5px 0 2px 5px;
+		.avatar {
+			width: 64px;
+			border-radius: 4px;
+			display: inline-block;
+		}
+		.name {
+			position: absolute;
+			top: 12px;
+			left: 76px;
+			font-size: @font-xl;
+		}
+	}
+	.social {
+	    li {
+	        display: inline-block;
+	        .icon {
+    	        width: 64px;
+    	        height: 64px;
+    	        margin: 5px;
+    	        background-color: #EDEDED;
+    	        border-radius: 3px;
+    	        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1), inset 0 1px 5px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.5);
+	        }
+	    }
+	}
+	.contact {
+	    li {
+	        padding: 5px;
+	        .key {
+	            display: inline-block;
+	        }
+	        .value {
+	            display: inline-block;
+	            font-size: @font-l;
+	        }
+	    }
+	    .map {
+	        font-size: @font-xl;
+	    }
+	}
+}
