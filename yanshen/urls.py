@@ -14,4 +14,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+
+    # for orca
+    url(r'^orca.txt$', 'yanshen.views.orca'),
 )
