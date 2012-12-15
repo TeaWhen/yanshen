@@ -33,6 +33,7 @@ class Profile(AbstractBaseUser):
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True, db_index=True)
     first_name = models.CharField('first name', max_length=30, blank=True)
     last_name = models.CharField('last name', max_length=30, blank=True)
+    pinyin = models.CharField('pinyin', max_length=30, blank=True)
 
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
