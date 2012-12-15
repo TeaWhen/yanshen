@@ -6,18 +6,59 @@
             </div>
             
             <div data-role="content">
-                <ul class="contact" data-role="listview">
-                    <li data-role="list-divider" role="heading">好友请求</li>
-                    {% for item in data %}
+            	<ul data-role="listview">
+            		<li data-role="list-divider" role="heading">发送的好友请求</li>
+            		<li>
+            			<div class="ui-grid-b">
+            				<a href="/contact/{{ user.pk }}" data-transition="slide"><div class="ui-block-a"><img width="80" src="{{ user.avatar }}"></div>
+            				<div class="ui-block-b">{{ user.get_full_name }}</div></a>
+            				<div class="ui-block-c">等待对方确认</div>
+            			</div>
+            		</li>
+            		<li>
+            			<div class="ui-grid-b">
+            				<a href="/contact/{{ user.pk }}" data-transition="slide"><div class="ui-block-a"><img width="80" src="{{ user.avatar }}"></div>
+            				<div class="ui-block-b">{{ user.get_full_name }}</div></a>
+            				<div class="ui-block-c">等待对方确认</div>
+            			</div>
+            		</li>
+            	</ul>
+            	
+                <ul data-role="listview" style="margin-top: 10px;">
+                    <li data-role="list-divider" role="heading">收到的好友请求</li>
                     <li>
-                        <div class="meta">
-                            <img class="avatar" src="{{ user.avatar }}">
-                            <p class="name">{{ user.get_full_name }}</p>
+	                    <div class="ui-grid-b">
+	                    	<a href="/contact/{{ user.pk }}" data-transition="slide"><div class="ui-block-a"><img width="80" src="{{ user.avatar }}"></div>
+	                    	<div class="ui-block-b">{{ user.get_full_name }}</div></a>
+	                    	<div class="ui-block-c"><a href="/friend/9/accept" data-role="button" data-mini="true" data-inline="true" data-icon="check">接受</a>
+	                    	<a href"/friend/9/refuse" data-role="button" data-mini="true" data-inline="true" data-icon="delete">拒绝</a></h3></a></div>
+	                    </div>
+	                </li>
+	                <li>
+	                    <div class="ui-grid-b">
+	                    	<a href="/contact/{{ user.pk }}" data-transition="slide"><div class="ui-block-a"><img width="80" src="{{ user.avatar }}"></div>
+	                    	<div class="ui-block-b">{{ user.get_full_name }}</div></a>
+	                    	<div class="ui-block-c"><a href="/friend/9/accept" data-role="button" data-mini="true" data-inline="true" data-icon="check">接受</a>
+	                    	<a href"/friend/9/refuse" data-role="button" data-mini="true" data-inline="true" data-icon="delete">拒绝</a></h3></a></div>
+	                    </div>
+	                </li>
+                </ul>
+                <ul data-role="listview" style="margin-top: 10px;">
+                    <li data-role="list-divider" role="heading">好友推荐</li>
+                    <li>
+                        <div class="ui-grid-b">
+                        	<a href="/contact/{{ user.pk }}" data-transition="slide"><div class="ui-block-a"><img width="80" src="{{ user.avatar }}"></div>
+                        	<div class="ui-block-b">{{ user.get_full_name }}</a><p>好友来源？</p></div>
+                        	<div class="ui-block-c"><a href="/friend/9/accept" data-role="button" data-mini="true" data-inline="true" data-icon="star">加为好友</a>
                         </div>
-                        <a href="/friend/9/accept" data-role="button" data-icon="check">接受</a>
-                        <a href"/friend/9/refuse" data-role="button" data-icon="delete">拒绝</a>
                     </li>
-                    {% endfor %}
+                    <li>
+                        <div class="ui-grid-b">
+                        	<a href="/contact/{{ user.pk }}" data-transition="slide"><div class="ui-block-a"><img width="80" src="{{ user.avatar }}"></div>
+                        	<div class="ui-block-b">{{ user.get_full_name }}</a><p>好友来源？</p></div>
+                        	<div class="ui-block-c"><a href="/friend/9/accept" data-role="button" data-mini="true" data-inline="true" data-icon="star">加为好友</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
 {% endblock %}
