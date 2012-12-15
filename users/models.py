@@ -5,7 +5,7 @@ from yanshen import settings
 from django.core.validators import validate_email
 import json
 import requests
-from conns.api_keys import BAIDU_KEY
+from conns.api_keys import GMAP_KEY
 
 class ProfileManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -85,7 +85,7 @@ class Profile(AbstractBaseUser):
         locations = []
         for ci in cis['data']:
             if ci['type'] == "Address":
-                r = requests.get("https://maps.googleapis.com/maps/api/geocode/json?address={}&sensor=false".format(ci['value'], BAIDU_KEY))
+                r = requests.get("https://maps.googleapis.com/maps/api/geocode/json?address={}&sensor=false&key={}".format(ci['value'], GMAP_KEY))
                 rj = r.json
                 if not rj['status'] == 'ZERO_RESULTS':
                     locations.append({'name': ci['key'], 'x': rj['result'][0]['geometry']['location']['lng'], 'y': rj['result'][0]['geometry']['location']['lat']})
