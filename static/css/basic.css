@@ -14,11 +14,25 @@ ul.social li .uname {
   padding: 14px 0;
   display: inline-block;
 }
+ul.contact .key {
+  margin-top: 2px;
+  margin-bottom: 8px;
+}
+ul.contact .value {
+  font-size: 16px;
+  margin-bottom: 0;
+}
 .avatar {
   width: 64px;
 }
-.popup_addcontact_form form {
+div[data-role="popup"] form {
   padding: 5px 15px;
+}
+#popup_addcontact_address {
+  width: 280px;
+}
+#popup_addcontact_address textarea {
+  height: 30px;
 }
 #search_friend {
   position: absolute;

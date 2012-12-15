@@ -15,19 +15,20 @@
                 <ul class="social" data-role="listview" data-split-theme="d">
                     <li data-role="list-divider" role="heading">社交</li>
                     {% for s in socials %}
-                        <li class="social">
+                        <li>
                             <a href="{{ s.url }}"><i class="{{ s.icon }}"></i><span class="uname">{{ s.uname }}</span></a>
                         </li>
                     {% endfor %}
                 </ul>
                 {% endif %}
                 {% if data %}
-                <ul data-role="listview">
+                <ul class="contact" data-role="listview">
                     {% if contact_info %}
                     <li data-role="list-divider" role="heading">联系</li>
                     {% for item in data %}
                     <li>
-                        <p class="key">{{ item.key }}</p>
+                        <p class="key"><i class="{% if item.type == 'Address' %}icon-map-marker{% elif item.type == 'Phone' %}icon-phone{% elif item.type == 'Email' %}icon-envelope{% endif %}"></i>
+                        {{ item.key }}</p>
                         <p class="value">{{ item.value }}</p>
                     </li>
                     {% endfor %}

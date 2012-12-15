@@ -28,13 +28,14 @@
                 <ul class="social" data-role="listview" data-split-icon="delete" data-split-theme="d">
                     <li data-role="list-divider" role="heading">社交</li>
                     {% for s in socials %}
-                        <li class="social">
+                        <li>
                             <a href="{{ s.url }}"><i class="{{ s.icon }}"></i>{{ s.uname }}</a>
                             <a href="#delete" data-rel="popup" data-position-to="window" data-transition="pop">解除绑定</a>
                         </li>
                     {% endfor %}
-                    <li class="social">
-                        <a href="#popup_addsocial" data-rel="popup"><i class="icon-plus"></i>添加社交网络帐号…</a>
+                    <li>
+                
+                        <a href="#popup_addsocial" data-rel="popup"><i class="icon-plus"></i><span class="uname">添加社交网络帐号…</span></a>
                     </li>
                 </ul>
                 <div data-role="popup" id="popup_addsocial">
@@ -51,6 +52,7 @@
                     	<li><a href="#popup_addcontact_phone" data-rel="popup">电话号码</a></li>
                     	<li><a href="#popup_addcontact_email" data-rel="popup">Email</a></li>
                     	<li><a href="#popup_addcontact_address" data-rel="popup">地址</a></li>
+                    	<li><a href="#popup_addcontact_other" data-rel="popup">自定义</a></li>
                 	</ul>
                 </div>
                 <div data-role="popup" class="popup_addcontact_form" id="popup_addcontact_phone" data-theme="a" data-position-to="window">
@@ -99,7 +101,6 @@
         		        });
         		        </script>
         		        <select id="email_select_key" name="key">
-        		            <option value="Email">Email</option>
         		            <option value="家庭">家庭</option>
         		            <option value="工作">工作</option>
         		            <option value="">自定义</option>
@@ -127,12 +128,23 @@
         		        });
         		        </script>
         		        <select id="address_select_key" name="key">
-        		            <option value="家庭">家庭</option>
-        		            <option value="工作">工作</option>
+        		            <option value="家">家</option>
+        		            <option value="单位">单位</option>
         		            <option value="">自定义</option>
         		        </select>
         		        <input id="address_custom_key" type="text" name="key_custom" value="" placeholder="名称" style="display: none;">
-        		        <input type="tel" name="value" placeholder="地址" data-theme="a">
+        		        <textarea placeholder="地址" name="value"></textarea>
+        		        <button type="submit" data-theme="b">添加</button>
+        			</form>
+        		</div>
+        		<div data-role="popup" class="popup_addcontact_form" id="popup_addcontact_other" data-theme="a" data-position-to="window">
+        		    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+        			<form action="/me/" method="post">{% csrf_token %}
+        		        <h3>添加自定义联系方式</h3>
+        		        <input type="hidden" name="type" value="Other">
+        		        <input type="hidden" name="action" value="add">
+        		        <input id="other_custom_key" type="text" name="key" value="" placeholder="名称">
+        		        <input type="tel" name="value" placeholder="内容" data-theme="a">
         		        <button type="submit" data-theme="b">添加</button>
         			</form>
         		</div>
@@ -158,7 +170,8 @@
                     <li data-role="list-divider" role="heading">联系</li>
                     {% for item in contact_info %}
                     <li>
-                        <a><p class="key">{{ item.key }}</p>
+                        <a><p class="key"><i class="{% if item.type == 'Address' %}icon-map-marker{% elif item.type == 'Phone' %}icon-phone{% elif item.type == 'Email' %}icon-envelope{% endif %}"></i>
+                        {{ item.key }}</p>
                         <p class="value">{{ item.value }}</p></a>
                         <a href="#" class="delete_item" data-info_id="{{ item.info_id }}">删除</a>
                     </li>
@@ -166,28 +179,6 @@
                     <li>
                         <a href="#popup_addcontact" data-rel="popup">添加联系方式…</a>
                     </li>
-                    <li class="map">
-                        <div id="map" style="width:100%;height:320px"></div>
-                    </li>
                 </ul>
             </div>
-            <script type="text/javascript">
-            function initialize() {
-              var map = new BMap.Map('map');
-              map.centerAndZoom('合肥', 6);
-              map.addControl(new BMap.NavigationControl());
-              {% for location in locations %}
-                  var marker = new BMap.Marker(new BMap.Point({{ location.x }}, {{ location.y }}));  // 创建标注
-                  map.addOverlay(marker);              // 将标注添加到地图中
-              {% endfor %}
-            }
-
-            function loadScript() {
-              var script = document.createElement("script");
-              script.src = "http://api.map.baidu.com/api?v=1.4&callback=initialize";
-              document.body.appendChild(script);
-            }
-
-            window.onload = loadScript;
-            </script>
 {% endblock %}
