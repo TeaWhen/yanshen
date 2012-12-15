@@ -3,16 +3,26 @@
             <div class="top" data-role="header" data-position="fixed">
                 <a href="/" data-role="button" data-icon="arrow-l" data-direction="reverse" data-transition="slide" data-theme="a" data-prefetch>返回</a>
                 <h1>联系人</h1>
-                <a href="#popup_menu" data-rel="popup" data-role="button" data-icon="star" data-theme="b">{{ mycat.name }}</a>
+                <a href="#popup_menu_cat" data-rel="popup" data-role="button" data-icon="star" data-theme="b">{{ mycat.name }}</a>
                 <div data-role="popup" id="popup_menu">
+                	<ul data-role="listview" data-inset="true" data-theme="c">
+                		<li><a href="/find/" data-transition="pop">查找好友</a></li>
+                        <li><a href="/group/" data-transition="pop">管理分组</a></li>
+                        <li><a href="/map/" data-transition="pop">好友地图</a></li>
+                        <li><a href="/logout/" data-transition="pop">登出</a></li>
+                	</ul>
+                </div>
+                <div data-role="popup" id="popup_menu_cat">
                 	<ul data-role="listview" data-inset="true" data-theme="c">
                         {% for cat in cats %}
                         {% if cat.id != mycat.id %}
-                        <li><form id="group_edit_{{ cat.id }}" action="/contact/{{ user.id }}/" method="post" data-theme="c">{% csrf_token %}
+                        <li>
+                            <a href="#" onclick="$('#group_edit_{{ cat.id }}').submit();" data-transition="pop" data-icon="star">{{ cat.name }}</a>
+                            <form id="group_edit_{{ cat.id }}" action="/contact/{{ user.id }}/" method="post" style="display: none;">{% csrf_token %}
                             <input type="hidden" name="action" value="edit">
                             <input type="hidden" name="newcat" value="{{ cat.id }}" />
-                            <a href="#" onclick="$('#group_edit_{{ cat.id }}').submit();" data-transition="pop" data-icon="star">{{ cat.name }}</a>
-                        </form></li>
+                            </form>
+                        </li>
                         {% endif %}
                         {% endfor %}
                 	</ul>
