@@ -11,6 +11,7 @@ from django.core.exceptions import ValidationError
 
 @render_to('welcome.html')
 def welcome(request):
+	appname = "延伸"
 	if request.method == 'POST':
 		username = request.POST['username']
 		password = request.POST['password']
@@ -50,29 +51,34 @@ def welcome(request):
 @render_to('index.html')
 @login_required(login_url='/welcome/')
 def index(request):
+	appname = "延伸"
 	users = Profile.objects.all()
 	return locals()
 
 @render_to('contact.html')
 @login_required(login_url='/welcome/')
 def contact(request, pk):
+	appname = "延伸"
 	user = Profile.objects.get(pk=pk)
 	return locals()
 
 @render_to('me.html')
 @login_required(login_url='/welcome/')
 def me(request):
+	appname = "延伸"
 	user = request.user
 	return locals()
 
 @render_to('group.html')
 @login_required(login_url='/welcome/')
 def group(request):
+	appname = "延伸"
 	return locals()
 
 @render_to('map.html')
 @login_required(login_url='/welcome/')
 def map(request):
+	appname = "延伸"
 	return locals()
 
 def page_not_found(request):
