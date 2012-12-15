@@ -30,10 +30,13 @@ class Profile(AbstractBaseUser):
     objects = ProfileManager()
 
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True, db_index=True)
+    first_name = models.CharField('first name', max_length=30, blank=True)
+    last_name = models.CharField('last name', max_length=30, blank=True)
+
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
-    contact_info = models.TextField()
+    contact_info = models.TextField(null=True)
     joined = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField()
 
@@ -46,14 +49,19 @@ class Profile(AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
 
+    def get_absolute_url(self):
+        return "/users/%s/" % urlquote(self.username)
+
     def get_full_name(self):
-        full_name = '%s' % (self.email)
+        """
+        Returns the first_name plus the last_name, with a space in between.
+        """
+        full_name = '%s %s' % (self.first_name, self.last_name)
         return full_name.strip()
 
     def get_short_name(self):
         "Returns the short name for the user."
-        short_name = self.email[:self.email.find('@')]
-        return short_name
+        return self.first_name
 
     def has_perm(self, perm, obj=None):
         """
