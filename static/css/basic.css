@@ -42,6 +42,10 @@ ul.contact .value {
   font-size: 28px;
   margin: 0;
 }
+.meta h3 .first {
+  font-weight: normal;
+  margin-left: 4px;
+}
 .meta .edit {
   position: absolute;
   top: 58px;
