@@ -282,6 +282,15 @@ def accept_invitation(request, pk):
     return redirect('/find/')
 
 @login_required(login_url='/welcome/')
+def decline_invitation(request, pk):
+    tou = request.user
+    fromu = Profile.objects.get(pk=pk)
+    inv = Invitation.objects.get(from_id=fromu, to_id=tou)
+    if inv is not None:
+        inv.delete()
+    return redirect('/find/')
+
+@login_required(login_url='/welcome/')
 def add_invitation(request, pk):
     user = request.user
     to = Profile.objects.get(pk=pk)
