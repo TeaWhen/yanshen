@@ -4,7 +4,7 @@
 
 ###
 # root URL
-ROOT_URL = "http://42.121.18.11"
+ROOT_URL = "http://42.121.18.11/"
 
 ###
 # Github
