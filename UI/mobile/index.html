@@ -32,7 +32,11 @@
             <div class="top">
                 <a href="me.html"><div class="button left">Me</div></a>
                 <input class="search" type="search" name="search" value="" placeholder="过滤联系人…">
-                <div class="button right">More</div>
+                <a href="#"><div id="more" class="button right">More</div></a>
+                <ul id="more_pop" class="pop">
+                    <a href="group.html"><li>组管理</li></a>
+                    <a href="map.html"><li>好友地图</li></a>
+                </ul>
             </div>
             <ul class="table">
                 <a href="contact.html"><li>
@@ -71,6 +75,19 @@
 
             <script src="js/vendor/zepto.min.js"></script>
             <script src="js/helper.js"></script>
+            <script>
+            $(document).ready(function() {
+                $("#more").click(function() {
+                    if (!$(this).hasClass("active")) {
+                        $(this).addClass("active");
+                        $("#more_pop").addClass("active");
+                    } else {
+                        $(this).removeClass("active");
+                        $("#more_pop").removeClass("active");
+                    }
+                });
+            });
+            </script>
         </div>
     </body>
 </html>
