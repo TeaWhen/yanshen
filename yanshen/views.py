@@ -14,10 +14,7 @@ def welcome(request):
 		if user is not None:
 			if user.is_active:
 				login(request, user)
-				try:
-					next = request.POST['next']
-				except:
-					next = '/'
+				next = request.POST['next']
 				return redirect(next)
 			else:
 				message = 'disabled account'
@@ -26,7 +23,10 @@ def welcome(request):
 			message = 'invalid login'
 			return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
 	else:
-		next = request.GET['next']
+		try:
+			next = request.POST['next']
+		except:
+			next = '/'
 		return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
 
 @login_required(login_url='/welcome/')
