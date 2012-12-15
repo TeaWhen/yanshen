@@ -2,6 +2,7 @@
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.shortcuts import render_to_response
 from users.models import Profile, Category, Relationship
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -170,7 +171,7 @@ def group(request):
     #user.
     return locals()
 
-@render_to('group_setting.html')
+# @render_to('group_setting.html')
 @login_required(login_url='/welcome/')
 def group_settings(request, pk):
     category = Category.objects.get(pk=pk, owner=request.user)
@@ -209,7 +210,7 @@ def group_settings(request, pk):
         category.save()
         return redirect('/group/')
     else:
-        return locals()
+        return render_to_response('group_setting.html', locals(), context_instance=RequestContext(request))
 
 @render_to('index.html')
 @login_required(login_url='/welcome/')
