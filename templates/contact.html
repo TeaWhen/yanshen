@@ -3,10 +3,19 @@
             <div class="top" data-role="header" data-position="fixed">
                 <a href="/" data-role="button" data-icon="arrow-l" data-direction="reverse" data-transition="slide" data-theme="a" data-prefetch>返回</a>
                 <h1>联系人</h1>
-                <a href="#popup_menu" data-rel="popup" data-role="button" data-icon="star" data-theme="b">好友</a>
+                <a href="#popup_menu" data-rel="popup" data-role="button" data-icon="star" data-theme="b">{{ category.name }}</a>
                 <div data-role="popup" id="popup_menu">
                 	<ul data-role="listview" data-inset="true" data-theme="c">
-                        <li><form id="group_edit_1" action="/group/" method="post" data-theme="c">{% csrf_token %}
+                        {% for cat in cats %}
+                        {% if category.id != cat.id %}
+                        <li><form id="group_edit_{{ cat.id }}" action="/contact/{{ user.id }}" method="post" data-theme="c">{% csrf_token %}
+                            <input type="hidden" name="action" value="edit">
+                            <input type="hidden" name="newcat" value="{{ cat.id }}" />
+                            <a href="#" onclick="$('#group_edit_{{ cat.id }}').submit();" data-transition="pop" data-icon="star">{{ cat.name }}</a>
+                        </form></li>
+                        {% endif %}
+                        {% endfor %}
+                        <!-- <li><form id="group_edit_1" action="/group/" method="post" data-theme="c">{% csrf_token %}
                             <input type="hidden" name="action" value="edit">
                             <input type="hidden" name="group" value="1" />
                             <a href="#" onclick="$('#group_edit_1').submit();" data-transition="pop" data-icon="star">好友</a>
@@ -20,7 +29,7 @@
                             <input type="hidden" name="action" value="edit">
                             <input type="hidden" name="group" value="3" />
                             <a href="#" onclick="$('#group_edit_3').submit();" data-transition="pop" >同学</a>
-                        </form></li>
+                        </form></li> -->
                 	</ul>
                 </div>
             </div>
@@ -61,7 +70,7 @@
             <script type="text/javascript">
             function initialize() {
               var map = new BMap.Map('map');
-              map.centerAndZoom('合肥', 6);
+              map.centerAndZoom('杭州', 6);
               map.addControl(new BMap.NavigationControl());
               {% for location in locations %}
                   var marker = new BMap.Marker(new BMap.Point({{ location.x }}, {{ location.y }}));  // 创建标注
