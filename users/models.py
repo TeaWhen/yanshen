@@ -108,3 +108,10 @@ class Relationship(models.Model):
 
     def __unicode__(self):
         return u'{} - {} - {}'.format(self.from_id, self.to_id, self.cat_id.name)
+
+class Invitation(models.Model):
+    from_id = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="friends")
+    to_id = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="+")
+
+    def __unicode__(self):
+        return u'{} - {}'.format(self.from_id, self.to_id)
