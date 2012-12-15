@@ -116,6 +116,7 @@ def contact(request, pk):
         newcat = Category.objects.get(pk=request.POST['newcat'])
         rl.cat_id = newcat
         rl.save()
+        mycat = newcat
     return locals()
 
 @render_to('me.html')
