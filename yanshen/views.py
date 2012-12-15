@@ -163,6 +163,7 @@ def group_detail(request, gid):
 def map(request):
     appname = u"延伸"
     pagename = 'map'
+    users = Profile.objects.all()
     return locals()
 
 @login_required(login_url='/welcome/')
