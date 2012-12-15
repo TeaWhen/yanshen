@@ -171,5 +171,5 @@ def jiepang_callback():
         }
         auth_info = requests.post(JIEPANG_TOKEN_URL, params=args).json
     return
-    
-# twitter, G+
+
+# twitter(oauth1...)
