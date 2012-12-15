@@ -34,6 +34,30 @@
                     	<li><a href="/conns/github_connect" data-transition="pop" data-ajax="false">GitHub</a></li>
                 	</ul>
                 </div>
+                <div data-role="popup" id="popup_addcontact">
+                	<ul data-role="listview" data-inset="true" data-theme="c">
+                    	<li><a href="#popup_addcontact_phone" data-rel="popup">电话号码</a></li>
+                    	<li><a href="#popup_addcontact_email" data-rel="popup">Email</a></li>
+                    	<li><a href="#popup_addcontact_address" data-rel="popup">地址</a></li>
+                	</ul>
+                </div>
+                <div data-role="popup" class="popup_addcontact_form" id="popup_addcontact_phone" data-theme="a">
+        			<form action="/me/" method="post">
+                        <h3>添加电话号码</h3>
+                        <input type="hidden" name="type" value="Phone" />
+                        <input type="hidden" name="action" value="add" />
+                        <fieldset data-role="controlgroup" data-type="horizontal">
+                            <select name="key">
+                                <option value="手机">手机</option>
+                                <option value="家庭">家庭</option>
+                                <option value="工作">工作</option>
+                                <option>自定义</option>
+                            </select>
+                            <input type="tel" name="value" placeholder="号码" data-theme="a" />
+                        </fieldset>
+                        <button type="submit" data-theme="b">添加</button>
+        			</form>
+        		</div>
                 <ul class="contact" data-role="listview" data-split-icon="gear" data-split-theme="d">
                     <li data-role="list-divider" role="heading">联系</li>
                     {% for item in contact_info %}
