@@ -6,7 +6,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'yanshen.views.home', name='home'),
+    url(r'^$', 'yanshen.views.home'),
+    url(r'^profile$', 'yanshen.views.profile'),
     # url(r'^yanshen/', include('yanshen.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
