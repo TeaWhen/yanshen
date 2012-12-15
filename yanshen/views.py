@@ -203,11 +203,9 @@ def group_settings(request, pk):
                 p2[k] = True
         category.privilege = json.JSONEncoder().encode(p2)
         category.save()
-        return redirect('/group/')
+        return redirect('/group')
     else:
-        pass
-
-    return locals()
+        return locals()
 
 @render_to('index.html')
 @login_required(login_url='/welcome/')
