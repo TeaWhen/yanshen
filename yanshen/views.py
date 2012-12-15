@@ -49,6 +49,10 @@ def welcome(request):
             else:
                 try:
                     user = Profile.objects.create_user(email=username, password=password)
+                    user.first_name = request.POST['firstname']
+                    user.last_name = request.POST['lastname']
+                    p = Pinyin()
+                    user.pinyin = p.get_pinyin(user.last_name + user.first_name, ' ')
                     user.contact_info = json.JSONEncoder().encode({"next_id":2, "data":[{"info_id":1, "type":"Email", "key": u"电子邮箱", "value": user.email}]})
                     user.save()
                 except ValidationError:
