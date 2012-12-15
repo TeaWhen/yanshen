@@ -34,6 +34,8 @@ def weibo_callback(request):
         auth_info = r.json
         nai = AuthInfo(type="weibo", owner=request.user)
         nai.uid = auth_info['uid']
+        user_info = requests.get(WEIBO_API_ROOT+"/users/show.json", params={'access_token': auth_info['access_token'], 'uid': auth_info['uid']}).json
+        nai.uname = user_info['screen_name']
         nai.tokens = r.text
         nai.save()
     return redirect("/me")

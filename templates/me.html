@@ -12,6 +12,12 @@
                 </div>
                 <ul class="social" data-role="listview" data-split-icon="delete" data-split-theme="d">
                     <li data-role="list-divider" role="heading">社交</li>
+                    {% for s in socials %}
+                        <li class="social">
+                            <a href="{{ s.url }}"><i class="{{ s.icon }}"></i>{{ s.uname }}</a>
+                            <a href="#delete" data-rel="popup" data-position-to="window" data-transition="pop">解除绑定</a>
+                        </li>
+                    {% endfor %}
                     <li class="social">
                         <a href="renren.html"><i class="icon-renren"></i>柳东原</a>
                         <a href="#delete" data-rel="popup" data-position-to="window" data-transition="pop">解除绑定</a>

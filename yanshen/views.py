@@ -67,6 +67,26 @@ def contact(request, pk):
 def me(request):
 	appname = "延伸"
 	user = request.user
+	socials = user.conns.all()
+	icon_name = {
+		'weibo': "icon-weibo",
+		'renren': "icon-renren",
+		'github': "icon-github",
+		'facebook': "icon-facebook",
+		'tqq': "icon-tengxunweibo",
+		'jiepang': "icon-jiepang"
+	}
+	social_url = {
+		'weibo': "",
+		'renren': "",
+		'github': "",
+		'facebook': "",
+		'tqq': "",
+		'jiepang': ""
+	}
+	for s in socials:
+		s.url = social_url[s.type]
+		s.icon = icon_name[s.type]
 	return locals()
 
 @render_to('group.html')
