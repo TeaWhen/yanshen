@@ -9,6 +9,7 @@ from django.shortcuts import redirect
 import requests
 import urlparse
 import urllib
+import json
 
 
 def weibo_connect(request):
