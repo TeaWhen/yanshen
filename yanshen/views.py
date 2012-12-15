@@ -3,7 +3,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.shortcuts import render_to_response, RequestContext
-from users.models import Profile
+from users.models import Profile, Category, Relationship
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from annoying.decorators import render_to
@@ -92,7 +92,7 @@ def contact(request, pk):
 		s.url = social_url[s.type]
 		s.icon = icon_name[s.type]
 
-	contact_info = json.JSONDecoder().decode(user.contact_info)
+	contact_info = json.JSONDecoder().decode(user.contact_info)['data']
 
 	return locals()
 
@@ -102,6 +102,20 @@ def me(request):
 	appname = "延伸"
 	pagename = 'me'
 	user = request.user
+	if request.method == 'POST':
+		action = request.POST['action']
+		if action == 'add':
+			key = request.POST['key']
+			value = request.POST['value']
+			type = request.POST['type']
+			contact_info = json.JSONDecoder().decode(user.contact_info)
+			info_id = contact_info['next_id']
+			contact_info['next_id'] += int(contact_info['next_id']) + 1
+			contact_info['data'].append(dict(info_id=info_id, key=key, value=value, type=type))
+			user.contact_info = json.JSONEncoder().encode(contact_info)
+			user.save()
+		else:
+			pass
 	socials = user.conns.all()
 	icon_name = {
 		'weibo': "icon-weibo",
@@ -123,7 +137,7 @@ def me(request):
 		s.url = social_url[s.type]
 		s.icon = icon_name[s.type]
 
-	contact_info = json.JSONDecoder().decode(user.contact_info)
+	contact_info = json.JSONDecoder().decode(user.contact_info)['data']
 		
 	return locals()
 
@@ -132,6 +146,12 @@ def me(request):
 def group(request):
 	appname = "延伸"
 	pagename = 'group'
+	user = request.user
+	categories = Category.objects.filter(owner=user)
+	data = []
+	for category in categories:
+		data.append(dict(category=category, friends=Relationship.objects.filter(from_id=user.id,cat_id=category)))
+	#user.
 	return locals()
 
 @render_to('map.html')

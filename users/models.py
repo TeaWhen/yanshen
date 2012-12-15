@@ -52,7 +52,7 @@ class Profile(AbstractBaseUser):
     USERNAME_FIELD = 'email'
 
     def get_absolute_url(self):
-        return "/contact/%s/" % urlquote(self.username)
+        return "/contact/%s/" % urlquote(self.pk)
 
     def get_full_name(self):
         """
@@ -107,8 +107,14 @@ class Category(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="cats")
     privilege = models.TextField()
 
+    def __unicode__(self):
+        return u'{} - {}'.format(self.name, self.owner)
+
 
 class Relationship(models.Model):
     from_id = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="friends")
     to_id = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="+")
     cat_id = models.ForeignKey(Category, blank=True, null=True)
+
+    def __unicode__(self):
+        return u'{} - {} - {}'.format(self.from_id, self.to_id, self.cat_id.name)
