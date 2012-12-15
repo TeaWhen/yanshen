@@ -19,7 +19,7 @@ def signin(request):
 	else:
 		pass
 
-def robots(reuqest):
+def robots(request):
 	return render_to_response('robots.txt', locals(), context_instance=RequestContext(request))
 
 def orca(request):
