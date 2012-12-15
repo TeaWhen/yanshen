@@ -2,7 +2,7 @@
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, RequestContext
 from users.models import Profile, Category, Relationship
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
