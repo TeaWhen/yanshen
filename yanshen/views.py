@@ -201,7 +201,10 @@ def group_settings(request, pk):
     if request.method == 'POST':
         p2 = {}
         for k in keys:
-            p2[k] = bool(request.POST[k])
+            if request.POST[k] == 'false':
+                p2[k] = False
+            else:
+                p2[k] = True
         category.privilege = json.JSONEncoder().encode(p2)
         category.save()
         return redirect('/me/')
