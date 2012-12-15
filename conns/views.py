@@ -8,6 +8,7 @@ from django.shortcuts import redirect
 
 import requests
 import urlparse
+import urllib
 
  
 def weibo_connect(request):
@@ -106,7 +107,8 @@ def facebook_connect(request):
         'redirect_uri': ROOT_URL+"conns/facebook_callback",
         'scope': 'user_status,read_friendlists'
     }
-    return redirect(requests.get(FACEBOOK_AUTH_URL, params=args, prefetch=False, allow_redirects=False).url)
+    rurl = "%s?%s" % (FACEBOOK_AUTH_URL, urllib.urlencode(args))
+    return redirect(rurl)
 
 def facebook_callback(request):
     if "error" in request.GET:
