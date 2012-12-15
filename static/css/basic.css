@@ -36,8 +36,14 @@ ul.contact .value {
   position: absolute;
   top: 10px;
   left: 128px;
-  margin: 0;
   font-size: 28px;
+  margin: 0;
+}
+.meta .edit {
+  position: absolute;
+  top: 58px;
+  right: 8px;
+  margin: 0;
 }
 div[data-role="popup"] form {
   padding: 5px 15px;

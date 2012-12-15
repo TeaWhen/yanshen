@@ -5,14 +5,13 @@
                 <h1>我的名片</h1>
             </div>
             
+            <div class="meta">
+                <img class="avatar" src="{{ user.avatar }}">
+                <p class="name">{{ user.get_full_name }}</p>
+                <p class="edit"><a href="#popup_edit" data-role="button" data-icon="gear" data-rel="popup" data-iconpos="left" data-mini="true" data-inline="true">编辑</a></p>
+            </div>
+            
             <div data-role="content">
-                <div class="meta">
-                    <img class="avatar" src="{{ user.avatar }}">
-                    <p class="name">{% if user.get_full_name %}
-                        {{ user.get_full_name }}
-                    {% else %}您的姓名{% endif %}</p>
-                    <p><a href="#popup_edit" data-role="button" data-icon="gear" data-rel="popup" data-iconpos="left" data-mini="true" data-inline="true">编辑</a></p>
-                </div>
                 <div data-role="popup" class="popup_edit_form" id="popup_edit" data-theme="a" data-position-to="window">
                     <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
                 	<form action="/me/" method="post">{% csrf_token %}
