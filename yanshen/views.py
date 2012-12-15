@@ -6,8 +6,6 @@ from django.shortcuts import render_to_response, RequestContext
 from users.models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
-import time
-
 from annoying.decorators import render_to
 
 @render_to('welcome.html')
@@ -21,22 +19,27 @@ def welcome(request):
 			if user is not None:
 				if user.is_active:
 					login(request, user)
-					next = request.POST['next']
-					return redirect(next)
+					return redirect('/')
 				else:
-					message = 'disabled account'
+					message = '账户已被注销。'
 					return locals()
 			else:
-				message = '账户已被注销。'
+				message = 'Email 或密码错误。'
 				return locals()
 		else:
-			message = 'Email 或密码错误。'
-			return locals()
+			user = Profile.objects.get(email=username)
+			if user is not None:
+				message = 'Ni yi jing zhu ce.'
+				return locals()
+			else:
+				user = Profile.objects.create_user(email=username, password=password)
+				if user is not None:
+					login(request, user)
+					return redirect('/')
+				else:
+					message = 'Zhu ce shi bai.'
+					return locals()
 	else:
-		try:
-			next = request.POST['next']
-		except:
-			next = '/'
 		return locals()
 
 @render_to('index.html')
