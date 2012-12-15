@@ -10,6 +10,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'yanshen.views.home'),
+    url(r'^home$', 'yanshen.views.home'),
     url(r'^profile$', 'yanshen.views.profile'),
     # url(r'^yanshen/', include('yanshen.foo.urls')),
 

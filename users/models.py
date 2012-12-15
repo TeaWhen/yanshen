@@ -37,6 +37,9 @@ class Profile(AbstractBaseUser):
     joined = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField()
 
+    # using upyun to store files
+    avatar = models.URLField(max_length=300)
+
     groups = models.ManyToManyField(Group, verbose_name='groups', blank=True)
     user_permissions = models.ManyToManyField(Permission, verbose_name='user permissions', blank=True,
         help_text='Specific permissions for this user.')
