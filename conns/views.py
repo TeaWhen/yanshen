@@ -64,6 +64,7 @@ def renren_callback(request):
         auth_info = r.json
         nai = AuthInfo(type="renren", owner=request.user)
         nai.uid = auth_info['user']['id']
+        nai.uname = auth_info['user']['name']
         nai.tokens = r.text
         nai.save()
     return redirect("/me")
