@@ -36,7 +36,7 @@ def welcome(request):
 				try:
 					user = Profile.objects.create_user(email=username, password=password)
 				except ValidationError:
-					message = u'Enter a valid email address.'
+					message = '请输入正确的 Email 地址。'
 					return locals()
 				if user:
 					user = authenticate(username=username, password=password)

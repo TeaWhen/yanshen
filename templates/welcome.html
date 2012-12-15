@@ -4,12 +4,13 @@
                 <h1>欢迎来到{{ appname }}！</h1>
             </div>
             
+            {% if message %}
+            <div class="ui-bar ui-bar-e">
+            	<h3>{{ message }}</h3>
+            </div>
+            {% endif %}
+
             <div data-role="content">
-                {% if message %}
-                <div class="ui-bar ui-bar-e">
-                	<h3>{{ message }}</h3>
-                </div>
-                {% endif %}
                 <form method="post" action="/welcome/">{% csrf_token %}
                     <label for="username" class="ui-hidden-accessible">Email</label>
                     <input type="text" name="username" id="username" value="" placeholder="Email">
