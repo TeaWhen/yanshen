@@ -10,17 +10,32 @@
             </div>
             {% endif %}
 
+            <script>
+            $("document").ready(function() {
+                $("#reg").click(function() {
+                    $(this).hide();
+                    $("#login").show();
+                    $("#action").val("reg");
+                    $("#submit").val("注册");
+                });
+                $("#login").click(function() {
+                    $(this).hide();
+                    $("#reg").show();
+                    $("#action").val("login");
+                    $("#submit").val("登录");
+                });
+            });
+            </script>
             <div data-role="content">
                 <form method="post" action="/welcome/">{% csrf_token %}
                     <label for="username" class="ui-hidden-accessible">Email</label>
-                    <input type="text" name="username" id="username" value="" placeholder="Email">
+                    <input type="email" name="username" id="username" value="" placeholder="Email">
                     <label for="password" class="ui-hidden-accessible">密码</label>
                     <input type="password" name="password" id="password" value="" placeholder="密码">
-                    <input type="hidden" id="action" name="action" value="login" />
-                    <div data-role="controlgroup" data-type="horizontal">
-                        <input type="submit" value="登录" onclick="$('#action').val('login');">
-                        <input type="submit" value="注册" onclick="$('#action').val('reg');">
-                    </div>
+                    <input type="hidden" id="action" name="action" value="login">
+                    <input id="submit" type="submit" value="登录">
+                    <a href="#" id="reg">还未注册？</a>
+                    <a href="#" id="login" style="display: none;">已经注册？</a>
                 </form>
             </div>
 {% endblock %}
