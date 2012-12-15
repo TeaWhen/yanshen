@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^me$', 'yanshen.views.me'),
     url(r'^contact$', 'yanshen.views.contact'),
     url(r'^robots.txt$', 'yanshen.views.robots'),
+    url(r'^humans.txt$', 'yanshen.views.humans'),
     # url(r'^yanshen/', include('yanshen.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

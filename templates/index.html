@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block screen %}
         <div class="screen">
-            <div class="status_bar">04:04</div>
+            <div class="status_bar">{{ hour }}:{{ minute }}</div>
             <div class="top">
                 <a href="me"><div class="button left">Me</div></a>
                 <input class="search" type="search" name="search" value="" placeholder="过滤联系人…">
