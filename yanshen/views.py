@@ -112,6 +112,8 @@ def me(request):
 		action = request.POST['action']
 		if action == 'add':
 			key = request.POST['key']
+			if key == '':
+				key = request.POST['key_custom']
 			value = request.POST['value']
 			type = request.POST['type']
 			contact_info = json.JSONDecoder().decode(user.contact_info)
