@@ -72,7 +72,7 @@ def index(request):
     relationship = Relationship.objects.filter(from_id=request.user)
     users = []
     for r in relationship:
-        users.append(r.from_id)
+        users.append(r.to_id)
     return locals()
 
 @render_to('contact.html')
