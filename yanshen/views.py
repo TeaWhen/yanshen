@@ -250,7 +250,10 @@ def group_detail(request, gid):
 def map(request):
     appname = u"延伸"
     pagename = 'map'
-    users = Profile.objects.all()
+    relationship = Relationship.objects.filter(from_id=request.user)
+    users = []
+    for r in relationship:
+        users.append(r.to_id)
     locations = []
     for user in users:
         locations += user.get_locations()
