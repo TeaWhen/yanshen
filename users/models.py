@@ -3,6 +3,9 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Group,
 from django.utils import timezone
 from yanshen import settings
 from django.core.validators import validate_email
+import json
+import requests
+from conns.api_keys import BAIDU_KEY
 
 class ProfileManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -55,51 +58,37 @@ class Profile(AbstractBaseUser):
         return "/contact/%s/" % urlquote(self.pk)
 
     def get_full_name(self):
-        """
-        Returns the first_name plus the last_name, with a space in between.
-        """
         full_name = '%s %s' % (self.last_name, self.first_name)
         return full_name.strip()
 
     def get_short_name(self):
-        "Returns the short name for the user."
         return self.first_name
 
     def has_perm(self, perm, obj=None):
-        """
-        Returns True if the user has the specified permission. This method
-        queries all available auth backends, but returns immediately if any
-        backend returns True. Thus, a user who has permission from a single
-        auth backend is assumed to have permission in general. If an object is
-        provided, permissions for this specific object are checked.
-        """
-
-        # Active superusers have all permissions.
         if self.is_active and self.is_superuser:
             return True
 
-        # Otherwise we need to check the backends.
         return _user_has_perm(self, perm, obj)
 
     def has_perms(self, perm_list, obj=None):
-        """
-        Returns True if the user has each of the specified permissions. If
-        object is passed, it checks if the user has all required perms for this
-        object.
-        """
         for perm in perm_list:
             if not self.has_perm(perm, obj):
                 return False
         return True
 
     def has_module_perms(self, app_label):
-        """
-        Returns True if the user has any permissions in the given app label.
-        Uses pretty much the same logic as has_perm, above.
-        """
-        # Active superusers have all permissions.
         if self.is_active and self.is_superuser:
             return True
+
+    def get_locations(self):
+        cis = json.JSONDecoder().decode(contact_info)
+        locations = {}
+        for ci in cis['data']:
+            if ci['type'] == "Address":
+                r = requests.get("http://api.map.baidu.com/geocoder?address={}&output=json&key={}".format(ci['value'], BAIDU_KEY))
+                rj = r.json
+                locations[ci['key']] = "{},{}".format(rj['result']['location']['lng'], rj['result']['location']['lat'])
+        return locations
 
 
 class Category(models.Model):
