@@ -58,6 +58,8 @@ def welcome(request):
                     user.pinyin = p.get_pinyin(user.last_name + user.first_name, ' ')
                     user.contact_info = json.JSONEncoder().encode({"next_id":2, "data":[{"info_id":1, "type":"Email", "key": u"电子邮箱", "value": user.email}]})
                     user.save()
+                    category = Category.objects.create(name=u'未分组', owner=user, privilege='{"1":false}')
+                    category.save()
                 except ValidationError:
                     message = '请输入正确的 Email 地址。'
                     return locals()
