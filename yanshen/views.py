@@ -10,6 +10,7 @@ from annoying.decorators import render_to
 from django.core.exceptions import ValidationError
 from xpinyin import Pinyin
 import json
+from django.http import Http404
 
 # json.JSONEncoder().encode()
 # json.JSONDecoder().decode()
@@ -148,6 +149,41 @@ def group(request):
 @render_to('group_setting.html')
 @login_required(login_url='/welcome/')
 def group_settings(request, pk):
+    category = Category.objects.get(pk=pk, owner=request.user)
+    if category is None:
+        raise Http404('Error')
+    privilege = json.JSONDecoder().decode(category.privilege)
+    contact_info = json.JSONDecoder().decode(request.user.contact_info)['data']
+
+    keys = []
+
+    data = []
+    for info in contact_info:
+        if privilege[str(info['info_id'])] == False:
+            data.append(dict(info=info, enabled=False))
+        else:
+            data.append(dict(info=info, enabled=True))
+        keys.append(str(info['info_id']))
+
+    social_data = []
+    socials = request.user.conns.all()
+    for social in socials:
+        if privilege[social.type+str(social.uid)] == False:
+            social_data.append(dict(social=social, enabled=False))
+        else:
+            social_data.append(dict(social=social, enabled=True))
+        keys.append(social.type+str(social.uid))
+
+    if request.method == 'POST':
+        p2 = {}
+        for k in keys:
+            p2[k] = request.POST[k]
+        category.privilege = json.JSONEncoder().encode(p2)
+        category.save()
+        return redirect('/category/'+pk)
+    else:
+        pass
+
     return locals()
 
 @render_to('index.html')
