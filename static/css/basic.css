@@ -25,8 +25,14 @@ ul.contact .value {
 .avatar {
   width: 64px;
 }
-.popup_addcontact_form form {
+div[data-role="popup"] form {
   padding: 5px 15px;
+}
+#popup_addcontact_address {
+  width: 280px;
+}
+#popup_addcontact_address textarea {
+  height: 30px;
 }
 #search_friend {
   position: absolute;
