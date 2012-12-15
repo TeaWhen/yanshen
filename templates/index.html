@@ -4,11 +4,15 @@
                 <a href="/me" data-role="button" data-icon="star" data-theme="a">Me</a>
                 <h1>Search</h1>
 <!--                <input class="search" type="search" name="search" value="" placeholder="过滤联系人…">-->
-                <a href="#" data-role="button" data-icon="star" data-theme="a">More</a>
-<!--                <ul id="more_pop" class="pop">
-                    <a href="/group"><li>组管理</li></a>
-                    <a href="/map"><li>好友地图</li></a>
-                </ul>-->
+                <a href="#popup_menu" data-role="button" data-rel="popup">More</a>
+                
+                <div data-role="popup" id="popup_menu">
+                	<ul data-role="listview">
+                        <li data-corners="false"><a href="/group">组管理</a></li>
+<!--                        <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="b" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-b"><div class="ui-btn-inner ui-li"><div class="ui-btn-text"><a href="options.html" class="ui-link-inherit">Options</a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>-->
+                        <li><a href="/map">好友地图</a></li>
+                	</ul>
+                </div>
             </div>
             <div data-role="content">
                 {% for user in users %}
