@@ -2,7 +2,7 @@
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.shortcuts import render_to_response, RequestContext
+# from django.shortcuts import render_to_response, RequestContext
 from users.models import Profile, Category, Relationship
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -73,10 +73,10 @@ def welcome(request):
 def index(request):
     appname = u"延伸"
     pagename = 'index'
-    relationship = Relationship.objects.filter(to_id=request.user)
+    relationship = Relationship.objects.filter(from_id=request.user)
     users = []
     for r in relationship:
-        users.append(r.from_id)
+        users.append(r.to_id)
     return locals()
 
 @render_to('contact.html')
@@ -178,7 +178,7 @@ def group(request):
     #user.
     return locals()
 
-# @render_to('group_setting.html')
+@render_to('group_setting.html')
 @login_required(login_url='/welcome/')
 def group_settings(request, pk):
     category = Category.objects.get(pk=pk, owner=request.user)
@@ -217,7 +217,8 @@ def group_settings(request, pk):
         category.save()
         return redirect('/group/')
     else:
-        return render_to_response('group_setting.html', locals(), context_instance=RequestContext(request))
+        return locals()
+        # return render_to_response('group_setting.html', locals(), context_instance=RequestContext(request))
 
 @render_to('index.html')
 @login_required(login_url='/welcome/')
