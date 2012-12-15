@@ -20,6 +20,7 @@ RENREN_CLIENT_ID = "8813263c61944cc1b015649de1a71bcc"
 RENREN_CLIENT_SECRET = "31e42cccb19549478256c1145a71393f"
 RENREN_AUTH_URL = "https://graph.renren.com/oauth/authorize"
 RENREN_TOKEN_URL = "https://graph.renren.com/oauth/token"
+RENREN_API_ROOT = "http://api.renren.com/restserver.do"
 
 ###
 # Twitter

@@ -11,6 +11,7 @@ from django.core.exceptions import ValidationError
 from xpinyin import Pinyin
 import json
 from django.http import Http404
+from conns.views import calc_friends
 
 # json.JSONEncoder().encode()
 # json.JSONDecoder().decode()
@@ -259,6 +260,7 @@ def map(request):
 @render_to('find.html')
 @login_required(login_url='/welcome/')
 def find(request):
+    guess = calc_friends(request.user)
     return locals()
 
 @login_required(login_url='/welcome/')

@@ -44,21 +44,16 @@
 	                </li>
                 </ul>
                 <ul data-role="listview" style="margin-top: 10px;">
-                    <li data-role="list-divider" role="heading">好友推荐</li>
+                    <li data-role="list-divider" role="heading">您可能认识...</li>
+                    {% for uid, udata in guess.items %}
                     <li>
                         <div class="ui-grid-b">
-                        	<a href="/contact/{{ user.pk }}" data-transition="slide"><div class="ui-block-a"><img width="80" src="{{ user.avatar }}"></div>
-                        	<div class="ui-block-b">{{ user.get_full_name }}</a><p>好友来源？</p></div>
-                        	<div class="ui-block-c"><a href="/friend/9/accept" data-role="button" data-mini="true" data-inline="true" data-icon="star">加为好友</a>
+                            <a href="/contact/{{ user.pk }}" data-transition="slide"><div class="ui-block-a"><img width="80" src="{{ udata.user.avatar }}"></div>
+                            <div class="ui-block-b">{{ udata.user.get_full_name }}</a><p>{% for ic in udata.icons %}<i class="{{ ic }}"></i>{% endfor %}</p></div>
+                            <div class="ui-block-c"><a href="/friend/{{ uid }}/accept" data-role="button" data-mini="true" data-inline="true" data-icon="star">加为好友</a>
                         </div>
                     </li>
-                    <li>
-                        <div class="ui-grid-b">
-                        	<a href="/contact/{{ user.pk }}" data-transition="slide"><div class="ui-block-a"><img width="80" src="{{ user.avatar }}"></div>
-                        	<div class="ui-block-b">{{ user.get_full_name }}</a><p>好友来源？</p></div>
-                        	<div class="ui-block-c"><a href="/friend/9/accept" data-role="button" data-mini="true" data-inline="true" data-icon="star">加为好友</a>
-                        </div>
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
 {% endblock %}
