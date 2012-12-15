@@ -1,9 +1,18 @@
-.social {
+ul.social {
   padding-bottom: 15px;
 }
-.social i {
+ul.social li i {
+  position: absolute;
+  top: 15px;
   font-size: 48px;
   line-height: 48px;
+  display: inline-block;
+}
+ul.social li .uname {
+  margin-left: 70px;
+  font-size: 20px;
+  padding: 14px 0;
+  display: inline-block;
 }
 .avatar {
   width: 64px;
