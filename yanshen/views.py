@@ -108,6 +108,21 @@ def me(request):
                 cp[str(info_id)] = False
                 c.privilege = json.JSONEncoder().encode(cp)
                 c.save()
+        elif action == 'delete':
+            info_id = int(request.POST['info_id'])
+            contact_info = json.JSONDecoder().decode(user.contact_info)
+            for x in contact_info['data']:
+                if x['info_id'] == info_id:
+                    contact_info['data'].remove(x)
+                    break
+            user.contact_info = json.JSONEncoder().encode(contact_info)
+            user.save()
+            cats = user.cats.all()
+            for c in cats:
+                cp = json.JSONDecoder().decode(c.privilege)
+                cp.pop(str(info_id))
+                c.privilege = json.JSONEncoder().encode(cp)
+                c.save()
         else:
             pass
     socials = user.conns.all()
@@ -126,6 +141,11 @@ def group(request):
     for category in categories:
         data.append(dict(category=category, friends=Relationship.objects.filter(from_id=user.id,cat_id=category)))
     #user.
+    return locals()
+
+@render_to('group_setting.html')
+@login_required(login_url='/welcome/')
+def group_setting(request, pk):
     return locals()
 
 @render_to('index.html')
