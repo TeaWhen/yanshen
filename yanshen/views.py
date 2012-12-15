@@ -12,6 +12,8 @@ from xpinyin import Pinyin
 
 @render_to('welcome.html')
 def welcome(request):
+	if request.user.is_authenticated():
+		return redirect('/')
 	appname = "延伸"
 	pagename ='welcome'
 	if request.method == 'POST':
