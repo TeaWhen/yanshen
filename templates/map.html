@@ -10,15 +10,12 @@
 	          var map = new BMap.Map('map');
 	          map.centerAndZoom('合肥', 6);
 	          map.addControl(new BMap.NavigationControl());
-	          {% for location in locations %}
-					
+	          {% for location in locations %}					
 
 		          var marker = new BMap.Marker(new BMap.Point({{ location.x }}, {{ location.y }}));  // 创建标注
 		          var label = new BMap.Label("{{ location.name }}",{offset:new BMap.Size(20,-10)});
 		          marker.setLabel(label);
 				  map.addOverlay(marker);              // 将标注添加到地图中
-
-
 
 			  {% endfor %}
 	        }

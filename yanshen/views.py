@@ -107,7 +107,7 @@ def contact(request, pk):
         if privilege[social.type+str(social.uid)] == True:
             social_data.append(social)
 
-    locations = request.user.get_locations()
+    locations = owner.get_locations()
     return locals()
 
 @render_to('me.html')
