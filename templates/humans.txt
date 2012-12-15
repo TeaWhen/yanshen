@@ -6,7 +6,7 @@
     LIU Dongyuan -- Front End -- @xhacker
     YAN Zheng -- Back End -- @Dr_Joke
     LOU Xun -- Back End and Social Network -- @AquarHEAD
-    MA Ruxiao -- Back End and Server -- @MrX_FF
+    MA Ruxiao -- Front End and Server -- @MrX_FF
     
 
 # THANKS

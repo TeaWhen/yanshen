@@ -69,7 +69,10 @@ def welcome(request):
 def index(request):
     appname = u"延伸"
     pagename = 'index'
-    users = Profile.objects.all()
+    relationship = Relationship.objects.filter(to_id=request.user)
+    users = []
+    for r in relationship:
+        users.append(r.from_id)
     return locals()
 
 @render_to('contact.html')
