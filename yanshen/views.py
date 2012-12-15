@@ -23,7 +23,7 @@ import json
 def welcome(request):
     if request.user.is_authenticated():
         return redirect('/')
-    appname = "延伸"
+    appname = u"延伸"
     pagename ='welcome'
     if request.method == 'POST':
         username = request.POST['username']
@@ -66,7 +66,7 @@ def welcome(request):
 @render_to('index.html')
 @login_required(login_url='/welcome/')
 def index(request):
-    appname = "延伸"
+    appname = u"延伸"
     pagename = 'index'
     users = Profile.objects.all()
     return locals()
@@ -74,7 +74,7 @@ def index(request):
 @render_to('contact.html')
 @login_required(login_url='/welcome/')
 def contact(request, pk):
-    appname = "延伸"
+    appname = u"延伸"
     pagename = 'contact'
     user = Profile.objects.get(pk=pk)
     socials = user.conns.all()
@@ -85,7 +85,7 @@ def contact(request, pk):
 @render_to('me.html')
 @login_required(login_url='/welcome/')
 def me(request):
-    appname = "延伸"
+    appname = u"延伸"
     pagename = 'me'
     user = request.user
     if request.method == 'POST':
@@ -108,21 +108,8 @@ def me(request):
                 cp[str(info_id)] = False
                 c.privilege = json.JSONEncoder().encode(cp)
                 c.save()
-        elif action == 'delete':
-            info_id = int(request.POST['info_id'])
-            contact_info = json.JSONDecoder().decode(user.contact_info)
-            for x in contact_info['data']:
-                if x['info_id'] == info_id:
-                    contact_info['data'].remove(x)
-                    break
-            user.contact_info = json.JSONEncoder().encode(contact_info)
-            user.save()
-            cats = user.cats.all()
-            for c in cats:
-              cp = json.JSONDecoder().decode(c.privilege)
-              cp.pop(str(info_id))
-              c.privilege = json.JSONEncoder().encode(cp)
-              c.save()
+        else:
+            pass
     socials = user.conns.all()
     contact_info = json.JSONDecoder().decode(user.contact_info)['data']
         
@@ -131,7 +118,7 @@ def me(request):
 @render_to('group.html')
 @login_required(login_url='/welcome/')
 def group(request):
-    appname = "延伸"
+    appname = u"延伸"
     pagename = 'group'
     user = request.user
     categories = Category.objects.filter(owner=user)
@@ -141,10 +128,20 @@ def group(request):
     #user.
     return locals()
 
+@render_to('index.html')
+@login_required(login_url='/welcome/')
+def group_detail(request, gid):
+    appname = u"延伸"
+    cat = Category.objects.get(pk=gid)
+    users = []
+    for rl in cat.relationship_set.all():
+        users.append(rl.to_id)
+    return locals()
+
 @render_to('map.html')
 @login_required(login_url='/welcome/')
 def map(request):
-    appname = "延伸"
+    appname = u"延伸"
     pagename = 'map'
     return locals()
 
