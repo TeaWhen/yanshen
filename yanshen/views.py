@@ -114,6 +114,12 @@ def me(request):
 			contact_info['data'].append(dict(info_id=info_id, key=key, value=value, type=type))
 			user.contact_info = json.JSONEncoder().encode(contact_info)
 			user.save()
+			cats = user.cats.all()
+			for c in cats:
+				cp = json.JSONDecoder().decode(c.privilege)
+				cp[str(info_id)] = False
+				c.privilege = json.JSONEncoder().encode(cp)
+				c.save()
 		else:
 			pass
 	socials = user.conns.all()
