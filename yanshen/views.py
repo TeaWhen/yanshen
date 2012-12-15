@@ -2,29 +2,33 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render_to_response, RequestContext
 from users.models import Profile
+from django.contrib.auth.decorators import login_required
 import time
 
+def welcome(request):
+	return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
+
+@login_required(login_url='/welcome/')
 def index(request):
 	users = Profile.objects.all()
 	return render_to_response('index.html', locals(), context_instance=RequestContext(request))
 
-def contact(request):
+@login_required(login_url='/welcome/')
+def contact(request, pk):
+	user = Profile.objects.get(pk=pk)
 	return render_to_response('contact.html', locals(), context_instance=RequestContext(request))
 
+@login_required(login_url='/welcome/')
 def me(request):
 	return render_to_response('me.html', locals(), context_instance=RequestContext(request))
 
+@login_required(login_url='/welcome/')
 def group(request):
 	return render_to_response('group.html', locals(), context_instance=RequestContext(request))
 
+@login_required(login_url='/welcome/')
 def map(request):
 	return render_to_response('map.html', locals(), context_instance=RequestContext(request))
-
-def welcome(request):
-	if request.method == "POST":
-		pass
-	else:
-		pass
 
 def page_not_found(request):
 	return render(request, '404.html')
