@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from annoying.decorators import render_to
 from django.core.exceptions import ValidationError
+from xpinyin import Pinyin
 
 @render_to('welcome.html')
 def welcome(request):
@@ -20,6 +21,7 @@ def welcome(request):
 			user = authenticate(username=username, password=password)
 			if user is not None:
 				if user.is_active:
+					p = Pinyin()
 					login(request, user)
 					return redirect('/')
 				else:
