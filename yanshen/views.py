@@ -10,6 +10,12 @@ def contact(request):
 def me(request):
 	return render_to_response('me.html', locals(), context_instance=RequestContext(request))
 
+def group(request):
+	return render_to_response('group.html', locals(), context_instance=RequestContext(request))
+
+def map(request):
+	return render_to_response('map.html', locals(), context_instance=RequestContext(request))
+
 def signup(request):
 	if request.method == "POST":
 		pass
