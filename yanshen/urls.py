@@ -9,8 +9,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'yanshen.views.home'),
-    url(r'^home$', 'yanshen.views.home'),
+    url(r'^$', 'yanshen.views.index'),
+    url(r'^me$', 'yanshen.views.me'),
     url(r'^profile$', 'yanshen.views.profile'),
     url(r'^robots.txt$', 'yanshen.views.robots'),
     # url(r'^yanshen/', include('yanshen.foo.urls')),

@@ -1,11 +1,14 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, RequestContext
 
-def home(request):
-	pass
+def index(request):
+	return render_to_response('index.html', locals(), context_instance=RequestContext(request))
 
-def profile(request):
-	pass
+def contact(request):
+	return render_to_response('contact.html', locals(), context_instance=RequestContext(request))
+
+def me(request):
+	return render_to_response('me.html', locals(), context_instance=RequestContext(request))
 
 def signup(request):
 	if request.method == "POST":
