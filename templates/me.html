@@ -28,13 +28,12 @@
                 <ul class="social" data-role="listview" data-split-icon="delete" data-split-theme="d">
                     <li data-role="list-divider" role="heading">社交</li>
                     {% for s in socials %}
-                        <li>
-                            <a href="{{ s.url }}"><i class="{{ s.icon }}"></i>{{ s.uname }}</a>
-                            <a href="#delete" data-rel="popup" data-position-to="window" data-transition="pop">解除绑定</a>
-                        </li>
+                    <li>
+                        <a href="{{ s.url }}"><i class="{{ s.icon }}"></i><span class="uname">{{ s.uname }}</span></a>
+                        <a href="#delete" data-rel="popup" data-position-to="window" data-transition="pop">解除绑定</a>
+                    </li>
                     {% endfor %}
                     <li>
-                
                         <a href="#popup_addsocial" data-rel="popup"><i class="icon-plus"></i><span class="uname">添加社交网络帐号…</span></a>
                     </li>
                 </ul>
