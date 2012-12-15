@@ -101,38 +101,38 @@ def github_callback(request):
     return redirect("/me")
 
 
-def facebook_connect(request):
-    args = {
-        'client_id': FACEBOOK_CLIENT_ID,
-        'redirect_uri': ROOT_URL+"conns/facebook_callback",
-        'scope': 'user_status,read_friendlists'
-    }
-    rurl = "%s?%s" % (FACEBOOK_AUTH_URL, urllib.urlencode(args))
-    return redirect(rurl)
+# def facebook_connect(request):
+#     args = {
+#         'client_id': FACEBOOK_CLIENT_ID,
+#         'redirect_uri': ROOT_URL+"conns/facebook_callback",
+#         'scope': 'user_status,read_friendlists'
+#     }
+#     rurl = "%s?%s" % (FACEBOOK_AUTH_URL, urllib.urlencode(args))
+#     return redirect(rurl)
 
-def facebook_callback(request):
-    if "error" in request.GET:
-        errors = request.GET
-    else:
-        args = {
-            'client_id': FACEBOOK_CLIENT_ID,
-            'client_secret': FACEBOOK_CLIENT_SECRET,
-            'redirect_uri': ROOT_URL+"conns/facebook_callback",
-            'code': request.GET["code"]
-        }
-        r = requests.post(FACEBOOK_TOKEN_URL, params=args)
-        auth_info = urlparse.parse_qs(r.text)
-        nai = AuthInfo(type="facebook", owner=request.user)
-        user_info = requests.get(FACEBOOK_API_ROOT+"/me", params={'access_token': auth_info['access_token'][0], 'fields': 'id,name'}).json
-        nai.uid = user_info['id']
-        nai.uname = user_info['name']
-        nai.tokens = r.text
-        nai.save()
-    return redirect("/me")
+# def facebook_callback(request):
+#     if "error" in request.GET:
+#         errors = request.GET
+#     else:
+#         args = {
+#             'client_id': FACEBOOK_CLIENT_ID,
+#             'client_secret': FACEBOOK_CLIENT_SECRET,
+#             'redirect_uri': ROOT_URL+"conns/facebook_callback",
+#             'code': request.GET["code"]
+#         }
+#         r = requests.post(FACEBOOK_TOKEN_URL, params=args)
+#         auth_info = urlparse.parse_qs(r.text)
+#         nai = AuthInfo(type="facebook", owner=request.user)
+#         user_info = requests.get(FACEBOOK_API_ROOT+"/me", params={'access_token': auth_info['access_token'][0], 'fields': 'id,name'}).json
+#         nai.uid = user_info['id']
+#         nai.uname = user_info['name']
+#         nai.tokens = r.text
+#         nai.save()
+#     return redirect("/me")
 
-def facebook_friends(request, ai_id):
-    ai = AuthInfo.objects.get(pk=ai_id)
-    return
+# def facebook_friends(request, ai_id):
+#     ai = AuthInfo.objects.get(pk=ai_id)
+#     return
 
 def tqq_connect(request):
     args = {
