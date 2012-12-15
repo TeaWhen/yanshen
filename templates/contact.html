@@ -16,8 +16,7 @@
                     <li data-role="list-divider" role="heading">社交</li>
                     {% for s in socials %}
                         <li class="social">
-                            <a href="{{ s.url }}"><i class="{{ s.icon }}"></i>{{ s.uname }}</a>
-                            <a href="#delete" data-rel="popup" data-position-to="window" data-transition="pop">解除绑定</a>
+                            <a href="{{ s.url }}"><i class="{{ s.icon }}"></i><span class="uname">{{ s.uname }}</span></a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -49,9 +48,9 @@
             }
 
             function loadScript() {
-              var script = document.createElement("script");
-              script.src = "http://api.map.baidu.com/api?v=1.4&callback=initialize";
-              document.body.appendChild(script);
+                var script = document.createElement("script");
+                script.src = "http://api.map.baidu.com/api?v=1.4&callback=initialize";
+                document.body.appendChild(script);
             }
 
             window.onload = loadScript;

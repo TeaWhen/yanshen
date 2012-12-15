@@ -3,12 +3,23 @@
 @red: #c72f2f;
 @green: #538a2a;
 
-.social {
-    i {
-        font-size: 48px;
-        line-height: 48px;
-    }
+ul.social {
     padding-bottom: 15px;
+    li {
+        i {
+            position: absolute;
+            top: 15px;
+            font-size: 48px;
+            line-height: 48px;
+            display: inline-block;
+        }
+        .uname {
+            margin-left: 70px;
+            font-size: 20px;
+            padding: 14px 0;
+            display: inline-block;
+        }
+    }
 }
 
 .avatar {
@@ -17,4 +28,13 @@
 
 .popup_addcontact_form form {
   padding: 5px 15px;
+}
+
+#search_friend {
+    position: absolute;
+    top: 2px;
+    left: 74px;
+    padding: 4px 11px;
+    width: 180px;
+    font-size: 15px;
 }
