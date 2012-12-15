@@ -26,21 +26,19 @@ def welcome(request):
 			else:
 				message = 'Email 或密码错误。'
 				return locals()
-		else:
-			try:
-				user = Profile.objects.get(email=username)
-			except:
+		elif action == 'reg':
+			if Profile.objects.exists(email=username):
+			    message = '您已经注册过了。'
+			    return locals()
+			else:
 				user = Profile.objects.create_user(email=username, password=password)
-				if user is not None:
+				if user:
 					user = authenticate(username=username, password=password)
 					login(request, user)
-					return redirect('/me/')
+					return redirect('/me/?first=1')
 				else:
 					message = '抱歉，服务器开小差了，注册失败。'
 					return locals()
-			else:
-				message = '您已经注册过了。'
-				return locals()
 	else:
 		return locals()
 
@@ -48,13 +46,13 @@ def welcome(request):
 @login_required(login_url='/welcome/')
 def index(request):
 	users = Profile.objects.all()
-	return render_to_response('index.html', locals(), context_instance=RequestContext(request))
+	return locals()
 
 @render_to('contact.html')
 @login_required(login_url='/welcome/')
 def contact(request, pk):
 	user = Profile.objects.get(pk=pk)
-	return render_to_response('contact.html', locals(), context_instance=RequestContext(request))
+	return locals()
 
 @render_to('me.html')
 @login_required(login_url='/welcome/')

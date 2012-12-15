@@ -20,7 +20,7 @@
                 <ul data-role="listview">
                     <li><a href="/contact/{{ user.pk }}" data-transition="slide">
                         <img class="avatar ui-li-thumb" src="{{ user.avatar }}">
-                        <h3 class="name ui-li-heading">{{ user.get_full_name }}</h3>
+                        <h3 class="name ui-li-heading"><span class="last">{{ user.last_name }}</span> <span class="first">{{ user.first_name }}</span></h3>
                     </a></li>
                 </ul>
                 {% endfor %}
