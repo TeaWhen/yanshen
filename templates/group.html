@@ -12,9 +12,8 @@
         				<h3>{{ item.category.name }}</h3>
                         <p>
                         {% for friend in item.friends %}
+                            {% if forloop.counter < 4 %}
         				    {{ friend.to_id.get_full_name }}
-                            {% if forloop.counter = 3 %}
-                            {% break %}
                             {% endif %}
                         {% endfor %}
                         {% if item.friends|length > 3 %}
