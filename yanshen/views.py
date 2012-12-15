@@ -27,18 +27,20 @@ def welcome(request):
 				message = 'Email 或密码错误。'
 				return locals()
 		else:
-			user = Profile.objects.get(email=username)
-			if user is not None:
-				message = '您已经注册过了。'
-				return locals()
-			else:
+			try:
+				user = Profile.objects.get(email=username)
+			except:
 				user = Profile.objects.create_user(email=username, password=password)
 				if user is not None:
+					user = authenticate(username=username, password=password)
 					login(request, user)
-					return redirect('/')
+					return redirect('/me/')
 				else:
 					message = '抱歉，服务器开小差了，注册失败。'
 					return locals()
+			else:
+				message = '您已经注册过了。'
+				return locals()
 	else:
 		return locals()
 
