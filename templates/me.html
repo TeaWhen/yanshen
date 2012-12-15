@@ -11,8 +11,20 @@
                     <p class="name">{% if user.get_full_name %}
                         {{ user.get_full_name }}
                     {% else %}您的姓名{% endif %}</p>
-                    <p><a href="index.html" data-role="button" data-icon="gear" data-iconpos="left" data-mini="true" data-inline="true">编辑</a></p>
+                    <p><a href="#popup_edit" data-role="button" data-icon="gear" data-rel="popup" data-iconpos="left" data-mini="true" data-inline="true">编辑</a></p>
                 </div>
+                <div data-role="popup" class="popup_edit_form" id="popup_edit" data-theme="a" data-position-to="window">
+                    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+                	<form action="/me/" method="post">{% csrf_token %}
+                        <h3>修改姓名</h3>
+                        <input type="hidden" name="type" value="Edit">
+                        <input type="hidden" name="action" value="add">
+                        <input id="group_key" type="text" name="last_name" value="" placeholder="姓">
+                        <input id="group_key" type="text" name="first_name" value="" placeholder="名">
+                        <button type="submit" data-theme="b">修改</button>
+                	</form>
+                </div>
+                
                 <ul class="social" data-role="listview" data-split-icon="delete" data-split-theme="d">
                     <li data-role="list-divider" role="heading">社交</li>
                     {% for s in socials %}
