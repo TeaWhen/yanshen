@@ -70,7 +70,7 @@ TQQ_API_ROOT = "https://open.t.qq.com/api"
 # GPLUS_CLIENT_SECRET = "ZVw4E8D_xYDRNk7fMfEJuf1C"
 # GPLUS_AUTH_URL = "https://accounts.google.com/o/oauth2/auth"
 # GPLUS_TOKEN_URL = "https://accounts.google.com/o/oauth2/token"
-
+GMAP_KEY = "AIzaSyAJaJdV6S0mceHG4cO-Z4Yi7A05ZoNmuuE"
 
 ###
 # 豆瓣

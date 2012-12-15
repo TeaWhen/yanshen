@@ -11,11 +11,11 @@
 	          map.centerAndZoom('杭州', 10);
 	          map.addControl(new BMap.NavigationControl());
 	          {% for location in locations %}
-		          var marker = new BMap.Marker(new BMap.Point(location.x, location.y));  // 创建标注
+		          var marker = new BMap.Marker(new BMap.Point({{ location.x }}, {{ location.y }}));  // 创建标注
 				  map.addOverlay(marker);              // 将标注添加到地图中
 			  {% endfor %}
 	        }
-	         
+
 	        function loadScript() {
 	          var script = document.createElement("script");
 	          script.src = "http://api.map.baidu.com/api?v=1.4&callback=initialize";
