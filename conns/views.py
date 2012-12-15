@@ -2,7 +2,7 @@
 
 from conns.models import AuthInfo
 from users.models import Profile, Relationship
-from conns.auth_settings import *
+from conns.api_keys import *
 
 from django.shortcuts import redirect
 
@@ -13,9 +13,26 @@ import urlparse
 
 
 def weibo_connect():
-    return redirect()
+    args = {
+        'response_type': "code",
+        'client_id': WEIBO_CLIENT_ID,
+        'redirect_uri': ROOT_URL+"conns/weibo_callback"
+    }
+    return redirect(requests.get(WEIBO_AUTH_URL, params=args, prefetch=False, allow_redirects=False).url)
 
 def weibo_callback():
+    if "error" in request.args:
+        errors = request.args
+        return
+    else:
+        args = {
+            'grant_type': "authorization_code",
+            'client_id': WEIBO_CLIENT_ID,
+            'client_secret': WEIBO_CLIENT_SECRET,
+            'redirect_uri': ROOT_URL+"conns/weibo_callback",
+            'code': request.args["code"]
+        }
+        auth_info = requests.post(WEIBO_TOKEN_URL, params=args).json
     return
 
 
@@ -45,9 +62,27 @@ def renren_callback():
 
 
 def github_connect():
-    return
+    args = {
+        'response_type': "code"
+        'client_id': GITHUB_CLIENT_ID
+        'redirect_uri': ROOT_URL+"conns/github_callback"
+        'scope': 'user'
+    }
+    return redirect(requests.get(GITHUB_AUTH_URL, param=args, prefetch=False, allow_redirects=False).url)
 
 def github_callback():
+    if "error" in request.args:
+        errors = request.args
+        return
+    else:
+        args = {
+            'grant_type': "authorization_code",
+            'client_id': GITHUB_CLIENT_ID,
+            'client_secret': GITHUB_CLIENT_SECRET,
+            'redirect_uri': ROOT_URL+"conns/github_callback",
+            'code': request.args["code"]
+        }
+        auth_info = requests.post(RENREN_TOKEN_URL, params=args).json
     return
 
 
