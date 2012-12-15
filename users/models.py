@@ -58,7 +58,7 @@ class Profile(AbstractBaseUser):
         return "/contact/%s/" % urlquote(self.pk)
 
     def get_full_name(self):
-        full_name = '%s %s' % (self.last_name, self.first_name)
+        full_name = '%s%s' % (self.last_name, self.first_name)
         return full_name.strip()
 
     def get_short_name(self):
