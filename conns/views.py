@@ -11,7 +11,7 @@ from annoying.decorators import render_to
 import requests
 import urlparse
 
-
+ 
 def weibo_connect():
     args = {
         'response_type': "code",
@@ -23,7 +23,6 @@ def weibo_connect():
 def weibo_callback():
     if "error" in request.args:
         errors = request.args
-        return
     else:
         args = {
             'grant_type': "authorization_code",
@@ -48,7 +47,6 @@ def renren_connect():
 def renren_callback():
     if "error" in request.args:
         errors = request.args
-        return
     else:
         args = {
             'grant_type': "authorization_code",
@@ -63,9 +61,9 @@ def renren_callback():
 
 def github_connect():
     args = {
-        'response_type': "code"
-        'client_id': GITHUB_CLIENT_ID
-        'redirect_uri': ROOT_URL+"conns/github_callback"
+        'response_type': "code",
+        'client_id': GITHUB_CLIENT_ID,
+        'redirect_uri': ROOT_URL+"conns/github_callback",
         'scope': 'user'
     }
     return redirect(requests.get(GITHUB_AUTH_URL, param=args, prefetch=False, allow_redirects=False).url)
@@ -73,16 +71,14 @@ def github_connect():
 def github_callback():
     if "error" in request.args:
         errors = request.args
-        return
     else:
         args = {
             'grant_type': "authorization_code",
             'client_id': GITHUB_CLIENT_ID,
             'client_secret': GITHUB_CLIENT_SECRET,
-            'redirect_uri': ROOT_URL+"conns/github_callback",
             'code': request.args["code"]
         }
-        auth_info = requests.post(RENREN_TOKEN_URL, params=args).json
+        auth_info = urlparse.parse_qs(requests.post(GITHUB_TOKEN_URL, params=args).text)
     return
 
 
@@ -98,7 +94,6 @@ def douban_connect():
 def douban_callback():
     if "error" in request.args:
         errors = request.args
-        return
     else:
         args = {
             'grant_type': "authorization_code",
@@ -110,6 +105,7 @@ def douban_callback():
         auth_info = requests.post(DOUBAN_TOKEN_URL, params=args).json
     return
 
+
 def facebook_connect():
     args = {
         'client_id': FACEBOOK_CLIENT_ID,
@@ -120,7 +116,6 @@ def facebook_connect():
 def facebook_callback():
     if "error" in request.args:
         errors = request.args
-        return
     else:
         args = {
             'client_id': FACEBOOK_CLIENT_ID,
@@ -131,4 +126,28 @@ def facebook_callback():
         auth_info = urlparse.parse_qs(requests.post(FACEBOOK_TOKEN_URL, params=args).text)
     return
 
-# twitter, weixin, G+, github
+
+def tqq_connect():
+    args = {
+        'response_type': "code",
+        'client_id': TQQ_CLIENT_ID,
+        'redirect_uri': ROOT_URL+"conns/tqq_callback",
+    }
+    return redirect(requests.get(TQQ_AUTH_URL, params=args, prefetch=False, allow_redirects=False).url)
+
+def tqq_callback():
+    if "error" in request.args:
+        errors = request.args
+    else:
+        args = {
+            'grant_type': "authorization_code",
+            'client_id': TQQ_CLIENT_ID,
+            'client_secret': TQQ_CLIENT_SECRET,
+            'redirect_uri': ROOT_URL+"conns/tqq_callback",
+            'code': request.args["code"]
+        }
+        auth_info = urlparse.parse_qs(requests.post(FACEBOOK_TOKEN_URL, params=args).text)
+    return
+
+
+# tqq, jiepang, twitter, G+

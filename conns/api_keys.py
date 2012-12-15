@@ -53,3 +53,17 @@ WEIBO_TOKEN_URL = "https://api.weibo.com/oauth2/access_token"
 ###
 # 百度地图
 BAIDU_KEY = "8e5c27873f9b75448ae86a905abbe41c"
+
+###
+# 街旁
+JIEPANG_CLIENT_ID = "100698"
+JIEPANG_CLIENT_SECRET = "5383aac191dfc823988926c0fb8c8398"
+JIEPANG_AUTH_URL = "https://jiepang.com/oauth/authorize"
+JIEPANG_TOKEN_URL = "https://jiepang.com/oauth/token"
+
+###
+# 腾讯微博
+TQQ_CLIENT_ID = "801287948"
+TQQ_CLIENT_SECRET = "a663feec88c945d0db8e7a7f16a3a43f"
+TQQ_AUTH_URL = "https://open.t.qq.com/cgi-bin/oauth2/authorize"
+TQQ_TOKEN_URL = "https://open.t.qq.com/cgi-bin/oauth2/access_token"
