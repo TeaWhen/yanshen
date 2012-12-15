@@ -34,11 +34,12 @@
                 </div>
             </div>
             
+            <div class="meta">
+                <img class="avatar" src="{{ user.avatar }}">
+                <p class="name">{{ user.get_full_name }}</p>
+            </div>
+            
             <div data-role="content">
-                <div class="meta">
-                    <img class="avatar" src="{{ user.avatar }}">
-                    <p class="name">{{ user.get_full_name }}</p>
-                </div>
                 {% if social_data %}
                 <ul class="social" data-role="listview" data-split-theme="d">
                     <li data-role="list-divider" role="heading">社交</li>
