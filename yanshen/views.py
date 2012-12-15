@@ -9,6 +9,10 @@ from django.contrib.auth import authenticate, login, logout
 from annoying.decorators import render_to
 from django.core.exceptions import ValidationError
 from xpinyin import Pinyin
+import json
+
+# json.JSONEncoder().encode()
+# json.JSONDecoder().decode()
 
 @render_to('welcome.html')
 def welcome(request):
@@ -87,6 +91,9 @@ def contact(request, pk):
 	for s in socials:
 		s.url = social_url[s.type]
 		s.icon = icon_name[s.type]
+
+	contact_info = json.JSONDecoder().decode(user.contact_info)
+
 	return locals()
 
 @render_to('me.html')
@@ -115,6 +122,9 @@ def me(request):
 	for s in socials:
 		s.url = social_url[s.type]
 		s.icon = icon_name[s.type]
+
+	contact_info = json.JSONDecoder().decode(user.contact_info)
+		
 	return locals()
 
 @render_to('group.html')
