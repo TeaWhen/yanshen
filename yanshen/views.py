@@ -8,21 +8,22 @@ import time
 
 def welcome(request):
 	if request.method == 'POST':
-	    username = request.POST['username']
-	    password = request.POST['password']
-	    user = authenticate(username=username, password=password)
-	    if user is not None:
-	        if user.is_active:
-	            login(request, user)
-	            # Redirect to a success page.
-	            redirect('/')
-	        else:
-	            # Return a 'disabled account' error message
-	            pass
-	    else:
-	        # Return an 'invalid login' error message.
-	        pass
+		username = request.POST['username']
+		password = request.POST['password']
+		user = authenticate(username=username, password=password)
+		if user is not None:
+			if user.is_active:
+				login(request, user)
+				next = request.POST['next']
+				return redirect(next)
+			else:
+				message = 'disabled account'
+				return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
+		else:
+			message = 'invalid login'
+			return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
 	else:
+		next = request.GET['next']
 		return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
 
 @login_required(login_url='/welcome/')
@@ -58,4 +59,4 @@ def humans(request):
 	return render(request, 'humans.txt', content_type="text/plain")
 
 def orca(request):
-    return HttpResponse("b5da7f1e4f9066c4", content_type="text/plain")
+	return HttpResponse("b5da7f1e4f9066c4", content_type="text/plain")

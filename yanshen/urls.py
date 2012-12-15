@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^welcome/$', 'yanshen.views.welcome'),
     url(r'^$', 'yanshen.views.index'),
+    url(r'^index/$', 'yanshen.views.index'),
     url(r'^me/$', 'yanshen.views.me'),
     url(r'^contact/(\d+)/$', 'yanshen.views.contact'),
     url(r'^group/$', 'yanshen.views.group'),
