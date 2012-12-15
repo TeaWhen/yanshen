@@ -15,7 +15,7 @@
                 <ul class="social" data-role="listview" data-split-theme="d">
                     <li data-role="list-divider" role="heading">社交</li>
                     {% for s in socials %}
-                        <li class="social">
+                        <li>
                             <a href="{{ s.url }}"><i class="{{ s.icon }}"></i><span class="uname">{{ s.uname }}</span></a>
                         </li>
                     {% endfor %}
