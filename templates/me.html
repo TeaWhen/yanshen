@@ -1,4 +1,14 @@
 {% extends "base.html" %}
+{% block head %}
+<style>
+.avatar {
+  width: 64px;
+}
+.popup_addcontact_form form {
+  padding: 5px 15px;
+}
+</style>
+{% endblock %}
 {% block screen %}
             <div class="top" data-role="header" data-position="fixed">
                 <a href="/" data-role="button" data-icon="arrow-l" data-direction="reverse" data-transition="slide" data-theme="a" data-prefetch>返回</a>
@@ -69,13 +79,29 @@
                         <button type="submit" data-theme="b">添加</button>
         			</form>
         		</div>
-                <ul class="contact" data-role="listview" data-split-icon="gear" data-split-theme="d">
+        		<script>
+        		$(document).ready(function() {
+        		    $(".delete_item").click(function() {
+        		        if (confirm("确定删除这条联系方式么？")) {
+        		            $("#delete_info_id").val($(this).attr("data-info_id"));
+        		            $("#delete_form").submit();
+        		        } else {
+        		            return false;
+        		        }
+        		    });
+        		});
+        		</script>
+        		<form method="post" action="/me/" hidden="true" id="delete_form">
+        		    <input type="hidden" name="action" value="delete">
+        		    <input type="hidden" id="delete_info_id" name="info_id" value="">
+        		</form>
+                <ul class="contact" data-role="listview" data-split-icon="delete" data-split-theme="d">
                     <li data-role="list-divider" role="heading">联系</li>
                     {% for item in contact_info %}
                     <li>
                         <a><p class="key">{{ item.key }}</p>
                         <p class="value">{{ item.value }}</p></a>
-                        <a href="#edit" data-rel="popup" data-position-to="window" data-transition="pop">修改</a>
+                        <a href="#" class="delete_item" data-info_id="{{ item.info_id }}">删除</a>
                     </li>
                     {% endfor %}
                     <li>

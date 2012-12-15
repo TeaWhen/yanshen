@@ -28,14 +28,19 @@
             </script>
             <div data-role="content">
                 <form method="post" action="/welcome/">{% csrf_token %}
+                    <input type="hidden" id="action" name="action" value="login">
                     <label for="username" class="ui-hidden-accessible">Email</label>
                     <input type="email" name="username" id="username" value="" placeholder="Email">
                     <label for="password" class="ui-hidden-accessible">密码</label>
                     <input type="password" name="password" id="password" value="" placeholder="密码">
-                    <input type="hidden" id="action" name="action" value="login">
-                    <input id="submit" type="submit" value="登录">
+                    <div data-role="fieldcontain">
+                        <input type="text" class="sidebyside" name="lastname" placeholder="姓">
+                        <input type="text" class="sidebyside" name="firstname" placeholder="名">
+                    </div>
+                    <input id="submit_login" type="submit" value="登录">
+                    <input id="submit_reg" type="submit" value="注册" hidden="true">
                     <a href="#" id="reg">还未注册？</a>
-                    <a href="#" id="login" style="display: none;">已经注册？</a>
+                    <a href="#" id="login" hidden="true">已经注册？</a>
                 </form>
             </div>
 {% endblock %}
