@@ -82,12 +82,12 @@ class Profile(AbstractBaseUser):
 
     def get_locations(self):
         cis = json.JSONDecoder().decode(contact_info)
-        locations = {}
+        locations = []
         for ci in cis['data']:
             if ci['type'] == "Address":
                 r = requests.get("http://api.map.baidu.com/geocoder?address={}&output=json&key={}".format(ci['value'], BAIDU_KEY))
                 rj = r.json
-                locations[ci['key']] = "{},{}".format(rj['result']['location']['lng'], rj['result']['location']['lat'])
+                locations.append({'name': ci['key'], 'x': rj['result']['location']['lng'], 'y': rj['result']['location']['lat']})
         return locations
 
 
