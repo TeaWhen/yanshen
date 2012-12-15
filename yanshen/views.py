@@ -69,7 +69,7 @@ def welcome(request):
 def index(request):
     appname = u"延伸"
     pagename = 'index'
-    relationship = Relationship.objects.filter(to_id=request.user)
+    relationship = Relationship.objects.filter(from_id=request.user)
     users = []
     for r in relationship:
         users.append(r.from_id)
