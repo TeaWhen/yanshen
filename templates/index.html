@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 {% block screen %}
+<style>
+.ui-listview-filter{
+	display: none;
+}</style>
             <div class="top" data-role="header">
                 <a href="/me/" data-role="button" data-icon="star" data-theme="e" data-transition="slide" data-prefetch class="ui-btn-left">我</a>
-                <!--<h1><input id="search_friend" type="search" placeholder="搜索好友…" data-role="none"></h1>-->
+                <h1><input id="search_friend" onkeypress="$('.ui-listview-filter').value=$(this).value" type="search" placeholder="搜索好友…" data-role="none"></h1>
                 <a href="#popup_menu" data-role="button" data-rel="popup" data-theme="b">更多</a>
                 
                 <div data-role="popup" id="popup_menu">
