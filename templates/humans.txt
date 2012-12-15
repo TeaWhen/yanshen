@@ -3,13 +3,17 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    LIU Dongyuan -- Front End -- @xhacker
+    YAN Zheng -- Back End -- @Dr_Joke
+    LOU Xun -- Back End and Social Network -- @AquarHEAD
+    MA Ruxiao -- Back End and Server -- @MrX_FF
+    
 
 # THANKS
 
-    <name>
+    Segment Fault Hackathon
 
 # TECHNOLOGY COLOPHON
 
     HTML5, CSS3
-    jQuery, Modernizr
+    jQuery, jQuery Mobile, LESS

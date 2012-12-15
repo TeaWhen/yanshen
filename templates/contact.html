@@ -5,47 +5,37 @@
                 <a href="#" data-role="button" data-icon="star" data-theme="a" class="ui-btn-right">好友</a>
             </div>
             
-            <ul class="table" data-role="content">
-                <li class="meta">
-                    <img class="avatar" src="/static/img/fixture/blue.jpg">
-                    <p class="name">柳东原</p>
-                </li>
-                <li class="separator">社交</li>
-                <li class="social group">
-                    <ul>
-                        <li>
-                            <a href="renren.html"><img class="icon" src="/static/img/icons/renren.png"></a>
-                        </li>
-                        <li>
-                            <a href="http://weibo.com"><img class="icon" src="/static/img/icons/weibo.png"></a>
-                        </li>
-                        <li>
-                            <a href="http://weibo.com"><img class="icon" src="/static/img/icons/weibo.png"></a>
-                        </li>
-                        <li>
-                            <a href="http://weibo.com"><img class="icon" src="/static/img/icons/weibo.png"></a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="separator">联系</li>
-                <li class="contact group">
-                    <ul>
-                        <li>
-                            <p class="key">手机</p>
-                            <p class="value">15267028600</p>
-                        </li>
-                        <li>
-                            <p class="key">Email</p>
-                            <p class="value">liu.dongyuan@gmail.com</p>
-                        </li>
-                        <li class="map">
-                        大！地！图！百度！
-                        </li>
-                    </ul>
-                </li>
-                <!--li class="separator">其他</li>
-                <li class="custom group">
-                    <ul></ul>
-                </li>-->
-            </ul>
+            <div data-role="content">
+                <ul data-role="listview">
+                    <li class="meta">
+                        <img class="avatar" src="/static/img/fixture/blue.jpg">
+                        <p class="name">柳东原</p>
+                    </li>
+                    <li data-role="list-divider" role="heading">社交</li>
+                    <li>
+                        <a href="renren.html"><img class="icon" src="/static/img/icons/renren.png"></a>
+                    </li>
+                    <li>
+                        <a href="http://weibo.com"><img class="icon" src="/static/img/icons/weibo.png"></a>
+                    </li>
+                    <li>
+                        <a href="http://weibo.com"><img class="icon" src="/static/img/icons/weibo.png"></a>
+                    </li>
+                    <li>
+                        <a href="http://weibo.com"><img class="icon" src="/static/img/icons/weibo.png"></a>
+                    </li>
+                    <li data-role="list-divider" role="heading">联系</li>
+                    <li>
+                        <p class="key">手机</p>
+                        <p class="value">15267028600</p>
+                    </li>
+                    <li>
+                        <p class="key">Email</p>
+                        <p class="value">liu.dongyuan@gmail.com</p>
+                    </li>
+                    <li class="map">
+                    大！地！图！百度！
+                    </li>
+                </ul>
+            </div>
 {% endblock %}
