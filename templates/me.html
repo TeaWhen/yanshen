@@ -8,8 +8,8 @@
             <div data-role="content">
                 <ul data-role="listview">
                     <li class="meta">
-                        <img class="avatar" src="/static/img/fixture/blue.jpg">
-                        <p class="name">柳东原</p>
+                        <img class="avatar" src="{{ user.avatar }}">
+                        <p class="name">{{ user.get_full_name }}</p>
                     </li>
                     <li data-role="list-divider" role="heading">社交</li>
                     <li>

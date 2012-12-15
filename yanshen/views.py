@@ -1,12 +1,29 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.shortcuts import render_to_response, RequestContext
 from users.models import Profile
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
 import time
 
 def welcome(request):
-	return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
+	if request.method == 'POST':
+	    username = request.POST['username']
+	    password = request.POST['password']
+	    user = authenticate(username=username, password=password)
+	    if user is not None:
+	        if user.is_active:
+	            login(request, user)
+	            # Redirect to a success page.
+	            redirect('/')
+	        else:
+	            # Return a 'disabled account' error message
+	            pass
+	    else:
+	        # Return an 'invalid login' error message.
+	        pass
+	else:
+		return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
 
 @login_required(login_url='/welcome/')
 def index(request):
@@ -20,6 +37,7 @@ def contact(request, pk):
 
 @login_required(login_url='/welcome/')
 def me(request):
+	user = request.user
 	return render_to_response('me.html', locals(), context_instance=RequestContext(request))
 
 @login_required(login_url='/welcome/')
