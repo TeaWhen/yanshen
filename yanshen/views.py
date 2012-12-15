@@ -10,13 +10,13 @@ def profile(request):
 def signup(request):
 	if request.method == "POST":
 		pass
-	else
+	else:
 		pass
 
 def signin(request):
 	if request.method == "POST":
 		pass
-	else
+	else:
 		pass
 
 def robots(reuqest):
