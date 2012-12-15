@@ -127,7 +127,9 @@ def me(request):
             pass
     socials = user.conns.all()
     contact_info = json.JSONDecoder().decode(user.contact_info)['data']
-        
+    
+    locations = request.user.get_locations()
+
     return locals()
 
 @render_to('group.html')

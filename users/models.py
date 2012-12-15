@@ -85,7 +85,7 @@ class Profile(AbstractBaseUser):
         locations = []
         for ci in cis['data']:
             if ci['type'] == "Address":
-                r = requests.get("https://maps.googleapis.com/maps/api/geocode/json?address={}&sensor=false&key={}".format(ci['value'], GMAP_KEY))
+                r = requests.get(u"http://maps.googleapis.com/maps/api/geocode/json?address={}&sensor=false".format(ci['value']))
                 rj = r.json
                 if len(rj['results']):
                     locations.append({'name': ci['key'], 'x': rj['results'][0]['geometry']['location']['lng'], 'y': rj['results'][0]['geometry']['location']['lat']})
