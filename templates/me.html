@@ -51,6 +51,7 @@
                     	<li><a href="#popup_addcontact_phone" data-rel="popup">电话号码</a></li>
                     	<li><a href="#popup_addcontact_email" data-rel="popup">Email</a></li>
                     	<li><a href="#popup_addcontact_address" data-rel="popup">地址</a></li>
+                    	<li><a href="#popup_addcontact_other" data-rel="popup">自定义</a></li>
                 	</ul>
                 </div>
                 <div data-role="popup" class="popup_addcontact_form" id="popup_addcontact_phone" data-theme="a" data-position-to="window">
@@ -133,6 +134,17 @@
         		        </select>
         		        <input id="address_custom_key" type="text" name="key_custom" value="" placeholder="名称" style="display: none;">
         		        <input type="tel" name="value" placeholder="地址" data-theme="a">
+        		        <button type="submit" data-theme="b">添加</button>
+        			</form>
+        		</div>
+        		<div data-role="popup" class="popup_addcontact_form" id="popup_addcontact_other" data-theme="a" data-position-to="window">
+        		    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+        			<form action="/me/" method="post">{% csrf_token %}
+        		        <h3>添加自定义联系方式</h3>
+        		        <input type="hidden" name="type" value="Other">
+        		        <input type="hidden" name="action" value="add">
+        		        <input id="other_custom_key" type="text" name="key" value="" placeholder="名称">
+        		        <input type="tel" name="value" placeholder="内容" data-theme="a">
         		        <button type="submit" data-theme="b">添加</button>
         			</form>
         		</div>
