@@ -23,15 +23,15 @@
                 </ul>
                 {% endif %}
                 <ul data-role="listview">
+                    {% if contact_info %}
                     <li data-role="list-divider" role="heading">联系</li>
+                    {% for item in contact_info %}
                     <li>
-                        <p class="key">手机</p>
-                        <p class="value">15267028600</p>
+                        <p class="key">{{ item.key }}</p>
+                        <p class="value">{{ item.value }}</p>
                     </li>
-                    <li>
-                        <p class="key">Email</p>
-                        <p class="value">liu.dongyuan@gmail.com</p>
-                    </li>
+                    {% endfor %}
+                    {% endif %}
                     <li class="map">
                     大！地！图！百度！
                     </li>

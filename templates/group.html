@@ -7,10 +7,21 @@
             
             <div data-role="content">
                 <ul data-role="listview">
+                    {% for item in data %}
         			<li><a href="/group/1/">
-        				<h3>同学</h3>
-        				<p>闫铮、马儒潇 等 12 个好友…</p>
+        				<h3>{{ item.category.name }}</h3>
+                        <p>
+                        {% for friend in item.friends %}
+        				    {{ friend.to_id.get_full_name }}
+                        {% endfor %}
+                            等 12 个好友…
+                        </p>
         			</a></li>
+                    {% endfor %}
+                    <li><a href="/group/1/">
+                        <h3>同学</h3>
+                        <p>闫铮、马儒潇 等 12 个好友…</p>
+                    </a></li>
         			<li><a href="/group/1/">
         				<h3>朋友</h3>
         				<p>张三、李四 等 9 个好友…</p>
