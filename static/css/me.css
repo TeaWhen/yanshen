@@ -1,0 +1,13 @@
+.social {
+  padding-bottom: 15px;
+}
+.social i {
+  font-size: 48px;
+  line-height: 48px;
+}
+.avatar {
+  width: 64px;
+}
+.popup_addcontact_form form {
+  padding: 5px 15px;
+}
