@@ -33,9 +33,23 @@ ul.contact {
     }
 }
 
-.avatar {
-  width: 64px;
-}
+.meta {
+    position: relative;
+    height: 108px;
+    .avatar {
+        position: absolute;
+        height: 108px;
+        top: 0;
+        left: 0;
+    }
+    .name {
+        position: absolute;
+        top: 10px;
+        left: 128px;
+        margin: 0;
+        font-size: 28px;
+    }
+}   
 
 div[data-role="popup"] form {
   padding: 5px 15px;
