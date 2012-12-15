@@ -139,6 +139,16 @@ def group(request):
     appname = u"延伸"
     pagename = 'group'
     user = request.user
+    if request.method == 'POST':
+        ncat = Category(name=request.POST['name'], owner=request.user)
+        p = {}
+        for s in ncat.owner.conns:
+            p[s.type+str(s.uid)] = True
+        contact_info = json.JSONDecoder().decode(ncat.owner.contact_info)
+        for i in contact_info['data']:
+            p[i['info_id']] = False
+        ncat.privilege = json.JSONEncoder().encode(p)
+        ncat.save()
     categories = Category.objects.filter(owner=user)
     data = []
     for category in categories:

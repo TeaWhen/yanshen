@@ -22,11 +22,10 @@
         			
         			<div data-role="popup" class="popup_addgroup_form" id="popup_addgroup" data-theme="a" data-position-to="window">
         			    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-        				<form action="/me/" method="post">{% csrf_token %}
+        				<form action="/group/" method="post">{% csrf_token %}
         			        <h3>添加分组</h3>
-        			        <input type="hidden" name="type" value="Group">
         			        <input type="hidden" name="action" value="add">
-        			        <input id="group_key" type="text" name="value" value="" placeholder="名称">
+        			        <input id="group_key" type="text" name="name" value="" placeholder="名称">
         			        <button type="submit" data-theme="b">添加</button>
         				</form>
         			</div>
