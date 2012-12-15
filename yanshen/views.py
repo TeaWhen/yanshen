@@ -83,12 +83,17 @@ def contact(request, pk):
     owner = Profile.objects.get(pk=pk)
 
     data = []
+    social_data = []
 
     category = Relationship.objects.get(from_id=owner, to_id=request.user).cat_id
     privilege = json.JSONDecoder().decode(category.privilege)
     for info in contact_info:
         if privilege[str(info['info_id'])] == True:
             data.append(info)
+            
+    for social in socials:
+        if privilege[social.type+str(social.uid)] == True:
+            social_data.append(social)
 
     locations = request.user.get_locations()
     return locals()
