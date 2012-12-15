@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.shortcuts import render_to_response, RequestContext
 from users.models import Profile
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from annoying.decorators import render_to
 from django.core.exceptions import ValidationError
 
@@ -80,6 +80,11 @@ def group(request):
 def map(request):
 	appname = "延伸"
 	return locals()
+
+@login_required(login_url='/welcome/')
+def signout(request):
+	logout(request)
+	return redirect('/welcome/')
 
 def page_not_found(request):
 	return render(request, '404.html')
