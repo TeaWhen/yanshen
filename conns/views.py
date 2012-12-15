@@ -91,7 +91,7 @@ def renren_callback(request):
             cp[nai.type+str(nai.uid)] = True
             c.privilege = json.JSONEncoder().encode(cp)
             c.save()
-        u = request.uesr
+        u = request.user
         for a in auth_info['user']['avatar']:
             if a['type'] == 'main':
                 aurl = a['url']
