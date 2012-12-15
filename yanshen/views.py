@@ -20,17 +20,14 @@ def group(request):
 def map(request):
 	return render_to_response('map.html', locals(), context_instance=RequestContext(request))
 
-def signup(request):
+def welcome(request):
 	if request.method == "POST":
 		pass
 	else:
 		pass
 
-def signin(request):
-	if request.method == "POST":
-		pass
-	else:
-		pass
+def page_not_found(request):
+	return render(request, '404.html')
 
 def robots(request):
 	return render(request, 'robots.txt', content_type="text/plain")

@@ -12,6 +12,8 @@ urlpatterns = patterns('',
     url(r'^$', 'yanshen.views.index'),
     url(r'^me$', 'yanshen.views.me'),
     url(r'^contact$', 'yanshen.views.contact'),
+    url(r'^group$', 'yanshen.views.group'),
+    url(r'^map$', 'yanshen.views.map'),
     url(r'^robots.txt$', 'yanshen.views.robots'),
     url(r'^humans.txt$', 'yanshen.views.humans'),
     # url(r'^yanshen/', include('yanshen.foo.urls')),
@@ -24,7 +26,9 @@ urlpatterns = patterns('',
 
     # for orca
     url(r'^orca.txt$', 'yanshen.views.orca'),
+
 )
 
+handler404 = 'yanshen.views.page_not_found'
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
