@@ -1,7 +1,7 @@
 # coding=utf8
 
 from conns.models import AuthInfo
-from users.models import Profile
+from users.models import Profile, Relationship
 from conns.api_keys import *
 
 from django.shortcuts import redirect
@@ -316,31 +316,40 @@ def jiepang_friends(user):
 
 def calc_friends(user):
     friends = {}
+    already = []
+    af = Relationship.objects.filter(from_id=user)
+    for aaf in af:
+        already.append(aaf.to_id)
     ff = weibo_friends(user)
     for f in ff:
-        friends[f.id] = {'user': f, 'icons': ["icon-weibo"]}
+        if not f in already:
+            friends[f.id] = {'user': f, 'icons': ["icon-weibo"]}
     ff = renren_friends(user)
     for f in ff:
-        if f.id in friends:
-            friends[f.id]['icons'].append("icon-renren")
-        else:
-            friends[f.id] = {'user': f, 'icons': ["icon-renren"]}
+        if not f in already:
+            if f.id in friends:
+                friends[f.id]['icons'].append("icon-renren")
+            else:
+                friends[f.id] = {'user': f, 'icons': ["icon-renren"]}
     ff = github_friends(user)
     for f in ff:
-        if f.id in friends:
-            friends[f.id]['icons'].append("icon-github")
-        else:
-            friends[f.id] = {'user': f, 'icons': ["icno-github"]}
+        if not f in already:
+            if f.id in friends:
+                friends[f.id]['icons'].append("icon-github")
+            else:
+                friends[f.id] = {'user': f, 'icons': ["icno-github"]}
     ff = tqq_friends(user)
     for f in ff:
-        if f.id in friends:
-            friends[f.id]['icons'].append("icno-tenxunweibo")
-        else:
-            friends[f.id] = {'user': f, 'icons': ["icon-tenxunweibo"]}
+        if not f in already:
+            if f.id in friends:
+                friends[f.id]['icons'].append("icno-tenxunweibo")
+            else:
+                friends[f.id] = {'user': f, 'icons': ["icon-tenxunweibo"]}
     ff = jiepang_friends(user)
     for f in ff:
-        if f.id in friends:
-            friends[f.id]['icons'].append("icon-qicheren")
-        else:
-            friends[f.id] = {'user': f, 'icons': ["icon-qicheren"]}
+        if not f in already:
+            if f.id in friends:
+                friends[f.id]['icons'].append("icon-qicheren")
+            else:
+                friends[f.id] = {'user': f, 'icons': ["icon-qicheren"]}
     return friends
