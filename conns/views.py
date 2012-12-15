@@ -117,7 +117,7 @@ def facebook_callback(request):
         }
         r = requests.post(FACEBOOK_TOKEN_URL, params=args)
         auth_info = urlparse.parse_qs(r.text)
-        nai = AuthInfo(type="facebook", owner=requests.user)
+        nai = AuthInfo(type="facebook", owner=request.user)
         user_info = requests.get(FACEBOOK_API_ROOT+"/me", params={'access_token': auth_info['access_token'][0], 'fields': 'id'}).json
         nai.uid = user_info['id']
         nai.tokens = json.JSONEncoder().encode({'access_token': auth_info['access_token'][0]})
