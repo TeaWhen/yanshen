@@ -17,12 +17,20 @@
                     $("#login").show();
                     $("#action").val("reg");
                     $("#submit").val("注册");
+                    $(".firstname").show();
+                    $(".lastname").show();
+                    $(".reg").show();
+                    $(".login").hide();
                 });
                 $("#login").click(function() {
                     $(this).hide();
                     $("#reg").show();
                     $("#action").val("login");
                     $("#submit").val("登录");
+                    $(".firstname").hide();
+                    $(".lastname").hide();
+                    $(".reg").hide();
+                    $(".login").show();
                 });
             });
             </script>
@@ -34,11 +42,11 @@
                     <label for="password" class="ui-hidden-accessible">密码</label>
                     <input type="password" name="password" id="password" value="" placeholder="密码">
                     <div data-role="fieldcontain">
-                        <input type="text" class="sidebyside" name="lastname" placeholder="姓">
-                        <input type="text" class="sidebyside" name="firstname" placeholder="名">
+                        <div class="lastname" style="display: none;"><input type="text" class="sidebyside" name="lastname" placeholder="姓"></div>
+                        <div class="firstname" style="display: none;"><input type="text" class="sidebyside" name="firstname" placeholder="名"></div>
                     </div>
-                    <input id="submit_login" type="submit" value="登录">
-                    <input id="submit_reg" type="submit" value="注册" hidden="true">
+                    <div class="login"><input id="submit_login" type="submit" value="登录"></div>
+                    <div class="reg" style="display: none;"><input id="submit_reg" type="submit" value="注册"></div>
                     <a href="#" id="reg">还未注册？</a>
                     <a href="#" id="login" hidden="true">已经注册？</a>
                 </form>
