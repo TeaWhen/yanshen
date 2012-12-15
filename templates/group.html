@@ -13,8 +13,13 @@
                         <p>
                         {% for friend in item.friends %}
         				    {{ friend.to_id.get_full_name }}
+                            {% if forloop.counter = 3 %}
+                            {% break %}
+                            {% endif %}
                         {% endfor %}
+                        {% if item.friends|length > 3 %}
                             等…
+                        {% endif %}
                         </p>
         			</a></li>
                     {% endfor %}
