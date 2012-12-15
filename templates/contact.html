@@ -3,16 +3,18 @@
             <div class="top" data-role="header" data-position="fixed">
                 <a href="/" data-role="button" data-icon="arrow-l" data-direction="reverse" data-transition="slide" data-theme="a" data-prefetch>返回</a>
                 <h1>联系人</h1>
-                <a href="#popup_menu" data-rel="popup" data-role="button" data-icon="star" data-theme="b">{{ mycat.name }}</a>
-                <div data-role="popup" id="popup_menu">
+                <a href="#popup_menu_cat" data-rel="popup" data-role="button" data-icon="star" data-theme="b">{{ mycat.name }}</a>
+                <div data-role="popup" id="popup_menu_cat">
                 	<ul data-role="listview" data-inset="true" data-theme="c">
                         {% for cat in cats %}
                         {% if cat.id != mycat.id %}
-                        <li><form id="group_edit_{{ cat.id }}" action="/contact/{{ user.id }}/" method="post" data-theme="c">{% csrf_token %}
-                            <input type="hidden" name="action" value="edit">
-                            <input type="hidden" name="newcat" value="{{ cat.id }}" />
+                        <form id="group_edit_{{ cat.id }}" action="/contact/{{ user.id }}/" method="post" style="display: none;">{% csrf_token %}
+                        <input type="hidden" name="action" value="edit">
+                        <input type="hidden" name="newcat" value="{{ cat.id }}" />
+                        </form>
+                        <li>
                             <a href="#" onclick="$('#group_edit_{{ cat.id }}').submit();" data-transition="pop" data-icon="star">{{ cat.name }}</a>
-                        </form></li>
+                        </li>
                         {% endif %}
                         {% endfor %}
                 	</ul>

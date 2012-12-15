@@ -1,7 +1,7 @@
 # coding=utf8
 
 from conns.models import AuthInfo
-from users.models import Profile, Relationship
+from users.models import Profile
 from conns.api_keys import *
 
 from django.shortcuts import redirect
@@ -10,6 +10,7 @@ import requests
 import urlparse
 import urllib
 import json
+import hashlib
 
 
 def weibo_connect(request):
@@ -52,6 +53,19 @@ def weibo_callback(request):
             c.save()
     return redirect("/me")
 
+def weibo_friends(user):
+    result = []
+    all_weibos = AuthInfo.objects.filter(type="weibo")
+    ais = user.conns.filter(type="weibo")
+    for ai in ais:
+        auth_info = json.JSONDecoder().decode(ai.tokens)
+        r = requests.get(WEIBO_API_ROOT+"/friendships/friends/bilateral/ids.json", params={'access_token': auth_info['access_token'], 'uid': ai.uid, 'count': 200})
+        ids = r.json['ids']
+        for i in ids:
+            for p in all_weibos:
+                if str(i) == p.uid:
+                    result.append(p.owner)
+    return result
 
 def renren_connect(request):
     args = {
@@ -99,6 +113,36 @@ def renren_callback(request):
         u.save()
     return redirect("/me")
 
+def renren_friends(user):
+    result = []
+    all_renrens = AuthInfo.objects.filter(type="renren")
+    ais = user.conns.filter(type="renren")
+    for ai in ais:
+        auth_info = json.JSONDecoder().decode(ai.tokens)
+        args = {
+            'v': "1.0",
+            'access_token': auth_info['access_token'],
+            'format': "json",
+            'method': "friends.getFriends"
+        }
+        sig = ""
+        y = []
+        for xk in args.keys():
+            y.append("{}={}".format(xk, args[xk]))
+
+        y.sort()
+        for xx in y:
+            sig += xx
+
+        sig += RENREN_CLIENT_SECRET
+        args['sig'] = hashlib.md5(sig).hexdigest()
+        r = requests.post(RENREN_API_ROOT, params=args)
+        rj = r.json
+        for z in rj:
+            for p in all_renrens:
+                if str(z['id']) == p.uid:
+                    result.append(p.owner)
+    return result
 
 def github_connect(request):
     args = {
@@ -140,6 +184,8 @@ def github_callback(request):
             c.save()
     return redirect("/me")
 
+def github_friends(user):
+    return []
 
 # def facebook_connect(request):
 #     args = {
@@ -221,6 +267,8 @@ def tqq_callback(request):
             c.save()
     return redirect("/me")
 
+def tqq_friends(user):
+    return []
 
 def jiepang_connect(request):
     args = {
@@ -261,3 +309,38 @@ def jiepang_callback(request):
             c.privilege = json.JSONEncoder().encode(cp)
             c.save()
     return redirect("/me")
+
+def jiepang_friends(user):
+    return []
+
+
+def calc_friends(user):
+    friends = {}
+    ff = weibo_friends(user)
+    for f in ff:
+        friends[f.id] = {'user': f, 'icons': ["icon-weibo"]}
+    ff = renren_friends(user)
+    for f in ff:
+        if f.id in friends:
+            friends[f.id]['icons'].append("icon-renren")
+        else:
+            friends[f.id] = {'user': f, 'icons': ["icon-renren"]}
+    ff = github_friends(user)
+    for f in ff:
+        if f.id in friends:
+            friends[f.id]['icons'].append("icon-github")
+        else:
+            friends[f.id] = {'user': f, 'icons': ["icno-github"]}
+    ff = tqq_friends(user)
+    for f in ff:
+        if f.id in friends:
+            friends[f.id]['icons'].append("icno-tenxunweibo")
+        else:
+            friends[f.id] = {'user': f, 'icons': ["icon-tenxunweibo"]}
+    ff = jiepang_friends(user)
+    for f in ff:
+        if f.id in friends:
+            friends[f.id]['icons'].append("icon-qicheren")
+        else:
+            friends[f.id] = {'user': f, 'icons': ["icon-qicheren"]}
+    return friends
