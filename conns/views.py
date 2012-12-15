@@ -113,7 +113,7 @@ def github_callback(request):
             nai.uid = user_info['id']
         nai.uname = user_info['name']
         nai.icon = "icon-github"
-        nai.url = user_info['url']
+        nai.url = user_info['html_url']
         nai.tokens = r.text
         nai.save()
     return redirect("/me")
