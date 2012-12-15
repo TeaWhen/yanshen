@@ -145,7 +145,7 @@ def group(request):
 
 @render_to('group_setting.html')
 @login_required(login_url='/welcome/')
-def group_setting(request, pk):
+def group_settings(request, pk):
     return locals()
 
 @render_to('index.html')
