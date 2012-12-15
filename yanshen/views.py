@@ -29,7 +29,7 @@ def welcome(request):
 		else:
 			user = Profile.objects.get(email=username)
 			if user is not None:
-				message = 'Ni yi jing zhu ce.'
+				message = '您已经注册过了。'
 				return locals()
 			else:
 				user = Profile.objects.create_user(email=username, password=password)
@@ -37,7 +37,7 @@ def welcome(request):
 					login(request, user)
 					return redirect('/')
 				else:
-					message = 'Zhu ce shi bai.'
+					message = '抱歉，服务器开小差了，注册失败。'
 					return locals()
 	else:
 		return locals()
