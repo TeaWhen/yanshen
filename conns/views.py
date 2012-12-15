@@ -146,8 +146,30 @@ def tqq_callback():
             'redirect_uri': ROOT_URL+"conns/tqq_callback",
             'code': request.args["code"]
         }
-        auth_info = urlparse.parse_qs(requests.post(FACEBOOK_TOKEN_URL, params=args).text)
+        auth_info = urlparse.parse_qs(requests.post(TQQ_TOKEN_URL, params=args).text)
     return
 
 
-# tqq, jiepang, twitter, G+
+def jiepang_connect():
+    args = {
+        'response_type': "code",
+        'client_id': JIEPANG_CLIENT_ID,
+        'redirect_uri': ROOT_URL+"conns/jiepang_callback"
+    }
+    return redirect(requests.get(JIEPANG_AUTH_URL, params=args, prefetch=False, allow_redirects=False).url)
+
+def jiepang_callback():
+    if "error" in request.args:
+        errors = request.args
+    else:
+        args = {
+            'grant_type': "authorization_code",
+            'client_id': JIEPANG_CLIENT_ID,
+            'client_secret': JIEPANG_CLIENT_SECRET,
+            'redirect_uri': ROOT_URL+"conns/jiepang_callback",
+            'code': request.args["code"]
+        }
+        auth_info = requests.post(JIEPANG_TOKEN_URL, params=args).json
+    return
+    
+# twitter, G+
