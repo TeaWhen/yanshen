@@ -79,12 +79,12 @@ def me(request):
 		'jiepang': "icon-jiepang"
 	}
 	social_url = {
-		'weibo': "",
-		'renren': "",
-		'github': "",
-		'facebook': "",
-		'tqq': "",
-		'jiepang': ""
+		'weibo': "http://weibo.com/",
+		'renren': "http://renren.com/",
+		'github': "http://github.com/",
+		'facebook': "http://facebook.com",
+		'tqq': "http://t.qq.com/",
+		'jiepang': "http://jiepang.com/"
 	}
 	for s in socials:
 		s.url = social_url[s.type]
