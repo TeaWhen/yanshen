@@ -1,34 +1,33 @@
 {% extends "base.html" %}
 {% block screen %}
-        <div class="screen">
-            <div class="status_bar">{{ hour }}:{{ minute }}</div>
-            <div class="top">
-                <a href="me"><div class="button left">Me</div></a>
-                <input class="search" type="search" name="search" value="" placeholder="过滤联系人…">
-                <a href="#"><div id="more" class="button right">More</div></a>
-                <ul id="more_pop" class="pop">
+            <div class="top" data-role="header">
+                <a href="/me" data-role="button" data-icon="star" data-theme="a">Me</a>
+                <h1>Search</h1>
+<!--                <input class="search" type="search" name="search" value="" placeholder="过滤联系人…">-->
+                <a href="#" data-role="button" data-icon="star" data-theme="a">More</a>
+<!--                <ul id="more_pop" class="pop">
                     <a href="/group"><li>组管理</li></a>
                     <a href="/map"><li>好友地图</li></a>
-                </ul>
+                </ul>-->
             </div>
-            <ul class="table">
-                <a href="/contact"><li>
+            <ul class="table" data-role="content">
+                <a href="/contact" data-transition="slide"><li>
                     <img class="avatar" src="/static/img/fixture/mrx.jpg">
                     <p class="name">马儒潇</p>
                 </li></a>
-                <a href="/contact"><li>
+                <a href="/contact" data-transition="slide"><li>
                     <img class="avatar" src="/static/img/fixture/cs.jpg">
                     <p class="name">曹珊</p>
                 </li></a>
-                <a href="/contact"><li>
+                <a href="/contact" data-transition="slide"><li>
                     <img class="avatar" src="/static/img/fixture/ldy.jpg">
                     <p class="name">柳东原</p>
                 </li></a>
-                <a href="/contact"><li>
+                <a href="/contact" data-transition="slide"><li>
                     <img class="avatar" src="/static/img/fixture/yz.jpg">
                     <p class="name">闫铮</p>
                 </li></a>
-                <a href="/contact"><li>
+                <a href="/contact" data-transition="slide"><li>
                     <img class="avatar" src="/static/img/fixture/lx.jpg">
                     <p class="name">楼洵</p>
                 </li></a>
@@ -48,5 +47,4 @@
                 });
             });
             </script>
-        </div>
 {% endblock %}
