@@ -88,7 +88,7 @@ class Profile(AbstractBaseUser):
                 r = requests.get(u"http://maps.googleapis.com/maps/api/geocode/json?address={}&sensor=false".format(ci['value']))
                 rj = r.json
                 if len(rj['results']):
-                    locations.append({'name': self.get_full_name()+": "+ci['key'], 'x': rj['results'][0]['geometry']['location']['lng'], 'y': rj['results'][0]['geometry']['location']['lat']})
+                    locations.append({'name': self.get_full_name()+": "+ci['key'], 'x': rj['results'][0]['geometry']['location']['lng'], 'y': rj['results'][0]['geometry']['location']['lat'], 'user_pk': self.pk})
         return locations
 
 

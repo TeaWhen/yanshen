@@ -17,6 +17,10 @@
 		          marker.setLabel(label);
 				  map.addOverlay(marker);              // 将标注添加到地图中
 
+				  marker.addEventListener("click",function(e){
+    				location.href = "/contact/{{ location.user_pk }}/";
+				  });
+
 			  {% endfor %}
 	        }
 
