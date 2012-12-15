@@ -13,6 +13,7 @@ from xpinyin import Pinyin
 @render_to('welcome.html')
 def welcome(request):
 	appname = "延伸"
+	pagename ='welcome'
 	if request.method == 'POST':
 		username = request.POST['username']
 		password = request.POST['password']
@@ -54,6 +55,7 @@ def welcome(request):
 @login_required(login_url='/welcome/')
 def index(request):
 	appname = "延伸"
+	pagename = 'index'
 	users = Profile.objects.all()
 	return locals()
 
@@ -61,6 +63,7 @@ def index(request):
 @login_required(login_url='/welcome/')
 def contact(request, pk):
 	appname = "延伸"
+	pagename = 'contact'
 	user = Profile.objects.get(pk=pk)
 	return locals()
 
@@ -68,6 +71,7 @@ def contact(request, pk):
 @login_required(login_url='/welcome/')
 def me(request):
 	appname = "延伸"
+	pagename = 'me'
 	user = request.user
 	return locals()
 
@@ -75,12 +79,14 @@ def me(request):
 @login_required(login_url='/welcome/')
 def group(request):
 	appname = "延伸"
+	pagename = 'group'
 	return locals()
 
 @render_to('map.html')
 @login_required(login_url='/welcome/')
 def map(request):
 	appname = "延伸"
+	pagename = 'map'
 	return locals()
 
 @login_required(login_url='/welcome/')
