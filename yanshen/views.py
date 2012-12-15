@@ -46,13 +46,13 @@ def welcome(request):
 @login_required(login_url='/welcome/')
 def index(request):
 	users = Profile.objects.all()
-	return render_to_response('index.html', locals(), context_instance=RequestContext(request))
+	return locals()
 
 @render_to('contact.html')
 @login_required(login_url='/welcome/')
 def contact(request, pk):
 	user = Profile.objects.get(pk=pk)
-	return render_to_response('contact.html', locals(), context_instance=RequestContext(request))
+	return locals()
 
 @render_to('me.html')
 @login_required(login_url='/welcome/')
