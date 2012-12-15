@@ -1,9 +1,11 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render_to_response, RequestContext
+from users.models import Profile
 import time
 
 def index(request):
+	users = Profile.objects.all()
 	return render_to_response('index.html', locals(), context_instance=RequestContext(request))
 
 def contact(request):
