@@ -254,6 +254,11 @@ def map(request):
         locations += user.get_locations()
     return locals()
 
+@render_to('find.html')
+@login_required(login_url='/welcome/')
+def find(request):
+    return locals()
+
 @login_required(login_url='/welcome/')
 def signout(request):
     logout(request)
