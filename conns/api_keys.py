@@ -62,6 +62,7 @@ TQQ_CLIENT_ID = "801287948"
 TQQ_CLIENT_SECRET = "a663feec88c945d0db8e7a7f16a3a43f"
 TQQ_AUTH_URL = "https://open.t.qq.com/cgi-bin/oauth2/authorize"
 TQQ_TOKEN_URL = "https://open.t.qq.com/cgi-bin/oauth2/access_token"
+TQQ_API_ROOT = "https://open.t.qq.com/api"
 
 ###
 # Google+ (killed: no friends api)
