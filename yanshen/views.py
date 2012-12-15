@@ -6,51 +6,63 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 import time
 
+from annoying.decorators import render_to
+
+@render_to('welcome.html')
 def welcome(request):
 	if request.method == 'POST':
 		username = request.POST['username']
 		password = request.POST['password']
-		user = authenticate(username=username, password=password)
-		if user is not None:
-			if user.is_active:
-				login(request, user)
-				next = request.POST['next']
-				return redirect(next)
+		action = request.POST['action']
+		if action == 'login':
+			user = authenticate(username=username, password=password)
+			if user is not None:
+				if user.is_active:
+					login(request, user)
+					next = request.POST['next']
+					return redirect(next)
+				else:
+					message = 'disabled account'
+					return locals()
 			else:
-				message = 'disabled account'
-				return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
+				message = 'invalid login'
+				return locals()
 		else:
-			message = 'invalid login'
-			return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
+			pass
 	else:
 		try:
 			next = request.POST['next']
 		except:
 			next = '/'
-		return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
+		return locals()
 
+@render_to('index.html')
 @login_required(login_url='/welcome/')
 def index(request):
 	users = Profile.objects.all()
 	return render_to_response('index.html', locals(), context_instance=RequestContext(request))
 
+@render_to('contact.html')
 @login_required(login_url='/welcome/')
 def contact(request, pk):
 	user = Profile.objects.get(pk=pk)
 	return render_to_response('contact.html', locals(), context_instance=RequestContext(request))
 
+@render_to('me.html')
 @login_required(login_url='/welcome/')
 def me(request):
 	user = request.user
-	return render_to_response('me.html', locals(), context_instance=RequestContext(request))
+	return locals()
 
+@render_to('group.html')
 @login_required(login_url='/welcome/')
 def group(request):
-	return render_to_response('group.html', locals(), context_instance=RequestContext(request))
+	return locals()
 
+@render_to('map.html')
 @login_required(login_url='/welcome/')
 def map(request):
-	return render_to_response('map.html', locals(), context_instance=RequestContext(request))
+	return locals()
 
 def page_not_found(request):
 	return render(request, '404.html')
