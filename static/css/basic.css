@@ -82,9 +82,9 @@ div[data-role="popup"] form {
 }
 #search_friend {
   position: absolute;
-  top: 2px;
+  top: 4px;
   left: 74px;
   padding: 4px 11px;
   width: 180px;
-  font-size: 15px;
+  font-size: 14px;
 }
