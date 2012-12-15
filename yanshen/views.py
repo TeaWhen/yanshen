@@ -82,6 +82,7 @@ def index(request):
     users = []
     for r in relationship:
         users.append(r.to_id)
+    sorted(users, key=lambda user: user.pinyin)
     return locals()
 
 @render_to('contact.html')
