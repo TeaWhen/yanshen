@@ -14,6 +14,14 @@ ul.social li .uname {
   padding: 14px 0;
   display: inline-block;
 }
+ul.contact .key {
+  margin-top: 2px;
+  margin-bottom: 8px;
+}
+ul.contact .value {
+  font-size: 16px;
+  margin-bottom: 0;
+}
 .avatar {
   width: 64px;
 }
