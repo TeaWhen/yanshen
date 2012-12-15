@@ -16,32 +16,38 @@
                     <li data-role="list-divider" role="heading">社交</li>
                     {% for s in social_data %}
                     <li class="social">
-                        <p><i class="{{ s.social.icon }}"></i>{{ s.social.uname }}</p>
-                        <select name="{{ s.social.type }}{{ s.social.uid }}" data-role="slider">
-                            {% if s.enabled %}
-                            <option value="false">不可见</option>
-                            <option value="true" selected>可见</option>
-                            {% else %}
-                            <option value="false" selected>不可见</option>
-                            <option value="true">可见</option>
-                            {% endif %}
-                        </select>
+                        <div data-role="fieldcontain">
+                            <label><i class="{{ s.social.icon }}"></i>{{ s.social.uname }}</label>
+                            <select name="{{ s.social.type }}{{ s.social.uid }}" data-role="slider" data-mini="true">
+                                {% if s.enabled %}
+                                <option value="false">不可见</option>
+                                <option value="true" selected>可见</option>
+                                {% else %}
+                                <option value="false" selected>不可见</option>
+                                <option value="true">可见</option>
+                                {% endif %}
+                            </select>
+                        </div>
                     </li>
                     {% endfor %}
                     <li data-role="list-divider" role="heading">联系</li>
                     {% for item in data %}
                     <li>
-                        <p class="key">{{ item.info.key }}</p>
-                        <p class="value">{{ item.info.value }}</p>
-                        <select name="{{ item.info.info_id }}" data-role="slider">
-                            {% if item.enabled %}
-                            <option value="false">不可见</option>
-                            <option value="true" selected>可见</option>
-                            {% else %}
-                            <option value="false" selected>不可见</option>
-                            <option value="true">可见</option>
-                            {% endif %}
-                        </select> 
+                        <div data-role="fieldcontain">
+                            <label>
+                                <span class="key"><i class="{% if item.info.type == 'Address' %}icon-map-marker{% elif item.info.type == 'Phone' %}icon-phone{% elif item.info.type == 'Email' %}icon-envelope{% endif %}"></i>{{ item.info.key }}</span><br>
+                                <span class="value">{{ item.info.value }}</span>
+                            </label>
+                            <select name="{{ item.info.info_id }}" data-role="slider" data-mini="true">
+                                {% if item.enabled %}
+                                <option value="false">不可见</option>
+                                <option value="true" selected>可见</option>
+                                {% else %}
+                                <option value="false" selected>不可见</option>
+                                <option value="true">可见</option>
+                                {% endif %}
+                            </select> 
+                        </div>
                     </li>
                     {% endfor %}
                  </ul>

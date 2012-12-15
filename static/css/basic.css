@@ -34,6 +34,18 @@ div[data-role="popup"] form {
 #popup_addcontact_address textarea {
   height: 30px;
 }
+#privilege_form li label {
+  display: inline-block;
+  width: 202px;
+}
+#privilege_form li label .key {
+  font-size: 17px;
+  margin-left: -2px;
+}
+#privilege_form li label .value {
+  font-size: 14px;
+  font-weight: normal;
+}
 #search_friend {
   position: absolute;
   top: 2px;
