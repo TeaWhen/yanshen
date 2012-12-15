@@ -11,14 +11,17 @@
                     <img class="avatar" src="{{ user.avatar }}">
                     <p class="name">{{ user.get_full_name }}</p>
                 </div>
+                {% if socials %}
                 <ul class="social" data-role="listview" data-split-theme="d">
                     <li data-role="list-divider" role="heading">社交</li>
-                    <li class="social"><a href="renren.html">
-                        <i class="icon-renren"></i>
-                        <h3>柳东原</h3>
-                        <p>好累，感觉不会再爱了……</p>
-                    </a></li>
+                    {% for s in socials %}
+                        <li class="social">
+                            <a href="{{ s.url }}"><i class="{{ s.icon }}"></i>{{ s.uname }}</a>
+                            <a href="#delete" data-rel="popup" data-position-to="window" data-transition="pop">解除绑定</a>
+                        </li>
+                    {% endfor %}
                 </ul>
+                {% endif %}
                 <ul data-role="listview">
                     <li data-role="list-divider" role="heading">联系</li>
                     <li>
