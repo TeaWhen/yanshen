@@ -3,7 +3,7 @@
 # Auth Settings For yanshen「延伸」
 
 ###
-#
+# root URL
 ROOT_URL = "http://127.0.0.1:8000/"
 
 ###
@@ -27,20 +27,13 @@ TWITTER_CONSUMER_KEY = "44lQ0l5WX3dMOTmQuX1rJA"
 TWITTER_CONSUMER_SECRET = "UArA4pxiGVt2NVdP5jxteMAjH3IR45RBwoB83JJCRM"
 TWITTER_AUTH_URL = "https://api.twitter.com/oauth/authorize"
 
-
-###
-# 豆瓣
-DOUBAN_CLIENT_ID = "04e7c284743e65bb0eb7478d5cbb3131"
-DOUBAN_CLIENT_SECRET = "643cbac76950da8c"
-DOUBAN_AUTH_URL = "https://www.douban.com/service/auth2/auth"
-DOUBAN_TOKEN_URL = "https://www.douban.com/service/auth2/token"
-
 ###
 # Facebook
 FACEBOOK_CLIENT_ID = "576557842359710"
 FACEBOOK_CLIENT_SECRET = "2cbf660c3acd9545089e78e4915bb5e5"
 FACEBOOK_AUTH_URL = "https://www.facebook.com/dialog/oauth"
 FACEBOOK_TOKEN_URL = "https://graph.facebook.com/oauth/access_token"
+FACEBOOK_API_ROOT = "https://graph.facebook.com"
 
 
 ###
@@ -74,3 +67,11 @@ GPLUS_CLIENT_ID = "614789738310.apps.googleusercontent.com"
 GPLUS_CLIENT_SECRET = "ZVw4E8D_xYDRNk7fMfEJuf1C"
 GPLUS_AUTH_URL = "https://accounts.google.com/o/oauth2/auth"
 GPLUS_TOKEN_URL = "https://accounts.google.com/o/oauth2/token"
+
+
+###
+# 豆瓣
+# DOUBAN_CLIENT_ID = "04e7c284743e65bb0eb7478d5cbb3131"
+# DOUBAN_CLIENT_SECRET = "643cbac76950da8c"
+# DOUBAN_AUTH_URL = "https://www.douban.com/service/auth2/auth"
+# DOUBAN_TOKEN_URL = "https://www.douban.com/service/auth2/token"

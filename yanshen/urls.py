@@ -24,6 +24,7 @@ urlpatterns = patterns('',
 
     # for orca
     url(r'^orca.txt$', 'yanshen.views.orca'),
+    url(r'^conns/', include('conns.urls')),
 )
 
 urlpatterns += staticfiles_urlpatterns()
