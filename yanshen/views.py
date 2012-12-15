@@ -7,6 +7,7 @@ from users.models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from annoying.decorators import render_to
+from django.core.exceptions import ValidationError
 
 @render_to('welcome.html')
 def welcome(request):
@@ -27,7 +28,7 @@ def welcome(request):
 				message = 'Email 或密码错误。'
 				return locals()
 		elif action == 'reg':
-			if Profile.objects.exists(email=username):
+			if Profile.objects.filter(email=username).exists():
 			    message = '您已经注册过了。'
 			    return locals()
 			else:
