@@ -30,6 +30,9 @@ def welcome(request):
         username = request.POST['username']
         password = request.POST['password']
         action = request.POST['action']
+        if username == '' or password =='' or action == '':
+            message = '抱歉，服务器开小差了，注册失败。'
+            return locals()
         if action == 'login':
             user = authenticate(username=username, password=password)
             if user is not None:
