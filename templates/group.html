@@ -22,6 +22,26 @@
                         </p>
         			</a></li>
                     {% endfor %}
+                    <li><a href="/group/1/">
+                        <h3>同学</h3>
+                        <p>闫铮、马儒潇 等 12 个好友…</p>
+                    </a></li>
+        			<li><a href="/group/1/">
+        				<h3>朋友</h3>
+        				<p>张三、李四 等 9 个好友…</p>
+        			</a></li>
+        			<li><a href="#popup_addgroup" data-rel="popup">添加一个分组…</a></li>
+        			
+        			<div data-role="popup" class="popup_addgroup_form" id="popup_addgroup" data-theme="a" data-position-to="window">
+        			    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+        				<form action="/me/" method="post">{% csrf_token %}
+        			        <h3>添加分组</h3>
+        			        <input type="hidden" name="type" value="Group">
+        			        <input type="hidden" name="action" value="add">
+        			        <input id="group_key" type="text" name="key" value="" placeholder="名称">
+        			        <button type="submit" data-theme="b">添加</button>
+        				</form>
+        			</div>
         		</ul>
             </div>
 {% endblock %}
