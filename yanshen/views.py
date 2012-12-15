@@ -190,7 +190,7 @@ def group_settings(request, pk):
             p2[k] = request.POST[k]
         category.privilege = json.JSONEncoder().encode(p2)
         category.save()
-        return redirect('/category/'+pk)
+        return redirect('/group/')
     else:
         pass
 
