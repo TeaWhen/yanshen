@@ -6,24 +6,41 @@
             </div>
             
             <div data-role="content">
-                <ul data-role="listview">
-                    <li class="meta">
-                        <img class="avatar" src="{{ user.avatar }}">
-                        <p class="name">{{ user.get_full_name }}</p>
-                    </li>
+                <div class="meta">
+                    <img class="avatar" src="{{ user.avatar }}">
+                    <p class="name">{{ user.get_full_name }}</p>
+                </div>
+                <ul class="social" data-role="listview" data-split-icon="delete" data-split-theme="d">
                     <li data-role="list-divider" role="heading">社交</li>
-                    <li>
-                        <a href="renren.html"><img class="icon" src="/static/img/icons/renren.png"></a>
+                    <li class="social">
+                        <a href="renren.html"><i class="icon-renren"></i>柳东原</a>
+                        <a href="#delete" data-rel="popup" data-position-to="window" data-transition="pop">解除绑定</a>
                     </li>
-                    <li>
-                        <a href="http://weibo.com"><img class="icon" src="/static/img/icons/weibo.png"></a>
+                    <li class="social">
+                        <a href="http://weibo.com"><i class="icon-weibo"></i></a>
+                        <a href="#delete" data-rel="popup" data-position-to="window" data-transition="pop">解除绑定</a>
                     </li>
-                    <li>
-                        <a href="http://weibo.com"><img class="icon" src="/static/img/icons/weibo.png"></a>
+                    <li class="social">
+                        <a href="http://weibo.com"><i class="icon-tenxunweibo"></i></a>
+                        <a href="#delete" data-rel="popup" data-position-to="window" data-transition="pop">解除绑定</a>
                     </li>
-                    <li>
-                        <a href="http://weibo.com"><img class="icon" src="/static/img/icons/weibo.png"></a>
+                    <li class="social">
+                        <a href="http://weibo.com"><i class="icon-jiepang"></i></a>
+                        <a href="#delete" data-rel="popup" data-position-to="window" data-transition="pop">解除绑定</a>
                     </li>
+                    <li class="social">
+                        <a href="http://weibo.com"><i class="icon-github"></i></a>
+                        <a href="#delete" data-rel="popup" data-position-to="window" data-transition="pop">解除绑定</a>
+                    </li>
+                    <li class="social">
+                        <a href="http://weibo.com"><i class="icon-facebook"></i></a>
+                        <a href="#delete" data-rel="popup" data-position-to="window" data-transition="pop">解除绑定</a>
+                    </li>
+                    <li class="social">
+                        <a href="http://weibo.com"><i class="icon-plus"></i>添加其他社交网络帐号…</a>
+                    </li>
+                </ul>
+                <ul class="contact" data-role="listview" data-split-icon="gear" data-split-theme="d">
                     <li data-role="list-divider" role="heading">联系</li>
                     <li>
                         <p class="key">手机</p>
