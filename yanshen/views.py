@@ -13,6 +13,7 @@ from xpinyin import Pinyin
 @render_to('welcome.html')
 def welcome(request):
 	appname = "延伸"
+	pagename ='welcome'
 	if request.method == 'POST':
 		username = request.POST['username']
 		password = request.POST['password']
@@ -54,6 +55,7 @@ def welcome(request):
 @login_required(login_url='/welcome/')
 def index(request):
 	appname = "延伸"
+	pagename = 'index'
 	users = Profile.objects.all()
 	return locals()
 
@@ -61,13 +63,35 @@ def index(request):
 @login_required(login_url='/welcome/')
 def contact(request, pk):
 	appname = "延伸"
+	pagename = 'contact'
 	user = Profile.objects.get(pk=pk)
+	socials = user.conns.all()
+	icon_name = {
+		'weibo': "icon-weibo",
+		'renren': "icon-renren",
+		'github': "icon-github",
+		'facebook': "icon-facebook",
+		'tqq': "icon-tenxunweibo",
+		'jiepang': "icon-jiepang"
+	}
+	social_url = {
+		'weibo': "http://weibo.com/",
+		'renren': "http://renren.com/",
+		'github': "http://github.com/",
+		'facebook': "http://facebook.com",
+		'tqq': "http://t.qq.com/",
+		'jiepang': "http://jiepang.com/"
+	}
+	for s in socials:
+		s.url = social_url[s.type]
+		s.icon = icon_name[s.type]
 	return locals()
 
 @render_to('me.html')
 @login_required(login_url='/welcome/')
 def me(request):
 	appname = "延伸"
+	pagename = 'me'
 	user = request.user
 	socials = user.conns.all()
 	icon_name = {
@@ -95,12 +119,14 @@ def me(request):
 @login_required(login_url='/welcome/')
 def group(request):
 	appname = "延伸"
+	pagename = 'group'
 	return locals()
 
 @render_to('map.html')
 @login_required(login_url='/welcome/')
 def map(request):
 	appname = "延伸"
+	pagename = 'map'
 	return locals()
 
 @login_required(login_url='/welcome/')
