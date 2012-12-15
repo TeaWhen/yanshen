@@ -37,3 +37,4 @@ nosetests.xml
 .DS_Store
 dev15/*
 *.sublime*
+yanshen.esproj/*
