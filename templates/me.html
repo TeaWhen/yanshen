@@ -41,20 +41,31 @@
                     	<li><a href="#popup_addcontact_address" data-rel="popup">地址</a></li>
                 	</ul>
                 </div>
-                <div data-role="popup" class="popup_addcontact_form" id="popup_addcontact_phone" data-theme="a">
-        			<form action="/me/" method="post">
+                <div data-role="popup" class="popup_addcontact_form" id="popup_addcontact_phone" data-theme="a" data-position-to="window">
+                    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+        			<form action="/me/" method="post">{% csrf_token %}
                         <h3>添加电话号码</h3>
-                        <input type="hidden" name="type" value="Phone" />
-                        <input type="hidden" name="action" value="add" />
-                        <fieldset data-role="controlgroup" data-type="horizontal">
-                            <select name="key">
-                                <option value="手机">手机</option>
-                                <option value="家庭">家庭</option>
-                                <option value="工作">工作</option>
-                                <option>自定义</option>
-                            </select>
-                            <input type="tel" name="value" placeholder="号码" data-theme="a" />
-                        </fieldset>
+                        <input type="hidden" name="type" value="Phone">
+                        <input type="hidden" name="action" value="add">
+                        <script>
+                        $(document).ready(function() {
+                            $("#phone_select_key").change(function() {
+                                if (!$(this).val()) {
+                                    $('#phone_custom_key').show();
+                                } else {
+                                    $('#phone_custom_key').hide();
+                                }
+                            });
+                        });
+                        </script>
+                        <select id="phone_select_key" name="key">
+                            <option value="手机">手机</option>
+                            <option value="家庭">家庭</option>
+                            <option value="工作">工作</option>
+                            <option value="">自定义</option>
+                        </select>
+                        <input id="phone_custom_key" type="text" name="key_custom" value="" placeholder="名称" style="display: none;">
+                        <input type="tel" name="value" placeholder="号码" data-theme="a">
                         <button type="submit" data-theme="b">添加</button>
         			</form>
         		</div>
