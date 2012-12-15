@@ -80,6 +80,16 @@ def contact(request, pk):
     user = Profile.objects.get(pk=pk)
     socials = user.conns.all()
     contact_info = json.JSONDecoder().decode(user.contact_info)['data']
+    owner = Profile.objects.get(pk=pk)
+
+    data = []
+
+    category = Relationship.objects.get(from_id=owner, to_id=request.user).cat_id
+    privilege = json.JSONDecoder().decode(category.privilege)
+    for info in contact_info:
+        if privilege[str(info['info_id'])] == True:
+            data.append(info)
+
     locations = request.user.get_locations()
     return locals()
 
@@ -177,7 +187,10 @@ def group_settings(request, pk):
     if request.method == 'POST':
         p2 = {}
         for k in keys:
-            p2[k] = request.POST[k]
+            if request.POST[k] == 'false':
+                p2[k] = False
+            else:
+                p2[k] = True
         category.privilege = json.JSONEncoder().encode(p2)
         category.save()
         return redirect('/category/'+pk)
