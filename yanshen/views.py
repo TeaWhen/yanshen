@@ -164,6 +164,9 @@ def map(request):
     appname = u"延伸"
     pagename = 'map'
     users = Profile.objects.all()
+    locations = []
+    for user in users:
+        locations += user.get_locations()
     return locals()
 
 @login_required(login_url='/welcome/')

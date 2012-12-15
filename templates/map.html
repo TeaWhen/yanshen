@@ -10,12 +10,10 @@
 	          var map = new BMap.Map('map');
 	          map.centerAndZoom('杭州', 10);
 	          map.addControl(new BMap.NavigationControl());
-	          {% for user in users %}
-	          var marker = new BMap.Marker(new BMap.Point(116.384, 39.925));  // 创建标注
-			  map.addOverlay(marker);              // 将标注添加到地图中
+	          {% for location in locations %}
+		          var marker = new BMap.Marker(new BMap.Point(location.x, location.y));  // 创建标注
+				  map.addOverlay(marker);              // 将标注添加到地图中
 			  {% endfor %}
-			  var marker1 = new BMap.Marker(new BMap.Point(80.384, 39.925));  // 创建标注
-			  map.addOverlay(marker1);              // 将标注添加到地图中
 	        }
 	         
 	        function loadScript() {
