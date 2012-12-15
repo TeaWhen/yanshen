@@ -37,9 +37,19 @@
                         <a href="#delete" data-rel="popup" data-position-to="window" data-transition="pop">解除绑定</a>
                     </li>
                     <li class="social">
-                        <a href="http://weibo.com"><i class="icon-plus"></i>添加其他社交网络帐号…</a>
+                        <a href="#popup_addsocial" data-rel="popup"><i class="icon-plus"></i>添加其他社交网络帐号…</a>
                     </li>
-                </ul>
+                </ul>                
+                <div data-role="popup" id="popup_addsocial">
+                	<ul data-role="listview" data-inset="true" data-theme="c">
+                    	<li><a href="/conns/renren_connect" data-transition="pop">人人网</a></li>
+                    	<li><a href="/conns/weibo_connect" data-transition="pop">新浪微博</a></li>
+                    	<li><a href="/conns/tqq_connect" data-transition="pop">腾讯微博</a></li>
+                    	<li><a href="/conns/jiepang_connect" data-transition="pop">街旁</a></li>
+                    	<li><a href="/conns/facebook_connect" data-transition="pop">Facebook</a></li>
+                    	<li><a href="/conns/github_connect" data-transition="pop">GitHub</a></li>
+                	</ul>
+                </div>
                 <ul class="contact" data-role="listview" data-split-icon="gear" data-split-theme="d">
                     <li data-role="list-divider" role="heading">联系</li>
                     <li>
