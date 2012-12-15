@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.shortcuts import render_to_response, RequestContext
 import time
 
@@ -30,10 +31,10 @@ def signin(request):
 		pass
 
 def robots(request):
-	return render_to_response('robots.txt', locals(), context_instance=RequestContext(request))
+	return render(request, 'robots.txt', content_type="text/plain")
 
 def humans(request):
-	return render_to_response('humans.txt', locals(), context_instance=RequestContext(request))
+	return render(request, 'humans.txt', content_type="text/plain")
 
 def orca(request):
-    return HttpResponse("b5da7f1e4f9066c4")
+    return HttpResponse("b5da7f1e4f9066c4", content_type="text/plain")
