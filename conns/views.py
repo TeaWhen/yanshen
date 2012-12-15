@@ -154,8 +154,8 @@ def tqq_callback(request):
         auth_info = urlparse.parse_qs(r.text)
         nai = AuthInfo(type="tqq", owner=request.user)
         nai.uid = auth_info['name'][0]
-        user_info = requests.get(TQQ_API_ROOT+"/user/info", params={'oauth_consumer_key': TQQ_CLIENT_ID, 'access_token': auth_info['access_token'][0]}, 'openid': auth_info['openid'][0], 'clientip': "42.121.18.11", 'oauth_version': "2.a").json
-        nai.uname = user_info['nick'][0]
+        user_info = requests.get(TQQ_API_ROOT+"/user/info", params={'oauth_consumer_key': TQQ_CLIENT_ID, 'access_token': auth_info['access_token'][0], 'openid': auth_info['openid'][0], 'clientip': "42.121.18.11", 'oauth_version': "2.a"}).json
+        nai.uname = user_info['nick']
         nai.tokens = r.text
         nai.save()
     return redirect("/me")
