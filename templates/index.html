@@ -16,7 +16,7 @@
             <div data-role="content">
                 <ul data-role="listview" data-filter="true" data-filter-placeholder="搜索好友…" >
                 {% for user in users %}
-                    <li><a href="/contact/{{ user.pk }}" data-transition="slide">
+                    <li data-filtertext="{{ user.pinyin }}"><a href="/contact/{{ user.pk }}" data-transition="slide">
                         <img src="{{ user.avatar }}">
                         <h3><span class="last">{{ user.last_name }}</span> <span class="first">{{ user.first_name }}</span></h3>
                     </a></li>
