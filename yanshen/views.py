@@ -79,7 +79,7 @@ def contact(request, pk):
     user = Profile.objects.get(pk=pk)
     socials = user.conns.all()
     contact_info = json.JSONDecoder().decode(user.contact_info)['data']
-
+    locations = request.user.get_locations()
     return locals()
 
 @render_to('me.html')
