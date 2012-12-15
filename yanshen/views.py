@@ -78,26 +78,6 @@ def contact(request, pk):
 	pagename = 'contact'
 	user = Profile.objects.get(pk=pk)
 	socials = user.conns.all()
-	icon_name = {
-		'weibo': "icon-weibo",
-		'renren': "icon-renren",
-		'github': "icon-github",
-		'facebook': "icon-facebook",
-		'tqq': "icon-tenxunweibo",
-		'jiepang': "icon-qicheren"
-	}
-	social_url = {
-		'weibo': "http://weibo.com/",
-		'renren': "http://renren.com/",
-		'github': "http://github.com/",
-		'facebook': "http://facebook.com",
-		'tqq': "http://t.qq.com/",
-		'jiepang': "http://jiepang.com/"
-	}
-	for s in socials:
-		s.url = social_url[s.type]
-		s.icon = icon_name[s.type]
-
 	contact_info = json.JSONDecoder().decode(user.contact_info)['data']
 
 	return locals()
@@ -131,26 +111,6 @@ def me(request):
 		else:
 			pass
 	socials = user.conns.all()
-	icon_name = {
-		'weibo': "icon-weibo",
-		'renren': "icon-renren",
-		'github': "icon-github",
-		# 'facebook': "icon-facebook",
-		'tqq': "icon-tenxunweibo",
-		'jiepang': "icon-qicheren"
-	}
-	social_url = {
-		'weibo': "http://weibo.com/",
-		'renren': "http://renren.com/",
-		'github': "http://github.com/",
-		# 'facebook': "http://facebook.com",
-		'tqq': "http://t.qq.com/",
-		'jiepang': "http://jiepang.com/"
-	}
-	for s in socials:
-		s.url = social_url[s.type]
-		s.icon = icon_name[s.type]
-
 	contact_info = json.JSONDecoder().decode(user.contact_info)['data']
 		
 	return locals()

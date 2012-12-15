@@ -10,7 +10,27 @@ import requests
 import urlparse
 import urllib
 
- 
+
+    # icon_name = {
+    #     'weibo': "",
+    #     'renren': "",
+    #     'github': "",
+    #     # 'facebook': "icon-facebook",
+    #     'tqq': "icon-tenxunweibo",
+    #     'jiepang': "icon-qicheren"
+    # }
+    # social_url = {
+    #     'weibo': "http://weibo.com/",
+    #     'renren': "http://renren.com/",
+    #     'github': "http://github.com/",
+    #     'tqq': "http://t.qq.com/",
+    #     'jiepang': "http://jiepang.com/"
+    # }
+    # for s in socials:
+    #     s.url = social_url[s.type]
+    #     s.icon = icon_name[s.type]
+
+
 def weibo_connect(request):
     args = {
         'response_type': "code",
@@ -40,6 +60,8 @@ def weibo_callback(request):
             nai.uid = auth_info['uid']
         user_info = requests.get(WEIBO_API_ROOT+"/users/show.json", params={'access_token': auth_info['access_token'], 'uid': auth_info['uid']}).json
         nai.uname = user_info['screen_name']
+        nai.icon = "icon-weibo"
+        nai.url = "http://weibo.com/"+auth_info['uid']
         nai.tokens = r.text
         nai.save()
     return redirect("/me")
@@ -74,6 +96,8 @@ def renren_callback(request):
             nai = AuthInfo(type="renren", owner=request.user)
             nai.uid = auth_info['user']['id']
         nai.uname = auth_info['user']['name']
+        nai.icon = "icon-renren"
+        nai.url = "http://renren.com/"+auth_info['user']['id']
         nai.tokens = r.text
         nai.save()
     return redirect("/me")
@@ -108,6 +132,8 @@ def github_callback(request):
             nai = AuthInfo(type="github", owner=request.user)
             nai.uid = user_info['id']
         nai.uname = user_info['name']
+        nai.icon = "icon-github"
+        nai.url = user_info['url']
         nai.tokens = r.text
         nai.save()
     return redirect("/me")
@@ -182,6 +208,8 @@ def tqq_callback(request):
         }
         user_info = requests.get(TQQ_API_ROOT+"/user/info", params=common_args).json
         nai.uname = user_info['data']['nick']
+        nai.icon = "icon-tenxunweibo"
+        nai.url = "http://t.qq.com/"+auth_info['name'][0]
         nai.tokens = r.text
         nai.save()
     return redirect("/me")
@@ -216,6 +244,8 @@ def jiepang_callback(request):
             nai = AuthInfo(type="jiepang", owner=request.user) 
             nai.uid = user_info['id']
         nai.uname = user_info['nick']
+        nai.icon = "icon-qicheren"
+        nai.url = "http://jiepang.com/user/"+user_info['id']
         nai.tokens = r.text
         nai.save()
     return redirect("/me")
