@@ -3,6 +3,10 @@
 @red: #c72f2f;
 @green: #538a2a;
 
+body {
+    -webkit-user-select: none;
+}
+
 ul.social {
     padding-bottom: 15px;
     li {
@@ -106,4 +110,23 @@ div[data-role="popup"] form {
     padding: 4px 11px;
     width: 180px;
     font-size: 14px;
+}
+
+#friend_list {
+    li {
+        a {
+            padding-bottom: 9px;
+        }
+        h3 {
+            position: absolute;
+            top: 20px;
+            left: 100px;
+            font-size: 28px;
+            margin: 0;
+            .first {
+                font-weight: normal;
+                margin-left: 4px;
+            }
+        }
+    }
 }
