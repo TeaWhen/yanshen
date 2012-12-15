@@ -5,42 +5,29 @@
 {% endblock %}
 {% block screen %}
             <div class="top" data-role="header" data-position="fixed">
-                <a href="/group/" data-role="button" data-icon="arrow-l" data-direction="reverse" data-transition="pop" data-theme="a" data-prefetch>返回</a>
-                <h1>设置「朋友」组</h1>
+                <a href="/group/" data-role="button" data-icon="arrow-l" data-direction="reverse" data-transition="slide" data-theme="a" data-prefetch>返回</a>
+                <h1>设置 朋友 组</h1>
+                <a href="#" data-role="button" onclick="$('#privilege_form').submit();">提交</a>
+            </div>
+            
+            <div class="ui-bar ui-bar-e">
+            	<h3>更改权限后，请点击右上角按钮提交。</h3>
             </div>
             
             <div data-role="content">
+            <form id="privilege_form" method="post" action="">
                 <ul data-role="listview">
+                    <li data-role="list-divider" role="heading">社交</li>
                     <li data-role="list-divider" role="heading">联系</li>
-                    
                     <li>
                         <p class="key">手机</p>
                         <p class="value">15267028600</p>
-                        <select name="flip-1" id="flip-1" data-role="slider">
-                        	<option value="off">Off</option>
-                        	<option value="on">On</option>
+                        <select name="" data-role="slider">
+                        	<option value="false">不可见</option>
+                        	<option value="true">可见</option>
                         </select> 
                     </li>
-                    
-                    <li>
-                        <p class="key">你好</p>
-                        <p class="value">123</p>
-                    </li>
-                    
-                    <li>
-                        <p class="key"></p>
-                        <p class="value">123</p>
-                    </li>
-                    
-                    <li>
-                        <p class="key">工作</p>
-                        <p class="value">123456</p>
-                    </li>
-                    
-                    
-                    <li class="map">
-                    大！地！图！百度！
-                    </li>
-                </ul>
+                 </ul>
+            </form>
             </div>
 {% endblock %}
