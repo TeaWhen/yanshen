@@ -17,10 +17,10 @@ def welcome(request):
 				next = request.POST['next']
 				return redirect(next)
 			else:
-				message = 'disabled account'
+				message = '账户已被注销。'
 				return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
 		else:
-			message = 'invalid login'
+			message = 'Email 或密码错误。'
 			return render_to_response('welcome.html', locals(), context_instance=RequestContext(request))
 	else:
 		try:
