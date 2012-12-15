@@ -36,7 +36,7 @@ class Profile(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
-    contact_info = models.TextField(null=True)
+    contact_info = models.TextField(null=True, default='')
     joined = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField()
 
