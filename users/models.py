@@ -88,7 +88,7 @@ class Profile(AbstractBaseUser):
                 r = requests.get(u"http://maps.googleapis.com/maps/api/geocode/json?address={}&sensor=false".format(ci['value']))
                 rj = r.json
                 if len(rj['results']):
-                    locations.append({'name': ci['key'], 'x': rj['results'][0]['geometry']['location']['lng'], 'y': rj['results'][0]['geometry']['location']['lat']})
+                    locations.append({'name': self.get_full_name()+": "+ci['key'], 'x': rj['results'][0]['geometry']['location']['lng'], 'y': rj['results'][0]['geometry']['location']['lat']})
         return locations
 
 
@@ -108,3 +108,10 @@ class Relationship(models.Model):
 
     def __unicode__(self):
         return u'{} - {} - {}'.format(self.from_id, self.to_id, self.cat_id.name)
+
+class Invitation(models.Model):
+    from_id = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="invites")
+    to_id = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="pendings")
+
+    def __unicode__(self):
+        return u'{} - {}'.format(self.from_id, self.to_id)

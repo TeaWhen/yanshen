@@ -1,5 +1,5 @@
 from django.contrib import admin
-from users.models import Profile, Category, Relationship
+from users.models import Profile, Category, Relationship, Invitation
 
 class ProfileAdmin(admin.ModelAdmin):
     pass
@@ -15,3 +15,8 @@ class RelationshipAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(Relationship, RelationshipAdmin)
+
+class InvitationAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Invitation, InvitationAdmin)
