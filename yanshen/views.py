@@ -142,7 +142,7 @@ def group(request):
     if request.method == 'POST':
         ncat = Category(name=request.POST['name'], owner=request.user)
         p = {}
-        for s in ncat.owner.conns:
+        for s in ncat.owner.conns.all():
             p[s.type+str(s.uid)] = True
         contact_info = json.JSONDecoder().decode(ncat.owner.contact_info)
         for i in contact_info['data']:
