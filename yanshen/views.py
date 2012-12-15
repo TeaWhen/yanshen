@@ -2,7 +2,6 @@
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.shortcuts import render_to_response, RequestContext
 from users.models import Profile, Category, Relationship
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -202,13 +201,10 @@ def group_settings(request, pk):
     if request.method == 'POST':
         p2 = {}
         for k in keys:
-            if request.POST[k] == 'false':
-                p2[k] = False
-            else:
-                p2[k] = True
+            p2[k] = bool(request.POST[k])
         category.privilege = json.JSONEncoder().encode(p2)
         category.save()
-        return redirect('/group')
+        return redirect('/me/')
     else:
         return locals()
 
