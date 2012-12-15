@@ -46,6 +46,20 @@ div[data-role="popup"] form {
   font-size: 14px;
   font-weight: normal;
 }
+#privilege_form .social label {
+  position: absolute;
+  top: 5px;
+  padding-bottom: 5px;
+  font-size: 18px;
+  line-height: 22px;
+}
+#privilege_form .social label i {
+  font-size: 22px;
+  margin-right: 5px;
+}
+#privilege_form .social .ui-slider {
+  margin-left: 205px;
+}
 #search_friend {
   position: absolute;
   top: 2px;
