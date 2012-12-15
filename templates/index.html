@@ -2,7 +2,7 @@
 {% block screen %}
             <div class="top" data-role="header">
                 <a href="/me/" data-role="button" data-icon="star" data-theme="e" data-transition="slide" data-prefetch class="ui-btn-left">我</a>
-                <h1><input id="search_friend" type="search" placeholder="搜索好友…" data-role="none"></h1>
+                <!--<h1><input id="search_friend" type="search" placeholder="搜索好友…" data-role="none"></h1>-->
                 <a href="#popup_menu" data-role="button" data-rel="popup" data-theme="b">更多</a>
                 
                 <div data-role="popup" id="popup_menu">
@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div data-role="content">
-                <ul data-role="listview">
+                <ul data-role="listview" data-filter="true" data-filter-placeholder="搜索好友…" >
                 {% for user in users %}
                     <li><a href="/contact/{{ user.pk }}" data-transition="slide">
                         <img src="{{ user.avatar }}">
