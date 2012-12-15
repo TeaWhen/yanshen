@@ -53,6 +53,7 @@ JIEPANG_CLIENT_ID = "100698"
 JIEPANG_CLIENT_SECRET = "5383aac191dfc823988926c0fb8c8398"
 JIEPANG_AUTH_URL = "https://jiepang.com/oauth/authorize"
 JIEPANG_TOKEN_URL = "https://jiepang.com/oauth/token"
+JIEPANG_API_ROOT = "http://api.jiepang.com/v1"
 
 ###
 # 腾讯微博
