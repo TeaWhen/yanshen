@@ -3,7 +3,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 # from django.shortcuts import render_to_response, RequestContext
-from users.models import Profile, Category, Relationship
+from users.models import Profile, Category, Relationship, Invitation
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from annoying.decorators import render_to
@@ -264,7 +264,29 @@ def map(request):
 @login_required(login_url='/welcome/')
 def find(request):
     guess = calc_friends(request.user)
+    invites = request.user.invites.all()
+    pendings = request.user.pendings.all()
     return locals()
+
+@login_required(login_url='/welcome/')
+def accept_invitation(request, pk):
+    tou = request.user
+    fromu = Profile.objects.get(pk=pk)
+    inv = Invitation.objects.get(from_id=fromu, to_id=tou)
+    if inv is not None:
+        non_cat_from = fromu.cats.all()[0]
+        non_cat_to = tou.cats.all()[0]
+        Relationship.objects.create(from_id=fromu, to_id=tou, cat_id=non_cat_from)
+        Relationship.objects.create(from_id=tou, to_id=fromu, cat_id=non_cat_to)
+        inv.delete()
+    return redirect('/find/')
+
+@login_required(login_url='/welcome/')
+def add_invitation(request, pk):
+    user = request.user
+    to = Profile.objects.get(pk=pk)
+    inv = Invitation.objects.create(from_id=user, to_id=to)
+    return redirect('/find/')
 
 @login_required(login_url='/welcome/')
 def signout(request):
