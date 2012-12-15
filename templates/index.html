@@ -24,19 +24,4 @@
                 </ul>
                 {% endfor %}
             </div>
-
-
-            <script>
-            $(document).ready(function() {
-                $("#more").click(function() {
-                    if (!$(this).hasClass("active")) {
-                        $(this).addClass("active");
-                        $("#more_pop").addClass("active");
-                    } else {
-                        $(this).removeClass("active");
-                        $("#more_pop").removeClass("active");
-                    }
-                });
-            });
-            </script>
 {% endblock %}
