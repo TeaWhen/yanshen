@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^$', 'yanshen.views.home'),
     url(r'^home$', 'yanshen.views.home'),
     url(r'^profile$', 'yanshen.views.profile'),
+    url(r'^robots.txt$', 'yanshen.views.robots'),
     # url(r'^yanshen/', include('yanshen.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
