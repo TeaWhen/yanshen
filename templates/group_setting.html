@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block head %}
+<style>
+</style>
+{% endblock %}
+{% block screen %}
+            <div class="top" data-role="header" data-position="fixed">
+                <a href="/group/" data-role="button" data-icon="arrow-l" data-direction="reverse" data-transition="pop" data-theme="a" data-prefetch>返回</a>
+                <h1>设置「朋友」组</h1>
+            </div>
+            
+            <div data-role="content">
+                <ul data-role="listview">
+                    <li data-role="list-divider" role="heading">联系</li>
+                    
+                    <li>
+                        <p class="key">手机</p>
+                        <p class="value">15267028600</p>
+                        <select name="flip-1" id="flip-1" data-role="slider">
+                        	<option value="off">Off</option>
+                        	<option value="on">On</option>
+                        </select> 
+                    </li>
+                    
+                    <li>
+                        <p class="key">你好</p>
+                        <p class="value">123</p>
+                    </li>
+                    
+                    <li>
+                        <p class="key"></p>
+                        <p class="value">123</p>
+                    </li>
+                    
+                    <li>
+                        <p class="key">工作</p>
+                        <p class="value">123456</p>
+                    </li>
+                    
+                    
+                    <li class="map">
+                    大！地！图！百度！
+                    </li>
+                </ul>
+            </div>
+{% endblock %}
