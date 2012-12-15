@@ -21,10 +21,11 @@
                     {% endfor %}
                 </ul>
                 {% endif %}
+                {% if data %}
                 <ul class="contact" data-role="listview">
                     {% if contact_info %}
                     <li data-role="list-divider" role="heading">联系</li>
-                    {% for item in contact_info %}
+                    {% for item in data %}
                     <li>
                         <p class="key"><i class="{% if item.type == 'Address' %}icon-map-marker{% elif item.type == 'Phone' %}icon-phone{% elif item.type == 'Email' %}icon-envelope{% endif %}"></i>
                         {{ item.key }}</p>
@@ -36,6 +37,7 @@
                         <div id="map" style="width:100%;height:320px"></div>
                     </li>
                 </ul>
+                {% endif %}
             </div>
             <script type="text/javascript">
             function initialize() {
