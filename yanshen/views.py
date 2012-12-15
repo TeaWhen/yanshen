@@ -73,6 +73,26 @@ def me(request):
 	appname = "延伸"
 	pagename = 'me'
 	user = request.user
+	socials = user.conns.all()
+	icon_name = {
+		'weibo': "icon-weibo",
+		'renren': "icon-renren",
+		'github': "icon-github",
+		'facebook': "icon-facebook",
+		'tqq': "icon-tengxunweibo",
+		'jiepang': "icon-jiepang"
+	}
+	social_url = {
+		'weibo': "http://weibo.com/",
+		'renren': "http://renren.com/",
+		'github': "http://github.com/",
+		'facebook': "http://facebook.com",
+		'tqq': "http://t.qq.com/",
+		'jiepang': "http://jiepang.com/"
+	}
+	for s in socials:
+		s.url = social_url[s.type]
+		s.icon = icon_name[s.type]
 	return locals()
 
 @render_to('group.html')

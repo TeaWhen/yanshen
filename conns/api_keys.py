@@ -4,7 +4,7 @@
 
 ###
 # root URL
-ROOT_URL = "http://127.0.0.1:8000/"
+ROOT_URL = "http://42.121.18.11/"
 
 ###
 # Github
@@ -42,6 +42,7 @@ WEIBO_CLIENT_ID = "2007631443"
 WEIBO_CLIENT_SECRET = "2dca0ce9536cafa1f94f28902bc46e02"
 WEIBO_AUTH_URL = "https://api.weibo.com/oauth2/authorize"
 WEIBO_TOKEN_URL = "https://api.weibo.com/oauth2/access_token"
+WEIBO_API_ROOT = "https://api.weibo.com/2"
 
 ###
 # 百度地图

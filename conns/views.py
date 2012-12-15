@@ -34,6 +34,8 @@ def weibo_callback(request):
         auth_info = r.json
         nai = AuthInfo(type="weibo", owner=request.user)
         nai.uid = auth_info['uid']
+        user_info = requests.get(WEIBO_API_ROOT+"/users/show.json", params={'access_token': auth_info['access_token'], 'uid': auth_info['uid']}).json
+        nai.uname = user_info['screen_name']
         nai.tokens = r.text
         nai.save()
     return redirect("/me")
@@ -92,6 +94,7 @@ def github_callback(request):
         nai = AuthInfo(type="github", owner=request.user)
         user_info = requests.get(GITHUB_API_ROOT+"/user", params={'access_token': auth_info['access_token'][0]}).json
         nai.uid = user_info['id']
+        nai.uname = user_info['name']
         nai.tokens = json.JSONEncoder().encode({'access_token': auth_info['access_token'][0]})
         nai.save()
     return redirect("/me")
@@ -117,9 +120,10 @@ def facebook_callback(request):
         }
         r = requests.post(FACEBOOK_TOKEN_URL, params=args)
         auth_info = urlparse.parse_qs(r.text)
-        nai = AuthInfo(type="facebook", owner=requests.user)
-        user_info = requests.get(FACEBOOK_API_ROOT+"/me", params={'access_token': auth_info['access_token'][0], 'fields': 'id'}).json
+        nai = AuthInfo(type="facebook", owner=request.user)
+        user_info = requests.get(FACEBOOK_API_ROOT+"/me", params={'access_token': auth_info['access_token'][0], 'fields': 'id,name'}).json
         nai.uid = user_info['id']
+        nai.uname = user_info['name']
         nai.tokens = json.JSONEncoder().encode({'access_token': auth_info['access_token'][0]})
         nai.save()
     return redirect("/me")
@@ -151,6 +155,8 @@ def tqq_callback(request):
         auth_info = urlparse.parse_qs(r.text)
         nai = AuthInfo(type="tqq", owner=request.user)
         nai.uid = auth_info['name'][0]
+        # user_info
+        nai.uname = auth_info['name'][0]
         nai.tokens = json.JSONEncoder().encode({'access_token': auth_info['access_token'][0], 'refresh_token': auth_info['refresh_token'][0]})
         nai.save()
     return redirect("/me")
@@ -180,6 +186,7 @@ def jiepang_callback(request):
         nai = AuthInfo(type="jiepang", owner=request.user)
         user_info = requests.get(JIEPANG_API_ROOT+"/users/show", params={'source': JIEPANG_CLIENT_ID, 'access_token': auth_info['access_token']}).json
         nai.uid = user_info['id']
+        nai.uname = user_info['nick']
         nai.tokens = r.text
         nai.save()
     return redirect("/me")

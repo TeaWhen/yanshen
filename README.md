@@ -14,3 +14,8 @@ Dev Setup
 7. `python setup.py install`
 8. `rm -rf django-1.5b2`
 9. `pip install -r dj15req.txt`
+10. `git clone git://github.com/lxneng/xpinyin.git`
+11. `cd xpinyin`
+12. `python setup.py install`
+13. `cd ..`
+14. `rm -rf xpinyin`
