@@ -137,7 +137,7 @@ def me(request):
 		'github': "icon-github",
 		# 'facebook': "icon-facebook",
 		'tqq': "icon-tenxunweibo",
-		'jiepang': "icon-jiepang"
+		'jiepang': "icon-qicheren"
 	}
 	social_url = {
 		'weibo': "http://weibo.com/",
