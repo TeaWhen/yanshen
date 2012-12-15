@@ -7,9 +7,11 @@ from users.models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from annoying.decorators import render_to
+from django.core.exceptions import ValidationError
 
 @render_to('welcome.html')
 def welcome(request):
+	appname = "延伸"
 	if request.method == 'POST':
 		username = request.POST['username']
 		password = request.POST['password']
@@ -26,50 +28,57 @@ def welcome(request):
 			else:
 				message = 'Email 或密码错误。'
 				return locals()
-		else:
-			try:
-				user = Profile.objects.get(email=username)
-			except:
-				user = Profile.objects.create_user(email=username, password=password)
-				if user is not None:
+		elif action == 'reg':
+			if Profile.objects.filter(email=username).exists():
+			    message = '您已经注册过了。'
+			    return locals()
+			else:
+				try:
+					user = Profile.objects.create_user(email=username, password=password)
+				except ValidationError:
+					message = u'Enter a valid email address.'
+					return locals()
+				if user:
 					user = authenticate(username=username, password=password)
 					login(request, user)
-					return redirect('/me/')
+					return redirect('/me/?first=1')
 				else:
 					message = '抱歉，服务器开小差了，注册失败。'
 					return locals()
-			else:
-				message = '您已经注册过了。'
-				return locals()
 	else:
 		return locals()
 
 @render_to('index.html')
 @login_required(login_url='/welcome/')
 def index(request):
+	appname = "延伸"
 	users = Profile.objects.all()
-	return render_to_response('index.html', locals(), context_instance=RequestContext(request))
+	return locals()
 
 @render_to('contact.html')
 @login_required(login_url='/welcome/')
 def contact(request, pk):
+	appname = "延伸"
 	user = Profile.objects.get(pk=pk)
-	return render_to_response('contact.html', locals(), context_instance=RequestContext(request))
+	return locals()
 
 @render_to('me.html')
 @login_required(login_url='/welcome/')
 def me(request):
+	appname = "延伸"
 	user = request.user
 	return locals()
 
 @render_to('group.html')
 @login_required(login_url='/welcome/')
 def group(request):
+	appname = "延伸"
 	return locals()
 
 @render_to('map.html')
 @login_required(login_url='/welcome/')
 def map(request):
+	appname = "延伸"
 	return locals()
 
 def page_not_found(request):

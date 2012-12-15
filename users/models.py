@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Group, Permission
 from django.utils import timezone
 from yanshen import settings
-
+from django.core.validators import validate_email
 
 class ProfileManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -10,6 +10,7 @@ class ProfileManager(BaseUserManager):
         if not email:
             raise ValueError('The given email must be set')
         email = BaseUserManager.normalize_email(email)
+        validate_email(email)
         user = self.model(email=email, is_staff=False, is_active=True, is_superuser=False,
                           joined=now, updated=now, **extra_fields)
 
@@ -50,7 +51,7 @@ class Profile(AbstractBaseUser):
     USERNAME_FIELD = 'email'
 
     def get_absolute_url(self):
-        return "/users/%s/" % urlquote(self.username)
+        return "/contact/%s/" % urlquote(self.username)
 
     def get_full_name(self):
         """
