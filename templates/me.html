@@ -8,7 +8,10 @@
             <div data-role="content">
                 <div class="meta">
                     <img class="avatar" src="{{ user.avatar }}">
-                    <p class="name">{{ user.get_full_name }}</p>
+                    <p class="name">{% if user.get_full_name %}
+                        {{ user.get_full_name }}
+                    {% else %}您的姓名{% endif %}</p>
+                    <p><a href="index.html" data-role="button" data-icon="gear" data-iconpos="left" data-mini="true" data-inline="true">编辑</a></p>
                 </div>
                 <ul class="social" data-role="listview" data-split-icon="delete" data-split-theme="d">
                     <li data-role="list-divider" role="heading">社交</li>
@@ -19,7 +22,7 @@
                         </li>
                     {% endfor %}
                     <li class="social">
-                        <a href="#popup_addsocial" data-rel="popup"><i class="icon-plus"></i>添加其他社交网络帐号…</a>
+                        <a href="#popup_addsocial" data-rel="popup"><i class="icon-plus"></i>添加社交网络帐号…</a>
                     </li>
                 </ul>
                 <div data-role="popup" id="popup_addsocial">
@@ -35,12 +38,17 @@
                 <ul class="contact" data-role="listview" data-split-icon="gear" data-split-theme="d">
                     <li data-role="list-divider" role="heading">联系</li>
                     <li>
-                        <p class="key">手机</p>
-                        <p class="value">15267028600</p>
+                        <a><p class="key">手机</p>
+                        <p class="value">15267028600</p></a>
+                        <a href="#edit" data-rel="popup" data-position-to="window" data-transition="pop">修改</a>
                     </li>
                     <li>
-                        <p class="key">Email</p>
-                        <p class="value">liu.dongyuan@gmail.com</p>
+                        <a><p class="key">Email</p>
+                        <p class="value">liu.dongyuan@gmail.com</p></a>
+                        <a href="#edit" data-rel="popup" data-position-to="window" data-transition="pop">修改</a>
+                    </li>
+                    <li>
+                        <a href="#popup_addcontact" data-rel="popup">添加联系方式…</a>
                     </li>
                     <li class="map">
                     大！地！图！百度！
