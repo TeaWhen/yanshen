@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.shortcuts import render_to_response, RequestContext
@@ -25,10 +27,11 @@ def welcome(request):
 					message = 'disabled account'
 					return locals()
 			else:
-				message = 'invalid login'
+				message = '账户已被注销。'
 				return locals()
 		else:
-			pass
+			message = 'Email 或密码错误。'
+			return locals()
 	else:
 		try:
 			next = request.POST['next']
