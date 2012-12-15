@@ -30,47 +30,52 @@
         <div class="screen">
             <div class="status_bar">04:04</div>
             <div class="top">
-                <div class="button left"></div>
-                <!--<h1>搜索框</h1>-->
-                <div class="button right"></div>
+                <a href="me.html"><div class="button left">Me</div></a>
+                <input class="search" type="search" name="search" value="" placeholder="过滤联系人…">
+                <a href="#"><div id="more" class="button right">More</div></a>
+                <ul id="more_pop" class="pop">
+                    <a href="group.html"><li>组管理</li></a>
+                    <a href="map.html"><li>好友地图</li></a>
+                </ul>
             </div>
             <ul class="table">
                 <a href="contact.html"><li>
-                    <img class="avatar" src="img/fixture/blue.jpg">
+                    <img class="avatar" src="img/fixture/mrx.jpg">
+                    <p class="name">马儒潇</p>
+                </li></a>
+                <a href="contact.html"><li>
+                    <img class="avatar" src="img/fixture/cs.jpg">
+                    <p class="name">曹珊</p>
+                </li></a>
+                <a href="contact.html"><li>
+                    <img class="avatar" src="img/fixture/ldy.jpg">
                     <p class="name">柳东原</p>
                 </li></a>
                 <a href="contact.html"><li>
-                    <img class="avatar" src="img/fixture/blue.jpg">
-                    <p class="name">柳东原</p>
+                    <img class="avatar" src="img/fixture/yz.jpg">
+                    <p class="name">闫铮</p>
                 </li></a>
                 <a href="contact.html"><li>
-                    <img class="avatar" src="img/fixture/blue.jpg">
-                    <p class="name">柳东原</p>
-                </li></a>
-                <a href="contact.html"><li>
-                    <img class="avatar" src="img/fixture/blue.jpg">
-                    <p class="name">柳东原</p>
-                </li></a>
-                <a href="contact.html"><li>
-                    <img class="avatar" src="img/fixture/blue.jpg">
-                    <p class="name">柳东原</p>
-                </li></a>
-                <a href="contact.html"><li>
-                    <img class="avatar" src="img/fixture/blue.jpg">
-                    <p class="name">柳东原</p>
-                </li></a>
-                <a href="contact.html"><li>
-                    <img class="avatar" src="img/fixture/blue.jpg">
-                    <p class="name">柳东原</p>
-                </li></a>
-                <a href="contact.html"><li>
-                    <img class="avatar" src="img/fixture/blue.jpg">
-                    <p class="name">柳东原</p>
+                    <img class="avatar" src="img/fixture/lx.jpg">
+                    <p class="name">楼洵</p>
                 </li></a>
             </ul>
 
             <script src="js/vendor/zepto.min.js"></script>
             <script src="js/helper.js"></script>
+            <script>
+            $(document).ready(function() {
+                $("#more").click(function() {
+                    if (!$(this).hasClass("active")) {
+                        $(this).addClass("active");
+                        $("#more_pop").addClass("active");
+                    } else {
+                        $(this).removeClass("active");
+                        $("#more_pop").removeClass("active");
+                    }
+                });
+            });
+            </script>
         </div>
     </body>
 </html>
