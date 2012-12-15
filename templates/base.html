@@ -23,7 +23,7 @@
         <script src="/static/js/helper.js"></script>
     </head>
     <body>
-        <div class="screen" data-role="page">
+        <div class="screen" data-role="page" data-url="{% block data-url %}{% endblock %}">
         {% block screen %}{% endblock %}
         </div>
     </body>
