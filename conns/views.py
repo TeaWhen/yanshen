@@ -33,7 +33,7 @@ def weibo_callback(request):
         }
         r = requests.post(WEIBO_TOKEN_URL, params=args)
         auth_info = r.json
-        nowai = AuthInfo.objects.filter(uid=auth_info['uid'])
+        nowai = AuthInfo.objects.filter(uid=auth_info['uid'], owner=request.user)
         if len(nowai):
             nai = nowai[0]
         else:
@@ -75,7 +75,7 @@ def renren_callback(request):
         }
         r = requests.post(RENREN_TOKEN_URL, params=args)
         auth_info = r.json
-        nowai = AuthInfo.objects.filter(uid=auth_info['user']['id'])
+        nowai = AuthInfo.objects.filter(uid=auth_info['user']['id'], owner=request.user)
         if len(nowai):
             nai = nowai[0]
         else:
@@ -91,6 +91,12 @@ def renren_callback(request):
             cp[nai.type+str(nai.uid)] = True
             c.privilege = json.JSONEncoder().encode(cp)
             c.save()
+        u = request.uesr
+        for a in auth_info['user']['avatar']:
+            if a['type'] == 'main':
+                aurl = a['url']
+        u.avatar = aurl
+        u.save()
     return redirect("/me")
 
 
@@ -116,7 +122,7 @@ def github_callback(request):
         r = requests.post(GITHUB_TOKEN_URL, params=args)
         auth_info = urlparse.parse_qs(r.text)
         user_info = requests.get(GITHUB_API_ROOT+"/user", params={'access_token': auth_info['access_token'][0]}).json
-        nowai = AuthInfo.objects.filter(uid=user_info['id'])
+        nowai = AuthInfo.objects.filter(uid=user_info['id'], owner=request.user)
         if len(nowai):
             nai = nowai[0]
         else:
@@ -189,7 +195,7 @@ def tqq_callback(request):
         }
         r = requests.post(TQQ_TOKEN_URL, params=args)
         auth_info = urlparse.parse_qs(r.text)
-        nowai = AuthInfo.objects.filter(uid=auth_info['name'][0])
+        nowai = AuthInfo.objects.filter(uid=auth_info['name'][0], owner=request.user)
         if len(nowai):
             nai = nowai[0]
         else:
@@ -238,7 +244,7 @@ def jiepang_callback(request):
         r = requests.post(JIEPANG_TOKEN_URL, params=args)
         auth_info = r.json
         user_info = requests.get(JIEPANG_API_ROOT+"/users/show", params={'source': JIEPANG_CLIENT_ID, 'access_token': auth_info['access_token']}).json
-        nowai = AuthInfo.objects.filter(uid=user_info['id'])
+        nowai = AuthInfo.objects.filter(uid=user_info['id'], owner=request.user)
         if len(nowai):
             nai = nowai[0]
         else:
