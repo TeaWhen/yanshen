@@ -96,6 +96,9 @@ def contact(request, pk):
 
     data = []
     social_data = []
+    cats = Category.objects.filter(owner=request.user)
+    rl = Relationship.objects.get(from_id=request.user, to_id=owner)
+    mycat = rl.cat_id
 
     category = Relationship.objects.get(from_id=owner, to_id=request.user).cat_id
     privilege = json.JSONDecoder().decode(category.privilege)
@@ -108,6 +111,11 @@ def contact(request, pk):
             social_data.append(social)
 
     locations = owner.get_locations()
+
+    if request.method == 'POST':
+        newcat = Category.objects.get(pk=request.POST['newcat'])
+        rl.cat_id = newcat
+        rl.save()
     return locals()
 
 @render_to('me.html')

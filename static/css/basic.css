@@ -22,8 +22,22 @@ ul.contact .value {
   font-size: 16px;
   margin-bottom: 0;
 }
-.avatar {
-  width: 64px;
+.meta {
+  position: relative;
+  height: 108px;
+}
+.meta .avatar {
+  position: absolute;
+  height: 108px;
+  top: 0;
+  left: 0;
+}
+.meta .name {
+  position: absolute;
+  top: 10px;
+  left: 128px;
+  margin: 0;
+  font-size: 28px;
 }
 div[data-role="popup"] form {
   padding: 5px 15px;
