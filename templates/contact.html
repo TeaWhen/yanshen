@@ -3,7 +3,7 @@
             <div class="top" data-role="header" data-position="fixed">
                 <a href="/" data-role="button" data-icon="arrow-l" data-direction="reverse" data-transition="slide" data-theme="a" data-prefetch>返回</a>
                 <h1>联系人</h1>
-                <a href="#popup_menu" data-rel="popup" data-role="button" data-icon="star" data-theme="b">{{ category.name }}</a>
+                <a href="#popup_menu" data-rel="popup" data-role="button" data-icon="star" data-theme="b">{{ mycat.name }}</a>
                 <div data-role="popup" id="popup_menu">
                 	<ul data-role="listview" data-inset="true" data-theme="c">
                         {% for cat in cats %}

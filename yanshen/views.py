@@ -97,9 +97,10 @@ def contact(request, pk):
     data = []
     social_data = []
     cats = Category.objects.filter(owner=request.user)
+    rl = Relationship.objects.get(from_id=request.user, to_id=owner)
+    mycat = rl.cat_id
 
-    rl = Relationship.objects.get(from_id=owner, to_id=request.user)
-    category = rl.cat_id
+    category = Relationship.objects.get(from_id=owner, to_id=request.user).cat_id
     privilege = json.JSONDecoder().decode(category.privilege)
     for info in contact_info:
         if privilege[str(info['info_id'])] == True:
