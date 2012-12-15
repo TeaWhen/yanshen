@@ -44,7 +44,7 @@ def weibo_callback(request):
         nai.url = "http://weibo.com/"+str(auth_info['uid'])
         nai.tokens = r.text
         nai.save()
-        for c in request.user.cats:
+        for c in request.user.cats.all().all():
             cp = json.JSONDecoder().decode(c.privilege)
             cp[nai.type+str(nai.uid)] = True
             c.privilege = json.JSONEncoder().encode(cp)
@@ -85,7 +85,7 @@ def renren_callback(request):
         nai.url = "http://renren.com/"+str(auth_info['user']['id'])
         nai.tokens = r.text
         nai.save()
-        for c in request.user.cats:
+        for c in request.user.cats.all():
             cp = json.JSONDecoder().decode(c.privilege)
             cp[nai.type+str(nai.uid)] = True
             c.privilege = json.JSONEncoder().encode(cp)
@@ -126,7 +126,7 @@ def github_callback(request):
         nai.url = user_info['html_url']
         nai.tokens = r.text
         nai.save()
-        for c in request.user.cats:
+        for c in request.user.cats.all():
             cp = json.JSONDecoder().decode(c.privilege)
             cp[nai.type+str(nai.uid)] = True
             c.privilege = json.JSONEncoder().encode(cp)
@@ -207,7 +207,7 @@ def tqq_callback(request):
         nai.url = "http://t.qq.com/"+str(auth_info['name'][0])
         nai.tokens = r.text
         nai.save()
-        for c in request.user.cats:
+        for c in request.user.cats.all():
             cp = json.JSONDecoder().decode(c.privilege)
             cp[nai.type+str(nai.uid)] = True
             c.privilege = json.JSONEncoder().encode(cp)
@@ -248,7 +248,7 @@ def jiepang_callback(request):
         nai.url = "http://jiepang.com/user/"+str(user_info['id'])
         nai.tokens = r.text
         nai.save()
-        for c in request.user.cats:
+        for c in request.user.cats.all():
             cp = json.JSONDecoder().decode(c.privilege)
             cp[nai.type+str(nai.uid)] = True
             c.privilege = json.JSONEncoder().encode(cp)
