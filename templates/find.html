@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block screen %}
+            <div class="top" data-role="header" data-position="fixed">
+                <a href="/" data-role="button" data-icon="arrow-l" data-direction="reverse" data-transition="slide" data-theme="a" data-prefetch>返回</a>
+                <h1>查找好友</h1>
+            </div>
+            
+            <div data-role="content">
+                <ul class="contact" data-role="listview">
+                    <li data-role="list-divider" role="heading">好友请求</li>
+                    {% for item in data %}
+                    <li>
+                        <div class="meta">
+                            <img class="avatar" src="{{ user.avatar }}">
+                            <p class="name">{{ user.get_full_name }}</p>
+                        </div>
+                        <a href="/friend/9/accept" data-role="button" data-icon="check">接受</a>
+                        <a href"/friend/9/refuse" data-role="button" data-icon="delete">拒绝</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+{% endblock %}

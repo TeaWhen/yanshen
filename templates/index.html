@@ -6,11 +6,12 @@
 }</style>
             <div class="top" data-role="header">
                 <a href="/me/" data-role="button" data-icon="star" data-theme="e" data-transition="slide" data-prefetch class="ui-btn-left">我</a>
-                <h1><input id="search_friend" onkeypress="$('.ui-listview-filter').value=$(this).value" type="search" placeholder="搜索好友…" data-role="none"></h1>
+                <h1><input id="search_friend" onchange="$('.ui-input-text')[0].value=$(this).value" type="search" placeholder="搜索好友…" data-role="none"></h1>
                 <a href="#popup_menu" data-role="button" data-rel="popup" data-theme="b">更多</a>
                 
                 <div data-role="popup" id="popup_menu">
                 	<ul data-role="listview" data-inset="true" data-theme="c">
+                		<li><a href="/find/" data-transition="pop">查找好友</a></li>
                         <li><a href="/group/" data-transition="pop">管理分组</a></li>
                         <li><a href="/map/" data-transition="pop">好友地图</a></li>
                         <li><a href="/logout/" data-transition="pop">登出</a></li>
