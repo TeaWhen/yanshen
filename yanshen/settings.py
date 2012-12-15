@@ -48,7 +48,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = os.path.join(DIRNAME, 'media')
+MEDIA_ROOT = os.path.join(DIRNAME, '../media').replace('//','/'),
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -70,7 +70,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(os.path.dirname(__file__), 'static').replace('//','/'),
+    os.path.join(os.path.dirname(__file__), '../static').replace('//','/'),
 )
 
 # List of finder classes that know how to find static files in
@@ -110,7 +110,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/mrx/yanshen/templates',
+    os.path.join(os.path.dirname(__file__), '../templates').replace('//','/'),
 )
 
 AUTH_USER_MODEL = 'users.Profile'
