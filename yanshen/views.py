@@ -107,7 +107,7 @@ def me(request):
 		'weibo': "icon-weibo",
 		'renren': "icon-renren",
 		'github': "icon-github",
-		'facebook': "icon-facebook",
+		# 'facebook': "icon-facebook",
 		'tqq': "icon-tenxunweibo",
 		'jiepang': "icon-jiepang"
 	}
@@ -115,7 +115,7 @@ def me(request):
 		'weibo': "http://weibo.com/",
 		'renren': "http://renren.com/",
 		'github': "http://github.com/",
-		'facebook': "http://facebook.com",
+		# 'facebook': "http://facebook.com",
 		'tqq': "http://t.qq.com/",
 		'jiepang': "http://jiepang.com/"
 	}
