@@ -27,6 +27,25 @@
         <script src="/static/js/vendor/jquery-1.8.3.min.js"></script>
         <script src="/static/js/vendor/jquery.mobile-1.2.0.min.js"></script>
         <script src="/static/js/helper.js"></script>
+        <script src="http://api.map.baidu.com/api?v=1.4" type="text/javascript"></script>
+        <script type="text/javascript">
+        function initialize() {
+          var map = new BMap.Map('map');
+          map.centerAndZoom('杭州', 10);
+          map.addControl(new BMap.NavigationControl());
+          map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL}));
+          var marker1 = new BMap.Marker('浙江大学紫金港校区');
+          map.addOverlay(marker1);
+        }
+         
+        function loadScript() {
+          var script = document.createElement("script");
+          script.src = "http://api.map.baidu.com/api?v=1.4&callback=initialize";
+          document.body.appendChild(script);
+        }
+
+        window.onload = loadScript;
+        </script>
     </head>
     <body>
         <div class="screen" data-role="page">
