@@ -8,7 +8,6 @@ from django.shortcuts import redirect
 
 import requests
 import urlparse
-import json
 
  
 def weibo_connect(request):
@@ -95,7 +94,7 @@ def github_callback(request):
         user_info = requests.get(GITHUB_API_ROOT+"/user", params={'access_token': auth_info['access_token'][0]}).json
         nai.uid = user_info['id']
         nai.uname = user_info['name']
-        nai.tokens = json.JSONEncoder().encode({'access_token': auth_info['access_token'][0]})
+        nai.tokens = r.text
         nai.save()
     return redirect("/me")
 
@@ -124,7 +123,7 @@ def facebook_callback(request):
         user_info = requests.get(FACEBOOK_API_ROOT+"/me", params={'access_token': auth_info['access_token'][0], 'fields': 'id,name'}).json
         nai.uid = user_info['id']
         nai.uname = user_info['name']
-        nai.tokens = json.JSONEncoder().encode({'access_token': auth_info['access_token'][0]})
+        nai.tokens = r.text
         nai.save()
     return redirect("/me")
 
@@ -155,9 +154,9 @@ def tqq_callback(request):
         auth_info = urlparse.parse_qs(r.text)
         nai = AuthInfo(type="tqq", owner=request.user)
         nai.uid = auth_info['name'][0]
-        # user_info
-        nai.uname = auth_info['name'][0]
-        nai.tokens = json.JSONEncoder().encode({'access_token': auth_info['access_token'][0], 'refresh_token': auth_info['refresh_token'][0]})
+        user_info = requests.get(TQQ_API_ROOT+"/user/info", params={'oauth_consumer_key': TQQ_CLIENT_ID, 'access_token': auth_info['access_token'][0]}, 'openid': auth_info['openid'][0], 'clientip': "42.121.18.11", 'oauth_version': "2.a").json
+        nai.uname = user_info['nick'][0]
+        nai.tokens = r.text
         nai.save()
     return redirect("/me")
 

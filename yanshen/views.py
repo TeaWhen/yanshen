@@ -75,7 +75,7 @@ def me(request):
 		'renren': "icon-renren",
 		'github': "icon-github",
 		'facebook': "icon-facebook",
-		'tqq': "icon-tengxunweibo",
+		'tqq': "icon-tenxunweibo",
 		'jiepang': "icon-jiepang"
 	}
 	social_url = {
