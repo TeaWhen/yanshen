@@ -8,6 +8,8 @@
 
 body {
 	margin: 0;
+	overflow: hidden;
+	height: 100%;
 	-webkit-font-smoothing: antialiased;
 	font-size: @font-m;
 	color: @color-font;
@@ -145,6 +147,7 @@ body {
 .table {
 	background-color: white;
 	position: relative;
+	-webkit-overflow-scrolling: touch;
 	z-index: 11;
 	overflow-y: scroll;
 	border-bottom: 1px solid fade(black, 8);
