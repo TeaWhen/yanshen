@@ -85,9 +85,10 @@ class Profile(AbstractBaseUser):
         locations = []
         for ci in cis['data']:
             if ci['type'] == "Address":
-                r = requests.get(u"http://api.map.baidu.com/geocoder?address={}&output=json&key={}".format(ci['value'], BAIDU_KEY))
+                r = requests.get(u"http://maps.googleapis.com/maps/api/geocode/json?address={}&sensor=false".format(ci['value']))
                 rj = r.json
-                locations.append({'name': ci['key'], 'x': rj['result']['location']['lng'], 'y': rj['result']['location']['lat']})
+                if len(rj['results']):
+                    locations.append({'name': ci['key'], 'x': rj['results'][0]['geometry']['location']['lng'], 'y': rj['results'][0]['geometry']['location']['lat']})
         return locations
 
 
