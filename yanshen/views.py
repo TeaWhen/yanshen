@@ -14,7 +14,10 @@ def welcome(request):
 		if user is not None:
 			if user.is_active:
 				login(request, user)
-				next = request.POST['next']
+				try:
+					next = request.POST['next']
+				except:
+					next = '/'
 				return redirect(next)
 			else:
 				message = 'disabled account'
