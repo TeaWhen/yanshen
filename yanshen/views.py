@@ -31,7 +31,11 @@ def welcome(request):
 			    message = '您已经注册过了。'
 			    return locals()
 			else:
-				user = Profile.objects.create_user(email=username, password=password)
+				try:
+					user = Profile.objects.create_user(email=username, password=password)
+				except ValidationError:
+					message = u'Enter a valid email address.'
+					return locals()
 				if user:
 					user = authenticate(username=username, password=password)
 					login(request, user)
