@@ -15,13 +15,13 @@
                 </div>
             </div>
             <div data-role="content">
-                {% for user in users %}
                 <ul data-role="listview">
+                {% for user in users %}
                     <li><a href="/contact/{{ user.pk }}" data-transition="slide">
-                        <img class="avatar ui-li-thumb" src="{{ user.avatar }}">
-                        <h3 class="name ui-li-heading"><span class="last">{{ user.last_name }}</span> <span class="first">{{ user.first_name }}</span></h3>
+                        <img src="{{ user.avatar }}">
+                        <h3><span class="last">{{ user.last_name }}</span> <span class="first">{{ user.first_name }}</span></h3>
                     </a></li>
-                </ul>
                 {% endfor %}
+                </ul>
             </div>
 {% endblock %}
