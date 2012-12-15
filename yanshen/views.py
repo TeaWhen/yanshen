@@ -13,6 +13,11 @@ import json
 
 # json.JSONEncoder().encode()
 # json.JSONDecoder().decode()
+# p = Pinyin()
+# In [5]: p.get_pinyin(u"上海", ' ')
+# Out[5]: 'shang hai'
+# In [6]: p.get_initials(u"上")
+# Out[6]: 'S'
 
 @render_to('welcome.html')
 def welcome(request):
@@ -28,7 +33,6 @@ def welcome(request):
 			user = authenticate(username=username, password=password)
 			if user is not None:
 				if user.is_active:
-					p = Pinyin()
 					login(request, user)
 					return redirect('/')
 				else:
@@ -44,6 +48,8 @@ def welcome(request):
 			else:
 				try:
 					user = Profile.objects.create_user(email=username, password=password)
+					user.contact_info = json.JSONEncoder().encode({"next_id":2, "data":[{"info_id":1, "type":"Email", "key": u"电子邮箱", "value": user.email}]})
+					user.save()
 				except ValidationError:
 					message = '请输入正确的 Email 地址。'
 					return locals()
@@ -110,7 +116,7 @@ def me(request):
 			type = request.POST['type']
 			contact_info = json.JSONDecoder().decode(user.contact_info)
 			info_id = contact_info['next_id']
-			contact_info['next_id'] += int(contact_info['next_id']) + 1
+			contact_info['next_id'] += 1
 			contact_info['data'].append(dict(info_id=info_id, key=key, value=value, type=type))
 			user.contact_info = json.JSONEncoder().encode(contact_info)
 			user.save()
