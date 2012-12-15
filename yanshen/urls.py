@@ -9,9 +9,13 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
+    url(r'^welcome/$', 'yanshen.views.welcome'),
     url(r'^$', 'yanshen.views.index'),
-    url(r'^me$', 'yanshen.views.me'),
-    url(r'^contact$', 'yanshen.views.contact'),
+    url(r'^index/$', 'yanshen.views.index'),
+    url(r'^me/$', 'yanshen.views.me'),
+    url(r'^contact/(\d+)/$', 'yanshen.views.contact'),
+    url(r'^group/$', 'yanshen.views.group'),
+    url(r'^map/$', 'yanshen.views.map'),
     url(r'^robots.txt$', 'yanshen.views.robots'),
     url(r'^humans.txt$', 'yanshen.views.humans'),
     # url(r'^yanshen/', include('yanshen.foo.urls')),
@@ -27,5 +31,6 @@ urlpatterns = patterns('',
     url(r'^conns/', include('conns.urls')),
 )
 
+handler404 = 'yanshen.views.page_not_found'
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

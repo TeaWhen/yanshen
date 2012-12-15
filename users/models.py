@@ -36,7 +36,7 @@ class Profile(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
-    contact_info = models.TextField(null=True)
+    contact_info = models.TextField(null=True, default='')
     joined = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField()
 
@@ -56,7 +56,7 @@ class Profile(AbstractBaseUser):
         """
         Returns the first_name plus the last_name, with a space in between.
         """
-        full_name = '%s %s' % (self.first_name, self.last_name)
+        full_name = '%s %s' % (self.last_name, self.first_name)
         return full_name.strip()
 
     def get_short_name(self):
