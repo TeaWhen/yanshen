@@ -79,6 +79,63 @@
                         <button type="submit" data-theme="b">添加</button>
         			</form>
         		</div>
+        		<div data-role="popup" class="popup_addcontact_form" id="popup_addcontact_email" data-theme="a" data-position-to="window">
+        		    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+        			<form action="/me/" method="post">{% csrf_token %}
+        		        <h3>添加 Email</h3>
+        		        <input type="hidden" name="type" value="Email">
+        		        <input type="hidden" name="action" value="add">
+        		        <script>
+        		        $(document).ready(function() {
+        		            $("#email_select_key").change(function() {
+        		                if (!$(this).val()) {
+        		                    $('#email_custom_key').show();
+        		                } else {
+        		                    $('#email_custom_key').hide();
+        		                }
+        		            });
+        		        });
+        		        </script>
+        		        <select id="email_select_key" name="key">
+        		            <option value="Email">Email</option>
+        		            <option value="家庭">家庭</option>
+        		            <option value="工作">工作</option>
+        		            <option value="">自定义</option>
+        		        </select>
+        		        <input id="email_custom_key" type="text" name="key_custom" value="" placeholder="名称" style="display: none;">
+        		        <input type="email" name="value" placeholder="Email" data-theme="a">
+        		        <button type="submit" data-theme="b">添加</button>
+        			</form>
+        		</div>
+        		<div data-role="popup" class="popup_addcontact_form" id="popup_addcontact_address" data-theme="a" data-position-to="window">
+        		    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+        			<form action="/me/" method="post">{% csrf_token %}
+        		        <h3>添加地址</h3>
+        		        <input type="hidden" name="type" value="Address">
+        		        <input type="hidden" name="action" value="add">
+        		        <script>
+        		        $(document).ready(function() {
+        		            $("#address_select_key").change(function() {
+        		                if (!$(this).val()) {
+        		                    $('#address_custom_key').show();
+        		                } else {
+        		                    $('#address_custom_key').hide();
+        		                }
+        		            });
+        		        });
+        		        </script>
+        		        <select id="address_select_key" name="key">
+        		            <option value="家庭">家庭</option>
+        		            <option value="工作">工作</option>
+        		            <option value="">自定义</option>
+        		        </select>
+        		        <input id="address_custom_key" type="text" name="key_custom" value="" placeholder="名称" style="display: none;">
+        		        <input type="tel" name="value" placeholder="地址" data-theme="a">
+        		        <button type="submit" data-theme="b">添加</button>
+        			</form>
+        		</div>
+        		
+        		
         		<script>
         		$(document).ready(function() {
         		    $(".delete_item").click(function() {
