@@ -23,17 +23,17 @@ RENREN_TOKEN_URL = "https://graph.renren.com/oauth/token"
 
 ###
 # Twitter
-TWITTER_CONSUMER_KEY = "44lQ0l5WX3dMOTmQuX1rJA"
-TWITTER_CONSUMER_SECRET = "UArA4pxiGVt2NVdP5jxteMAjH3IR45RBwoB83JJCRM"
-TWITTER_AUTH_URL = "https://api.twitter.com/oauth/authorize"
+# TWITTER_CONSUMER_KEY = "44lQ0l5WX3dMOTmQuX1rJA"
+# TWITTER_CONSUMER_SECRET = "UArA4pxiGVt2NVdP5jxteMAjH3IR45RBwoB83JJCRM"
+# TWITTER_AUTH_URL = "https://api.twitter.com/oauth/authorize"
 
 ###
 # Facebook
-FACEBOOK_CLIENT_ID = "576557842359710"
-FACEBOOK_CLIENT_SECRET = "2cbf660c3acd9545089e78e4915bb5e5"
-FACEBOOK_AUTH_URL = "https://www.facebook.com/dialog/oauth"
-FACEBOOK_TOKEN_URL = "https://graph.facebook.com/oauth/access_token"
-FACEBOOK_API_ROOT = "https://graph.facebook.com"
+# FACEBOOK_CLIENT_ID = "576557842359710"
+# FACEBOOK_CLIENT_SECRET = "2cbf660c3acd9545089e78e4915bb5e5"
+# FACEBOOK_AUTH_URL = "https://www.facebook.com/dialog/oauth"
+# FACEBOOK_TOKEN_URL = "https://graph.facebook.com/oauth/access_token"
+# FACEBOOK_API_ROOT = "https://graph.facebook.com"
 
 
 ###
@@ -66,10 +66,10 @@ TQQ_API_ROOT = "https://open.t.qq.com/api"
 
 ###
 # Google+ (killed: no friends api)
-GPLUS_CLIENT_ID = "614789738310.apps.googleusercontent.com"
-GPLUS_CLIENT_SECRET = "ZVw4E8D_xYDRNk7fMfEJuf1C"
-GPLUS_AUTH_URL = "https://accounts.google.com/o/oauth2/auth"
-GPLUS_TOKEN_URL = "https://accounts.google.com/o/oauth2/token"
+# GPLUS_CLIENT_ID = "614789738310.apps.googleusercontent.com"
+# GPLUS_CLIENT_SECRET = "ZVw4E8D_xYDRNk7fMfEJuf1C"
+# GPLUS_AUTH_URL = "https://accounts.google.com/o/oauth2/auth"
+# GPLUS_TOKEN_URL = "https://accounts.google.com/o/oauth2/token"
 
 
 ###

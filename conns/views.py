@@ -32,8 +32,12 @@ def weibo_callback(request):
         }
         r = requests.post(WEIBO_TOKEN_URL, params=args)
         auth_info = r.json
-        nai = AuthInfo(type="weibo", owner=request.user)
-        nai.uid = auth_info['uid']
+        nowai = AuthInfo.objects.filter(uid=auth_info['uid'])
+        if len(nowai):
+            nai = nowai[0]
+        else:
+            nai = AuthInfo(type="weibo", owner=request.user)
+            nai.uid = auth_info['uid']
         user_info = requests.get(WEIBO_API_ROOT+"/users/show.json", params={'access_token': auth_info['access_token'], 'uid': auth_info['uid']}).json
         nai.uname = user_info['screen_name']
         nai.tokens = r.text
@@ -63,8 +67,12 @@ def renren_callback(request):
         }
         r = requests.post(RENREN_TOKEN_URL, params=args)
         auth_info = r.json
-        nai = AuthInfo(type="renren", owner=request.user)
-        nai.uid = auth_info['user']['id']
+        nowai = AuthInfo.objects.filter(uid=auth_info['user']['id'])
+        if len(nowai):
+            nai = nowai[0]
+        else:
+            nai = AuthInfo(type="renren", owner=request.user)
+            nai.uid = auth_info['user']['id']
         nai.uname = auth_info['user']['name']
         nai.tokens = r.text
         nai.save()
@@ -92,9 +100,13 @@ def github_callback(request):
         }
         r = requests.post(GITHUB_TOKEN_URL, params=args)
         auth_info = urlparse.parse_qs(r.text)
-        nai = AuthInfo(type="github", owner=request.user)
         user_info = requests.get(GITHUB_API_ROOT+"/user", params={'access_token': auth_info['access_token'][0]}).json
-        nai.uid = user_info['id']
+        nowai = AuthInfo.objects.filter(uid=user_info['id'])
+        if len(nowai):
+            nai = nowai[0]
+        else:
+            nai = AuthInfo(type="github", owner=request.user)
+            nai.uid = user_info['id']
         nai.uname = user_info['name']
         nai.tokens = r.text
         nai.save()
@@ -155,9 +167,20 @@ def tqq_callback(request):
         }
         r = requests.post(TQQ_TOKEN_URL, params=args)
         auth_info = urlparse.parse_qs(r.text)
-        nai = AuthInfo(type="tqq", owner=request.user)
-        nai.uid = auth_info['name'][0]
-        user_info = requests.get(TQQ_API_ROOT+"/user/info", params={'oauth_consumer_key': TQQ_CLIENT_ID, 'access_token': auth_info['access_token'][0], 'openid': auth_info['openid'][0], 'clientip': "42.121.18.11", 'oauth_version': "2.a"}).json
+        nowai = AuthInfo.objects.filter(uid=auth_info['name'][0])
+        if len(nowai):
+            nai = nowai[0]
+        else:
+            nai = AuthInfo(type="tqq", owner=request.user)
+            nai.uid = auth_info['name'][0]
+        common_args = {
+            'oauth_consumer_key': TQQ_CLIENT_ID,
+            'access_token': auth_info['access_token'][0],
+            'openid': auth_info['openid'][0],
+            'clientip': "42.121.18.11",
+            'oauth_version': "2.a"
+        }
+        user_info = requests.get(TQQ_API_ROOT+"/user/info", params=common_args).json
         nai.uname = user_info['data']['nick']
         nai.tokens = r.text
         nai.save()
@@ -185,9 +208,13 @@ def jiepang_callback(request):
         }
         r = requests.post(JIEPANG_TOKEN_URL, params=args)
         auth_info = r.json
-        nai = AuthInfo(type="jiepang", owner=request.user)
         user_info = requests.get(JIEPANG_API_ROOT+"/users/show", params={'source': JIEPANG_CLIENT_ID, 'access_token': auth_info['access_token']}).json
-        nai.uid = user_info['id']
+        nowai = AuthInfo.objects.filter(uid=user_info['id'])
+        if len(nowai):
+            nai = nowai[0]
+        else:
+            nai = AuthInfo(type="jiepang", owner=request.user) 
+            nai.uid = user_info['id']
         nai.uname = user_info['nick']
         nai.tokens = r.text
         nai.save()
