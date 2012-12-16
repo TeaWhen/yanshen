@@ -25,10 +25,12 @@
                     {% for p in pendings %}
                     <li>
                         <div class="ui-grid-b">
-                            <a href="/contact/{{ p.from_id.id }}/" data-transition="slide"><div class="ui-block-a"><img width="80" src="{{ p.from_id.avatar }}"></div>
-                            <div class="ui-block-b">{{ p.from_id.get_full_name }}</div></a>
-                            <div class="ui-block-c"><a href="/invitation/accept/{{ p.from_id.id }}/" data-role="button" data-mini="true" data-inline="true" data-icon="check">接受</a>
-                            <a href="/invitation/decline/{{ p.from_id.id }}/" data-role="button" data-mini="true" data-inline="true" data-icon="delete">拒绝</a></h3></a></div>
+                            <div class="ui-block-a"><img width="80" src="{{ p.from_id.avatar }}"></div>
+                            <div class="ui-block-b">{{ p.from_id.last_name }} {{ p.from_id.first_name }}</div></a>
+                            <div class="ui-block-c" style="padding-left: 18px;">
+                                <a href="/invitation/accept/{{ p.from_id.id }}/" data-role="button" data-mini="true" data-inline="true" data-icon="check">接受</a>
+                                <a href="/invitation/decline/{{ p.from_id.id }}/" data-role="button" data-mini="true" data-inline="true" data-icon="delete">拒绝</a></h3></a>
+                            </div>
                         </div>
                     </li>
                     {% endfor %}
