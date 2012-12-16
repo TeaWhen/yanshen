@@ -296,7 +296,7 @@ def decline_invitation(request, pk):
 def add_invitation(request, pk):
     user = request.user
     to = Profile.objects.get(pk=pk)
-    if len(Invitation.objects.filter(form_id=user, to_id=to)) == 0:
+    if len(Invitation.objects.filter(from_id=user, to_id=to)) == 0:
         inv = Invitation.objects.create(from_id=user, to_id=to)
     return redirect('/find/')
 
