@@ -9,7 +9,8 @@
 	        <script type="text/javascript">
 	        function initialize() {
 	          var map = new BMap.Map('map');
-	          map.centerAndZoom('合肥', 6);
+	          var point = new BMap.Point({{ x }}, {{ y }});
+	          map.centerAndZoom(point, 6);
 	          map.addControl(new BMap.NavigationControl());
 	          {% for location in locations %}					
 
