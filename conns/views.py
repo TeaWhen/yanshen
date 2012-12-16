@@ -5,6 +5,7 @@ from users.models import Profile, Relationship, Invitation
 from conns.api_keys import *
 
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
 import requests
 import urlparse
@@ -12,7 +13,7 @@ import urllib
 import json
 import hashlib
 
-
+@login_required(login_url='/welcome/')
 def weibo_connect(request):
     args = {
         'response_type': "code",
@@ -67,6 +68,8 @@ def weibo_friends(user):
                     result.append(p.owner)
     return result
 
+
+@login_required(login_url='/welcome/')
 def renren_connect(request):
     args = {
         'response_type': "code",
@@ -144,6 +147,8 @@ def renren_friends(user):
                     result.append(p.owner)
     return result
 
+
+@login_required(login_url='/welcome/')
 def github_connect(request):
     args = {
         'response_type': "code",
@@ -223,6 +228,8 @@ def github_friends(user):
 #     ai = AuthInfo.objects.get(pk=ai_id)
 #     return
 
+
+@login_required(login_url='/welcome/')
 def tqq_connect(request):
     args = {
         'response_type': "code",
@@ -273,6 +280,8 @@ def tqq_callback(request):
 def tqq_friends(user):
     return []
 
+
+@login_required(login_url='/welcome/')
 def jiepang_connect(request):
     args = {
         'response_type': "code",
