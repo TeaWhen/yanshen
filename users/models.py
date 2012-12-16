@@ -46,7 +46,7 @@ class Profile(AbstractBaseUser):
     updated = models.DateTimeField()
 
     # using upyun to store files
-    avatar = models.URLField(max_length=300)
+    avatar = models.URLField(max_length=300, default='http://42.121.18.11/static/img/fixture/ldy.jpg')
 
     groups = models.ManyToManyField(Group, verbose_name='groups', blank=True)
     user_permissions = models.ManyToManyField(Permission, verbose_name='user permissions', blank=True,
