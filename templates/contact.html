@@ -59,7 +59,8 @@
             <script type="text/javascript">
             function initialize() {
               var map = new BMap.Map('map');
-              map.centerAndZoom('杭州', 12);
+              var point = new BMap.Point({{ center_location.x }}, {{ center_location.y }}); 
+              map.centerAndZoom(point, 12);
               map.addControl(new BMap.NavigationControl());
               {% for location in locations %}
                   var marker = new BMap.Marker(new BMap.Point({{ location.x }}, {{ location.y }}));  // 创建标注
