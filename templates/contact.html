@@ -46,7 +46,7 @@
                     <li>
                         <p class="key"><i class="{% if item.type == 'Address' %}icon-map-marker{% elif item.type == 'Phone' %}icon-phone{% elif item.type == 'Email' %}icon-envelope{% endif %}"></i>
                         {{ item.key }}</p>
-                        <p class="value">{{ item.value }}</p>
+                        <p class="value" data-type="{{ item.type }}">{{ item.value }}</p>
                     </li>
                     {% endfor %}
                     {% endif %}

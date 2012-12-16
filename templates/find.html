@@ -34,12 +34,12 @@
                     {% endfor %}
                 </ul>
                 <ul data-role="listview" style="margin-top: 10px;">
-                    <li data-role="list-divider" role="heading">您可能认识...</li>
+                    <li data-role="list-divider" role="heading">您可能认识…</li>
                     {% for uid, udata in guess.items %}
                     <li>
                         <div class="ui-grid-b">
-                            <a href="/contact/{{ user.pk }}" data-transition="slide"><div class="ui-block-a"><img width="80" src="{{ udata.user.avatar }}"></div>
-                            <div class="ui-block-b">{{ udata.user.get_full_name }}</a><p>{% for ic in udata.icons %}<i class="{{ ic }}"></i>{% endfor %}</p></div>
+                            <div class="ui-block-a"><img width="80" src="{{ udata.user.avatar }}"></div>
+                            <div class="ui-block-b">{{ udata.user.get_full_name }}<p>{% for ic in udata.icons %}<i class="{{ ic }}"></i>{% endfor %}</p></div>
                             <div class="ui-block-c"><a href="/invitation/add/{{ uid }}/" data-role="button" data-mini="true" data-inline="true" data-icon="star">加为好友</a>
                         </div>
                     </li>

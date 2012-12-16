@@ -5,6 +5,7 @@
 
 body {
     -webkit-user-select: none;
+    font-family: "Avenir Next", "Helvetica Neue", "Hiragino Sans GB", sans-serif;
 }
 
 ul.social {
@@ -29,11 +30,15 @@ ul.social {
 ul.contact {
     .key {
         margin-top: 2px;
-        margin-bottom: 8px; 
+        margin-bottom: 8px;
     }
     .value {
         font-size: 16px;
         margin-bottom: 0;
+        margin-left: 1px; 
+    }
+    .value[data-type="Phone"], .value[data-type="Email"] {
+        font-size: 20px;
     }
 }
 

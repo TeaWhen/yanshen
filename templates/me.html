@@ -142,11 +142,10 @@
         		        <input type="hidden" name="type" value="Other">
         		        <input type="hidden" name="action" value="add">
         		        <input id="other_custom_key" type="text" name="key" value="" placeholder="名称">
-        		        <input type="tel" name="value" placeholder="内容" data-theme="a">
+        		        <input type="text" name="value" placeholder="内容" data-theme="a">
         		        <button type="submit" data-theme="b">添加</button>
         			</form>
         		</div>
-        		
         		
         		<script>
         		$(document).ready(function() {
@@ -170,7 +169,7 @@
                     <li>
                         <a><p class="key"><i class="{% if item.type == 'Address' %}icon-map-marker{% elif item.type == 'Phone' %}icon-phone{% elif item.type == 'Email' %}icon-envelope{% endif %}"></i>
                         {{ item.key }}</p>
-                        <p class="value">{{ item.value }}</p></a>
+                        <p class="value" data-type="{{ item.type }}">{{ item.value }}</p></a>
                         <a href="#" class="delete_item" data-info_id="{{ item.info_id }}">删除</a>
                     </li>
                     {% endfor %}

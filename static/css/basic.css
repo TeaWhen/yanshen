@@ -1,5 +1,6 @@
 body {
   -webkit-user-select: none;
+  font-family: "Avenir Next", "Helvetica Neue", "Hiragino Sans GB", sans-serif;
 }
 ul.social {
   padding-bottom: 15px;
@@ -24,6 +25,11 @@ ul.contact .key {
 ul.contact .value {
   font-size: 16px;
   margin-bottom: 0;
+  margin-left: 1px;
+}
+ul.contact .value[data-type="Phone"],
+ul.contact .value[data-type="Email"] {
+  font-size: 20px;
 }
 .meta {
   position: relative;
