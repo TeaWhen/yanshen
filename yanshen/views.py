@@ -162,8 +162,10 @@ def me(request):
                 cp.pop(str(info_id))
                 c.privilege = json.JSONEncoder().encode(cp)
                 c.save()
-        else:
-            pass
+        elif action == 'edit':
+            user.last_name = request.POST['last_name']
+            user.first_name = request.POST['first_name']
+            user.save()
     socials = user.conns.all()
     contact_info = json.JSONDecoder().decode(user.contact_info)['data']
     
