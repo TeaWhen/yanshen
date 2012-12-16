@@ -297,7 +297,7 @@ def add_invitation(request, pk):
     user = request.user
     to = Profile.objects.get(pk=pk)
     if len(Invitation.objects.filter(from_id=user, to_id=to)) == 0:
-        if len(Invitation.objects.filter(from_id=to, to_id=user)) == 0:
+        if len(Invitation.objects.filter(from_id=to, to_id=user)) != 0:
             fromu = user
             tou = to
             non_cat_from = fromu.cats.all()[0]
