@@ -19,8 +19,8 @@
                         <h3>修改姓名</h3>
                         <input type="hidden" name="type" value="Edit">
                         <input type="hidden" name="action" value="edit">
-                        <input id="group_key" type="text" name="last_name" value="" placeholder="{{ user.last_name }}">
-                        <input id="group_key" type="text" name="first_name" value="" placeholder="{{ user.first_name }}">
+                        <input id="group_key" type="text" name="last_name" value="{{ user.last_name }}">
+                        <input id="group_key" type="text" name="first_name" value="{{ user.first_name }}">
                         <button type="submit" data-theme="b">修改</button>
                 	</form>
                 </div>

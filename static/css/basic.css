@@ -27,9 +27,11 @@ ul.contact .value {
   margin-bottom: 0;
   margin-left: 1px;
 }
-ul.contact .value[data-type="Phone"],
+ul.contact .value[data-type="Phone"] {
+  font-size: 24px;
+}
 ul.contact .value[data-type="Email"] {
-  font-size: 20px;
+  font-size: 21px;
 }
 .meta {
   position: relative;
