@@ -57,6 +57,8 @@ def welcome(request):
                     user.last_name = request.POST['lastname']
                     p = Pinyin()
                     user.pinyin = p.get_pinyin(user.last_name + user.first_name, ' ')
+                    for char in user.last_name + user.first_name:
+                        user.pinyin += get_initials(char)
                     user.contact_info = json.JSONEncoder().encode({"next_id":2, "data":[{"info_id":1, "type":"Email", "key": u"电子邮箱", "value": user.email}]})
                     user.save()
                     category = Category.objects.create(name=u'未分组', owner=user, privilege='{"1":false}')
