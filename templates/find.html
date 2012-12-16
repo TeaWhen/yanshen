@@ -12,9 +12,9 @@
                     {% for i in invites %}
                     <li>
                         <div class="ui-grid-b">
-                            <a href="/contact/{{ i.to_id.id }}" data-transition="slide"><div class="ui-block-a"><img width="80" src="{{ i.to_id.avatar }}"></div>
-                            <div class="ui-block-b">{{ i.to_id.get_full_name }}</div></a>
-                            <div class="ui-block-c">等待对方确认</div>
+                            <div class="ui-block-a"><img width="80" src="{{ i.to_id.avatar }}"></div>
+                            <div class="ui-block-b" style="font-size: 24px;">{{ i.to_id.get_full_name }}</div>
+                            <div class="ui-block-c" style="padding-top: 2px; color: #999;">等待对方确认</div>
                         </div>
                     </li>
                     {% endfor %}
@@ -26,7 +26,7 @@
                     <li>
                         <div class="ui-grid-b">
                             <div class="ui-block-a"><img width="80" src="{{ p.from_id.avatar }}"></div>
-                            <div class="ui-block-b">{{ p.from_id.last_name }} {{ p.from_id.first_name }}</div></a>
+                            <div class="ui-block-b" style="font-size: 24px;">{{ p.from_id.get_full_name }}</div></a>
                             <div class="ui-block-c" style="padding-left: 18px;">
                                 <a href="/invitation/accept/{{ p.from_id.id }}/" data-role="button" data-mini="true" data-inline="true" data-icon="check">接受</a>
                                 <a href="/invitation/decline/{{ p.from_id.id }}/" data-role="button" data-mini="true" data-inline="true" data-icon="delete">拒绝</a></h3></a>
@@ -41,8 +41,11 @@
                     <li>
                         <div class="ui-grid-b">
                             <div class="ui-block-a"><img width="80" src="{{ udata.user.avatar }}"></div>
-                            <div class="ui-block-b">{{ udata.user.get_full_name }}<p>{% for ic in udata.icons %}<i class="{{ ic }}"></i>{% endfor %}</p></div>
-                            <div class="ui-block-c"><a href="/invitation/add/{{ uid }}/" data-role="button" data-mini="true" data-inline="true" data-icon="star">加为好友</a>
+                            <div class="ui-block-b">
+                                <span style="font-size: 22px;">{{ udata.user.get_full_name }}</span><br>
+                                <span>{% for ic in udata.icons %}<i style="font-size: 32px;" class="{{ ic }}"></i>{% endfor %}</span>
+                            </div>
+                            <div class="ui-block-c" style="margin-left: -6px;"><a href="/invitation/add/{{ uid }}/" data-role="button" data-mini="true" data-inline="true" data-icon="star">加为好友</a>
                         </div>
                     </li>
                     {% endfor %}
