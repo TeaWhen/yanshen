@@ -20,7 +20,13 @@
 				  map.addOverlay(marker);              // 将标注添加到地图中
 
 				  marker.addEventListener("click",function(e){
-    				location.href = "/contact/{{ location.user_pk }}/";
+				  	if("{{ location.user_pk }}" == "{{ request.user.pk }}") {
+				  		location.href = "/me/";
+				  	}
+				  	else
+				  	{
+				  		location.href = "/contact/{{ location.user_pk }}/";
+				  	}
 				  });
 
 			  {% endfor %}
