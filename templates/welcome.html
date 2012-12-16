@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block data-url %}/welcome/{% endblock %}
 {% block screen %}
             <div class="top" data-role="header" data-position="fixed">
                 <h1>欢迎来到{{ appname }}！</h1>
@@ -43,8 +44,8 @@
                     <input type="password" name="password" id="password" value="" placeholder="密码">
                     <div class="lastname" style="display: none;"><input type="text" class="sidebyside" name="lastname" placeholder="姓"></div>
                     <div class="firstname" style="display: none;"><input type="text" class="sidebyside" name="firstname" placeholder="名"></div>
-                    <div class="login"><input id="submit_login" type="submit" value="登录"></div>
-                    <div class="reg" style="display: none;"><input id="submit_reg" type="submit" value="注册"></div>
+                    <div class="login"><input data-theme="e" id="submit_login" type="submit" value="登录"></div>
+                    <div class="reg" style="display: none;"><input data-theme="e" id="submit_reg" type="submit" value="注册"></div>
                     <a href="#" id="reg">还未注册？</a>
                     <a href="#" id="login" hidden="true">已经注册？</a>
                 </form>

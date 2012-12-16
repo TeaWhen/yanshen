@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block data-url %}/contact/{{ user.pk }}/{% endblock %}
 {% block screen %}
             <div class="top" data-role="header" data-position="fixed">
                 <a href="/" data-role="button" data-icon="arrow-l" data-direction="reverse" data-transition="slide" data-theme="a" data-prefetch>返回</a>
@@ -58,7 +59,7 @@
             <script type="text/javascript">
             function initialize() {
               var map = new BMap.Map('map');
-              map.centerAndZoom('杭州', 6);
+              map.centerAndZoom('武汉', 6);
               map.addControl(new BMap.NavigationControl());
               {% for location in locations %}
                   var marker = new BMap.Marker(new BMap.Point({{ location.x }}, {{ location.y }}));  // 创建标注
@@ -68,12 +69,10 @@
               {% endfor %}
             }
 
-            function loadScript() {
+            $(document).ready(function loadScript() {
                 var script = document.createElement("script");
                 script.src = "http://api.map.baidu.com/api?v=1.4&callback=initialize";
                 document.body.appendChild(script);
-            }
-
-            window.onload = loadScript;
+            });
             </script>
 {% endblock %}
