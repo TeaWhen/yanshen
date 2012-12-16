@@ -260,12 +260,19 @@ def map(request):
     appname = u"延伸"
     pagename = 'map'
     relationship = Relationship.objects.filter(from_id=request.user)
-    users = []
+    users = [request.user]
     for r in relationship:
         users.append(r.to_id)
     locations = []
     for user in users:
         locations += user.get_locations()
+    x = 0
+    y = 0
+    for location in locations:
+        x += int(location['x'])
+        y += int(location['y'])
+    x /= len(locations)
+    y /= len(locations)
     return locals()
 
 @render_to('find.html')

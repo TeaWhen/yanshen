@@ -9,7 +9,8 @@
 	        <script type="text/javascript">
 	        function initialize() {
 	          var map = new BMap.Map('map');
-	          map.centerAndZoom('合肥', 6);
+	          var point = new BMap.Point({{ x }}, {{ y }});
+	          map.centerAndZoom(point, 6);
 	          map.addControl(new BMap.NavigationControl());
 	          {% for location in locations %}					
 
@@ -19,7 +20,13 @@
 				  map.addOverlay(marker);              // 将标注添加到地图中
 
 				  marker.addEventListener("click",function(e){
-    				location.href = "/contact/{{ location.user_pk }}/";
+				  	if("{{ location.user_pk }}" == "{{ request.user.pk }}") {
+				  		location.href = "/me/";
+				  	}
+				  	else
+				  	{
+				  		location.href = "/contact/{{ location.user_pk }}/";
+				  	}
 				  });
 
 			  {% endfor %}
