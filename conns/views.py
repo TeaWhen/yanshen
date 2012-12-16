@@ -172,7 +172,10 @@ def github_callback(request):
         else:
             nai = AuthInfo(type="github", owner=request.user)
             nai.uid = user_info['id']
-        nai.uname = user_info['name']
+        if 'name' in user_info:
+            nai.uname = user_info['name']
+        else:
+            nai.uname = user_info['login']
         nai.icon = "icon-github"
         nai.url = user_info['html_url']
         nai.tokens = r.text
