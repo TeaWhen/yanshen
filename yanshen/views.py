@@ -298,7 +298,12 @@ def add_invitation(request, pk):
     to = Profile.objects.get(pk=pk)
     if len(Invitation.objects.filter(from_id=user, to_id=to)) == 0:
         if len(Invitation.objects.filter(from_id=to, to_id=user)) == 0:
-            return accept_invitation(request, pk)
+            fromu = user
+            tou = to
+            non_cat_from = fromu.cats.all()[0]
+            non_cat_to = tou.cats.all()[0]
+            Relationship.objects.create(from_id=fromu, to_id=tou, cat_id=non_cat_from)
+            Relationship.objects.create(from_id=tou, to_id=fromu, cat_id=non_cat_to)
         else:
             inv = Invitation.objects.create(from_id=user, to_id=to)
     return redirect('/find/')
