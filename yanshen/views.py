@@ -196,7 +196,9 @@ def group(request):
     categories = Category.objects.filter(owner=user)
     data = []
     for category in categories:
-        data.append(dict(category=category, friends=Relationship.objects.filter(from_id=user.id,cat_id=category)))
+        fff = Relationship.objects.filter(from_id=user.id,cat_id=category)
+        fff.reverse()
+        data.append(dict(category=category, friends=fff))
     #user.
     return locals()
 
