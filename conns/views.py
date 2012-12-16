@@ -1,7 +1,7 @@
 # coding=utf8
 
 from conns.models import AuthInfo
-from users.models import Profile, Relationship
+from users.models import Profile, Relationship, Invitation
 from conns.api_keys import *
 
 from django.shortcuts import redirect
@@ -320,6 +320,12 @@ def calc_friends(user):
     af = Relationship.objects.filter(from_id=user)
     for aaf in af:
         already.append(aaf.to_id)
+    af = Invitation.objects.filter(from_id=user)
+    for aaf in af:
+        already.append(aaf.to_id)
+    af = Invitation.objects.filter(to_id=user)
+    for aaf in af:
+        already.append(aaf.from_id)
     ff = weibo_friends(user)
     for f in ff:
         if not f in already:

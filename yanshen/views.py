@@ -84,6 +84,7 @@ def index(request):
     for r in relationship:
         users.append(r.to_id)
     sorted(users, key=lambda user: user.pinyin)
+    noti_count = len(request.user.invites.all())+len(request.user.pendings.all())
     return locals()
 
 @render_to('contact.html')
