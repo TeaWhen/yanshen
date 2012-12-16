@@ -7,9 +7,9 @@
             </div>
             
             <div data-role="content">
-                <ul data-role="listview">
+                <ul data-role="listview" data-split-icon="gear" data-split-theme="d">
                     {% for item in data %}
-        			<li><a href="/group/{{item.category.pk}}/" data-transition="slide">
+        			<li><a href="/category/{{item.category.pk}}/" data-transition="slide">
         				<h3>{{ item.category.name }}</h3>
                         <p>
                         {% for friend in item.friends %}
@@ -22,6 +22,7 @@
                             等 {{ item.friends|length }} 人…
                         {% endif %}
                         </p>
+                        <a href="/group/{{item.category.pk}}/" data-transition="slide">修改权限</a>
         			</a></li>
                     {% endfor %}
         			<li><a href="#popup_addgroup" data-rel="popup">添加一个分组…</a></li>
