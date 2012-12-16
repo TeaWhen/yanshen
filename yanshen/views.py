@@ -116,7 +116,10 @@ def contact(request, pk):
             social_data.append(social)
 
     locations = owner.get_locations()
-    center_location = locations[0]
+    if len(locations) > 0:
+        center_location = locations[0]
+    else:
+        center_location = u"杭州"
 
     if request.method == 'POST':
         newcat = Category.objects.get(pk=request.POST['newcat'])
@@ -199,7 +202,6 @@ def group(request):
         fff = Relationship.objects.filter(from_id=user.id,cat_id=category)
         fff.reverse()
         data.append(dict(category=category, friends=fff))
-    #user.
     return locals()
 
 @render_to('group_setting.html')
