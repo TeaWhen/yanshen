@@ -116,6 +116,7 @@ def contact(request, pk):
             social_data.append(social)
 
     locations = owner.get_locations()
+    center_location = locations[0]
 
     if request.method == 'POST':
         newcat = Category.objects.get(pk=request.POST['newcat'])
