@@ -119,7 +119,7 @@ def contact(request, pk):
     if len(locations) > 0:
         center_location = locations[0]
     else:
-        center_location = u"杭州"
+        center_location = None
 
     if request.method == 'POST':
         newcat = Category.objects.get(pk=request.POST['newcat'])

@@ -59,7 +59,7 @@
             <script type="text/javascript">
             function initialize() {
               var map = new BMap.Map('map');
-              var point = new BMap.Point({{ center_location.x }}, {{ center_location.y }}); 
+              var point = new BMap.Point({% if center_location %}{{ center_location.x }}, {{ center_location.y }}{% else %}'杭州'{% endif %}); 
               map.centerAndZoom(point, 12);
               map.addControl(new BMap.NavigationControl());
               {% for location in locations %}
