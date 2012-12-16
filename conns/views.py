@@ -44,7 +44,7 @@ def weibo_callback(request):
         user_info = requests.get(WEIBO_API_ROOT+"/users/show.json", params={'access_token': auth_info['access_token'], 'uid': auth_info['uid']}).json
         nai.uname = user_info['screen_name']
         nai.icon = "icon-weibo"
-        nai.url = "http://weibo.com/"+str(auth_info['name'])
+        nai.url = "http://weibo.com/"+user_info['name']
         nai.tokens = r.text
         nai.save()
         for c in request.user.cats.all().all():
